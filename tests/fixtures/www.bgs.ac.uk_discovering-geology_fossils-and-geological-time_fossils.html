@@ -1,0 +1,1859 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+	<meta charset="UTF-8" />
+<script>
+var gform;gform||(document.addEventListener("gform_main_scripts_loaded",function(){gform.scriptsLoaded=!0}),document.addEventListener("gform/theme/scripts_loaded",function(){gform.themeScriptsLoaded=!0}),window.addEventListener("DOMContentLoaded",function(){gform.domLoaded=!0}),gform={domLoaded:!1,scriptsLoaded:!1,themeScriptsLoaded:!1,isFormEditor:()=>"function"==typeof InitializeEditor,callIfLoaded:function(o){return!(!gform.domLoaded||!gform.scriptsLoaded||!gform.themeScriptsLoaded&&!gform.isFormEditor()||(gform.isFormEditor()&&console.warn("The use of gform.initializeOnLoaded() is deprecated in the form editor context and will be removed in Gravity Forms 3.1."),o(),0))},initializeOnLoaded:function(o){gform.callIfLoaded(o)||(document.addEventListener("gform_main_scripts_loaded",()=>{gform.scriptsLoaded=!0,gform.callIfLoaded(o)}),document.addEventListener("gform/theme/scripts_loaded",()=>{gform.themeScriptsLoaded=!0,gform.callIfLoaded(o)}),window.addEventListener("DOMContentLoaded",()=>{gform.domLoaded=!0,gform.callIfLoaded(o)}))},hooks:{action:{},filter:{}},addAction:function(o,r,e,t){gform.addHook("action",o,r,e,t)},addFilter:function(o,r,e,t){gform.addHook("filter",o,r,e,t)},doAction:function(o){gform.doHook("action",o,arguments)},applyFilters:function(o){return gform.doHook("filter",o,arguments)},removeAction:function(o,r){gform.removeHook("action",o,r)},removeFilter:function(o,r,e){gform.removeHook("filter",o,r,e)},addHook:function(o,r,e,t,n){null==gform.hooks[o][r]&&(gform.hooks[o][r]=[]);var d=gform.hooks[o][r];null==n&&(n=r+"_"+d.length),gform.hooks[o][r].push({tag:n,callable:e,priority:t=null==t?10:t})},doHook:function(r,o,e){var t;if(e=Array.prototype.slice.call(e,1),null!=gform.hooks[r][o]&&((o=gform.hooks[r][o]).sort(function(o,r){return o.priority-r.priority}),o.forEach(function(o){"function"!=typeof(t=o.callable)&&(t=window[t]),"action"==r?t.apply(null,e):e[0]=t.apply(null,e)})),"filter"==r)return e[0]},removeHook:function(o,r,t,n){var e;null!=gform.hooks[o][r]&&(e=(e=gform.hooks[o][r]).filter(function(o,r,e){return!!(null!=n&&n!=o.tag||null!=t&&t!=o.priority)}),gform.hooks[o][r]=e)}});
+</script>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="theme-color" content="#002E40">
+	<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+	<!-- This site is optimized with the Yoast SEO plugin v28.1 - https://yoast.com/product/yoast-seo-wordpress/ -->
+	<title>Fossils - British Geological Survey</title>
+	<link rel="canonical" href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/fossils/" />
+	<meta property="og:locale" content="en_GB" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Fossils - British Geological Survey" />
+	<meta property="og:description" content="What is a fossil and why do we study them? Explore the different methods of fossil preservation." />
+	<meta property="og:url" content="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/fossils/" />
+	<meta property="og:site_name" content="British Geological Survey" />
+	<meta property="article:modified_time" content="2021-08-20T10:56:15+00:00" />
+	<meta property="og:image" content="https://www.bgs.ac.uk/wp-content/uploads/2021/08/P550300.jpg" />
+	<meta property="og:image:width" content="640" />
+	<meta property="og:image:height" content="427" />
+	<meta property="og:image:type" content="image/jpeg" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:label1" content="Estimated reading time" />
+	<meta name="twitter:data1" content="4 minutes" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https:\/\/schema.org","@graph":[{"@type":"WebPage","@id":"https:\/\/www.bgs.ac.uk\/discovering-geology\/fossils-and-geological-time\/fossils\/","url":"https:\/\/www.bgs.ac.uk\/discovering-geology\/fossils-and-geological-time\/fossils\/","name":"Fossils - British Geological Survey","isPartOf":{"@id":"https:\/\/www.bgs.ac.uk\/#website"},"primaryImageOfPage":{"@id":"https:\/\/www.bgs.ac.uk\/discovering-geology\/fossils-and-geological-time\/fossils\/#primaryimage"},"image":{"@id":"https:\/\/www.bgs.ac.uk\/discovering-geology\/fossils-and-geological-time\/fossils\/#primaryimage"},"thumbnailUrl":"https:\/\/www.bgs.ac.uk\/wp-content\/uploads\/2021\/08\/P550300.jpg","datePublished":"2020-05-05T06:27:12+00:00","dateModified":"2021-08-20T10:56:15+00:00","breadcrumb":{"@id":"https:\/\/www.bgs.ac.uk\/discovering-geology\/fossils-and-geological-time\/fossils\/#breadcrumb"},"inLanguage":"en-GB","potentialAction":[{"@type":"ReadAction","target":["https:\/\/www.bgs.ac.uk\/discovering-geology\/fossils-and-geological-time\/fossils\/"]}]},{"@type":"ImageObject","inLanguage":"en-GB","@id":"https:\/\/www.bgs.ac.uk\/discovering-geology\/fossils-and-geological-time\/fossils\/#primaryimage","url":"https:\/\/www.bgs.ac.uk\/wp-content\/uploads\/2021\/08\/P550300.jpg","contentUrl":"https:\/\/www.bgs.ac.uk\/wp-content\/uploads\/2021\/08\/P550300.jpg","width":640,"height":427},{"@type":"BreadcrumbList","@id":"https:\/\/www.bgs.ac.uk\/discovering-geology\/fossils-and-geological-time\/fossils\/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https:\/\/www.bgs.ac.uk\/"},{"@type":"ListItem","position":2,"name":"Discovering Geology","item":"https:\/\/www.bgs.ac.uk\/discovering-geology\/"},{"@type":"ListItem","position":3,"name":"Fossils and geological time","item":"https:\/\/www.bgs.ac.uk\/discovering-geology\/fossils-and-geological-time\/"},{"@type":"ListItem","position":4,"name":"Fossils"}]},{"@type":"WebSite","@id":"https:\/\/www.bgs.ac.uk\/#website","url":"https:\/\/www.bgs.ac.uk\/","name":"British Geological Survey","description":"World-leading geological solutions","publisher":{"@id":"https:\/\/www.bgs.ac.uk\/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https:\/\/www.bgs.ac.uk\/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"en-GB"},{"@type":"Organization","@id":"https:\/\/www.bgs.ac.uk\/#organization","name":"British Geological Survey","url":"https:\/\/www.bgs.ac.uk\/","logo":{"@type":"ImageObject","inLanguage":"en-GB","@id":"https:\/\/www.bgs.ac.uk\/#\/schema\/logo\/image\/","url":"https:\/\/www.bgs.ac.uk\/wp-content\/uploads\/2020\/03\/BGS-logo-large.png","contentUrl":"https:\/\/www.bgs.ac.uk\/wp-content\/uploads\/2020\/03\/BGS-logo-large.png","width":250,"height":104,"caption":"British Geological Survey"},"image":{"@id":"https:\/\/www.bgs.ac.uk\/#\/schema\/logo\/image\/"}}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//cc.cdn.civiccomputing.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel="alternate" type="application/rss+xml" title="British Geological Survey &raquo; Feed" href="https://www.bgs.ac.uk/feed/" />
+<link rel="alternate" type="application/rss+xml" title="British Geological Survey &raquo; Comments Feed" href="https://www.bgs.ac.uk/comments/feed/" />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://www.bgs.ac.uk/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.bgs.ac.uk%2Fdiscovering-geology%2Ffossils-and-geological-time%2Ffossils%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://www.bgs.ac.uk/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.bgs.ac.uk%2Fdiscovering-geology%2Ffossils-and-geological-time%2Ffossils%2F&#038;format=xml" />
+<style id="wp-img-auto-sizes-contain-inline-css">
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<style id="wp-emoji-styles-inline-css">
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+/*# sourceURL=wp-emoji-styles-inline-css */
+</style>
+<style id="wp-block-library-inline-css">
+:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}:root .has-text-align-center{text-align:center}:root .has-text-align-left{text-align:left}:root .has-text-align-right{text-align:right}.has-fit-text{white-space:nowrap!important}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{word-wrap:normal!important;border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}.screen-reader-text:focus{background-color:#ddd;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style*=border-color]){border-style:solid}html :where([style*=border-top-color]){border-top-style:solid}html :where([style*=border-right-color]){border-right-style:solid}html :where([style*=border-bottom-color]){border-bottom-style:solid}html :where([style*=border-left-color]){border-left-style:solid}html :where([style*=border-width]){border-style:solid}html :where([style*=border-top-width]){border-top-style:solid}html :where([style*=border-right-width]){border-right-style:solid}html :where([style*=border-bottom-width]){border-bottom-style:solid}html :where([style*=border-left-width]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}
+
+/*# sourceURL=/wp-includes/css/dist/block-library/common.min.css */
+</style>
+<style id="wp-block-heading-inline-css">
+h1:where(.wp-block-heading).has-background,h2:where(.wp-block-heading).has-background,h3:where(.wp-block-heading).has-background,h4:where(.wp-block-heading).has-background,h5:where(.wp-block-heading).has-background,h6:where(.wp-block-heading).has-background{padding:1.25em 2.375em}h1.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h1.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h2.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h2.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h3.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h3.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h4.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h4.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h5.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h5.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h6.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h6.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]){rotate:180deg}
+/*# sourceURL=https://www.bgs.ac.uk/wp-includes/blocks/heading/style.min.css */
+</style>
+<style id="wp-block-list-inline-css">
+ol,ul{box-sizing:border-box}:root :where(.wp-block-list.has-background){padding:1.25em 2.375em}
+/*# sourceURL=https://www.bgs.ac.uk/wp-includes/blocks/list/style.min.css */
+</style>
+<style id="wp-block-paragraph-inline-css">
+.is-small-text{font-size:.875em}.is-regular-text{font-size:1em}.is-large-text{font-size:2.25em}.is-larger-text{font-size:3em}.has-drop-cap:not(:focus):first-letter{float:left;font-size:8.4em;font-style:normal;font-weight:100;line-height:.68;margin:.05em .1em 0 0;text-transform:uppercase}body.rtl .has-drop-cap:not(:focus):first-letter{float:none;margin-left:.1em}p.has-drop-cap.has-background{overflow:hidden}:root :where(p.has-background){padding:1.25em 2.375em}:where(p.has-text-color:not(.has-link-color)) a{color:inherit}p.has-text-align-left[style*="writing-mode:vertical-lr"],p.has-text-align-right[style*="writing-mode:vertical-rl"]{rotate:180deg}
+/*# sourceURL=https://www.bgs.ac.uk/wp-includes/blocks/paragraph/style.min.css */
+</style>
+
+<style id="classic-theme-styles-inline-css">
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+/*# sourceURL=/wp-includes/css/classic-themes.min.css */
+</style>
+
+<style id="global-styles-inline-css">
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}:where(body) { margin: 0; }:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+
+<link rel='stylesheet' id='wpdm-fonticon-css' href='https://www.bgs.ac.uk/wp-content/plugins/download-manager/assets/wpdm-iconfont/css/wpdm-icons.css?ver=7.0.4' media='all' />
+<link rel='stylesheet' id='wpdm-front-css' href='https://www.bgs.ac.uk/wp-content/plugins/download-manager/assets/css/front.min.css?ver=3.3.58' media='all' />
+<link rel='stylesheet' id='wpdm-front-dark-css' href='https://www.bgs.ac.uk/wp-content/plugins/download-manager/assets/css/front-dark.min.css?ver=3.3.58' media='all' />
+<link rel='stylesheet' id='wpex-font-awesome-css' href='https://www.bgs.ac.uk/wp-content/plugins/wp-timelines/css/font-awesome/css/font-awesome.min.css?ver=7.0.4' media='all' />
+<link rel='stylesheet' id='wpex-google-fonts-css' href='//fonts.googleapis.com/css?family=Source+Sans+Pro%7CAileron%7CAileron&#038;ver=1.0.0' media='all' />
+<link rel='stylesheet' id='bgs-before-after-slider-css' href='https://www.bgs.ac.uk/wp-content/themes/bgs/css/before-after-slider.css?ver=1.2' media='all' />
+<link rel='stylesheet' id='bgs-bootstrap-css' href='https://www.bgs.ac.uk/wp-content/themes/bgs/css/bootstrap.min.css?ver=1.2' media='all' />
+<style id="bgs-bootstrap-inline-css">
+:root {--basic-color-1 : #fff;--basic-color-1-rgb : 255, 255, 255;--basic-color-2 : #F1F1F1;--basic-color-2-rgb : 241, 241, 241;--basic-color-3 : #E5EAEB;--basic-color-3-rgb : 229, 234, 235;--basic-color-4 : #CCD5D9;--basic-color-4-rgb : 204, 213, 217;--basic-color-5 : #6F6F71;--basic-color-5-rgb : 111, 111, 113;--basic-color-6 : #333;--basic-color-6-rgb : 51, 51, 51;--basic-color-7 : #000;--basic-color-7-rgb : 0, 0, 0;--basic-color-8 : #B30000;--basic-color-8-rgb : 179, 0, 0;--primary-color : #002E40;--primary-color-rgb : 0, 46, 64;--primary-color-a : #194253;--primary-color-a-rgb : 25, 66, 83;--primary-color-b : #335866;--primary-color-b-rgb : 51, 88, 102;--primary-color-c : #66828C;--primary-color-c-rgb : 102, 130, 140;--secondary-color : #CEC4A9;--secondary-color-rgb : 206, 196, 169;--secondary-color-a : #B5A57E;--secondary-color-a-rgb : 181, 165, 126;--secondary-color-b : #BDB08D;--secondary-color-b-rgb : 189, 176, 141;--secondary-color-c : #CEC4A9;--secondary-color-c-rgb : 206, 196, 169;--secondary-color-dark : #7C6E4B;--secondary-color-dark-rgb : 124, 110, 75;--secondary-color-dark-a : #97875B;--secondary-color-dark-a-rgb : 151, 135, 91;--secondary-color-dark-b : #AD9C70;--secondary-color-dark-b-rgb : 173, 156, 112;}
+/*# sourceURL=bgs-bootstrap-inline-css */
+</style>
+<link rel='stylesheet' id='bgs-owl-css' href='https://www.bgs.ac.uk/wp-content/themes/bgs/css/owl.carousel.min.css?ver=1.2' media='all' />
+<link rel='stylesheet' id='bgs-owl-theme-css' href='https://www.bgs.ac.uk/wp-content/themes/bgs/css/owl.theme.default.css?ver=1.2' media='all' />
+<link rel='stylesheet' id='bgs-select2-css' href='https://www.bgs.ac.uk/wp-content/themes/bgs/css/select2.min.css?ver=1.2' media='all' />
+<link rel='stylesheet' id='bgs-button-icons-css' href='https://www.bgs.ac.uk/wp-content/themes/bgs/css/button-icons.css?ver=1.2' media='all' />
+<link rel='stylesheet' id='bgs-ekko-lightbox-css' href='https://www.bgs.ac.uk/wp-content/themes/bgs/css/ekko-lightbox.css?ver=1.2' media='all' />
+<link rel='stylesheet' id='bgs-cus-style-css' href='https://www.bgs.ac.uk/wp-content/themes/bgs/css/style.css?ver=1.2' media='all' />
+<link rel='stylesheet' id='bgs-fonts-css' href='https://use.typekit.net/mvn4zqf.css?ver=1.2' media='all' />
+<link rel='stylesheet' id='bgs-nouislider-css' href='https://www.bgs.ac.uk/wp-content/themes/bgs/css/nouislider.min.css?ver=1.2' media='all' />
+<link rel='stylesheet' id='bgs-style-css' href='https://www.bgs.ac.uk/wp-content/themes/bgs/style.css?ver=1.2' media='all' />
+<link rel='stylesheet' id='wp-pagenavi-css' href='https://www.bgs.ac.uk/wp-content/plugins/wp-pagenavi/pagenavi-css.css?ver=2.70' media='all' />
+<link rel='stylesheet' id='__EPYT__style-css' href='https://www.bgs.ac.uk/wp-content/plugins/youtube-embed-plus/styles/ytprefs.min.css?ver=14.2.6' media='all' />
+<style id="__EPYT__style-inline-css">
+
+                .epyt-gallery-thumb {
+                        width: 33.333%;
+                }
+                
+/*# sourceURL=__EPYT__style-inline-css */
+</style>
+<script id="jquery-core-js" src="https://www.bgs.ac.uk/wp-includes/js/jquery/jquery.min.js?ver=3.7.1"></script>
+<script id="jquery-migrate-js" src="https://www.bgs.ac.uk/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1"></script>
+<script id="wpdm-frontend-js-js" src="https://www.bgs.ac.uk/wp-content/plugins/download-manager/assets/js/wpdm.min.js?ver=7.0.4"></script>
+<script id="wpdm-frontjs-js-extra">
+var wpdm_url = {"home":"https://www.bgs.ac.uk/","site":"https://www.bgs.ac.uk/","ajax":"https://www.bgs.ac.uk/wp-admin/admin-ajax.php"};
+var wpdm_js = {"spinner":"\u003Ci class=\"wpdm-icon wpdm-sun wpdm-spin\"\u003E\u003C/i\u003E","client_id":"8f954feb180692a657823988f4b3401c"};
+var wpdm_strings = {"pass_var":"Password Verified!","pass_var_q":"Please click following button to start download.","start_dl":"Start Download"};
+//# sourceURL=wpdm-frontjs-js-extra
+</script>
+<script id="wpdm-frontjs-js" src="https://www.bgs.ac.uk/wp-content/plugins/download-manager/assets/js/front.min.js?ver=3.3.58"></script>
+<script id="__ytprefs__-js-extra">
+var _EPYT_ = {"ajaxurl":"https://www.bgs.ac.uk/wp-admin/admin-ajax.php","security":"04ea279cfb","gallery_scrolloffset":"20","eppathtoscripts":"https://www.bgs.ac.uk/wp-content/plugins/youtube-embed-plus/scripts/","eppath":"https://www.bgs.ac.uk/wp-content/plugins/youtube-embed-plus/","epresponsiveselector":"[\"iframe.__youtube_prefs_widget__\"]","epdovol":"1","version":"14.2.6","evselector":"iframe.__youtube_prefs__[src], iframe[src*=\"youtube.com/embed/\"], iframe[src*=\"youtube-nocookie.com/embed/\"]","ajax_compat":"","maxres_facade":"eager","ytapi_load":"light","pause_others":"","stopMobileBuffer":"1","facade_mode":"","not_live_on_channel":""};
+//# sourceURL=__ytprefs__-js-extra
+</script>
+<script id="__ytprefs__-js" src="https://www.bgs.ac.uk/wp-content/plugins/youtube-embed-plus/scripts/ytprefs.min.js?ver=14.2.6"></script>
+<link rel="https://api.w.org/" href="https://www.bgs.ac.uk/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://www.bgs.ac.uk/wp-json/wp/v2/pages/29418" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.bgs.ac.uk/xmlrpc.php?rsd" />
+<meta name="generator" content="WordPress 7.0.4" />
+<link rel='shortlink' href='https://www.bgs.ac.uk/?p=29418' />
+<script>
+  // Include the following lines to define the gtag() function when
+  // calling this code prior to your gtag.js or Tag Manager snippet
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  // Call the default command before gtag.js or Tag Manager runs to
+  // adjust how the tags operate when they run. Modify the defaults
+  // per your business requirements and prior consent granted/denied, e.g.:
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'analytics_storage': 'denied',
+    'functionality_storage': 'denied',
+    'personalization_storage': 'denied',
+    'security_storage': 'denied',
+    'ad_personalization': 'denied',
+    'ad_user_data': 'denied',
+  });
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PXMJ46J');</script>
+<!-- End Google Tag Manager -->		<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+		<link rel="icon" href="https://www.bgs.ac.uk/wp-content/uploads/2020/03/cropped-BGS-favicon-logo-32x32.png" sizes="32x32" />
+<link rel="apple-touch-icon" href="https://www.bgs.ac.uk/wp-content/uploads/2020/03/cropped-BGS-favicon-logo-180x180.png" />
+<link rel="icon" href="https://www.bgs.ac.uk/wp-content/uploads/2020/04/cropped-BGS-home-screen-150x150.png" sizes="192x192" />
+<meta name="msapplication-config" content="none">
+						<meta name="msapplication-TileImage" content="https://www.bgs.ac.uk/wp-content/uploads/2020/04/cropped-BGS-home-screen-1.png" />
+<style id="wp-custom-css">
+html {
+	scroll-padding-top: 125px;
+}
+
+@media screen and (min-width: 992px) {
+.content-section .img-wrap img {
+		max-height: 465px;
+}
+	/*WP Timeline Plugin CSS*/
+	
+	body .wpex-timeline-list.show-icon .wpex-timeline > li .wpex-content-left .tlday {
+    line-height: 1.3;
+    font-size: 55px;
+}
+.wpex-timeline-list {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: auto;
+}
+body .wpex-timeline > li .wpex-timeline-label h2 {
+    text-transform: none;
+}
+.wpex-timeline > li .wpex-timeline-label h2 a {
+        border-bottom: 0;
+    font-weight: 700;
+}
+.wpex-timeline-list.show-icon .wptl-feature-name span, .wpex-tltitle.wpex-loadmore span {
+    font-size: 16px!important;
+}
+
+
+@media only screen and (min-width: 576px) {
+.wpex-timeline-list {
+    padding-left: 30px;
+     padding-right: 90px;
+   max-width: 540px;
+}
+}
+@media only screen and (min-width: 768px) {
+.wpex-timeline-list {
+    max-width: 720px;
+    
+}
+    .wpex-timeline-list.show-icon .style-center > li:nth-child(odd) .wpex-timeline-icon .fa:before {
+            width: 55px;
+    height: 55px;
+    margin-left: 35px!important;
+    margin-top: -20px;
+    }
+    .wpex-timeline-list ul li .wpex-timeline-icon i.fa.fa-square.icon-img:before {
+    width: 55px;
+    height: 55px;
+    margin-top: -20px;
+    margin-left: -90px;
+}
+    .not-centered .content-section + .wpex-timeline-list, .hero-section-article + .wpex-timeline-list {
+   padding-right: 270px;
+}
+}
+@media only screen and (min-width: 992px) {
+.wpex-timeline-list {
+    max-width: 960px;
+}.not-centered .content-section + .wpex-timeline-list, .hero-section-article + .wpex-timeline-list {
+   padding-right: 260px;
+}
+
+}
+@media only screen and (min-width: 1200px) {
+.wpex-timeline-list {
+    max-width: 1140px;
+}
+    .not-centered .content-section + .wpex-timeline-list, .hero-section-article + .wpex-timeline-list {
+   padding-right: 440px;
+}
+}
+	
+	/**/
+}
+#ccc-title{
+	color: #002e40 !important
+}
+.cookies-wrap{
+	display: none!important;
+}
+.header .main-menu .third-level.open-this {
+display:block!important}
+
+.breadcrumbs {
+color: transparent;
+}
+.breadcrumbs a {
+color: #000;
+}
+.breadcrumb-section .breadcrumb a:not(:first-child) {
+    margin-left: 16px;
+}
+.breadcrumbs a:focus {
+	color: #fff;
+}
+
+
+
+/*Cookie Banner CSS*/
+#ccc .ccc-svg-element {
+  width: 14px!important;
+  height: 14px!important;
+	top: 0px!important;
+	fill: #000!important;
+}
+
+body #ccc .ccc-notify-button.ccc-reject-button {
+background:#fff!important;
+}
+
+body #ccc a:focus {
+	outline-color: #002e40!important;
+	background-color: transparent!important;
+	
+}
+
+body #ccc-content button {
+fill: #002e40 !important;
+}
+
+body #ccc .ccc-notify-button.ccc-reject-button span {
+background-color: transparent!important;
+	color:#002e40 !important;
+}
+body  #ccc .ccc-notify-button.ccc-accept-button span {
+	background-color: transparent!important;
+}
+body #ccc .ccc-notify-button.ccc-accept-button {
+background-color: #002e40 !important;
+border-color: #002e40 !important;
+}
+
+#ccc-content #ccc-close {
+border: 1px solid #002E40;
+ padding: 2px!important;
+margin:0;
+}
+#ccc #ccc-button-holder button.ccc-notify-button {
+padding: 11px 24px!important;
+}
+
+body #ccc .checkbox-toggle--slider.checkbox-toggle--dark {
+	border: 2px solid #002e40!important;
+}
+
+#ccc .checkbox-toggle--slider .checkbox-toggle-label:hover {
+	background-color: #e5eaeb!important;
+	border-radius:50px;
+}
+
+#ccc .checkbox-toggle--slider .checkbox-toggle-label:hover span.checkbox-toggle-off, #ccc .checkbox-toggle--slider .checkbox-toggle-label:hover span.checkbox-toggle-on {
+color:#002e40!important;
+}
+
+#ccc #ccc-button-holder .ccc-notify-button:hover, #ccc-content #ccc-close:hover {
+	color: #002e40!important;
+    background-color: #e5eaeb!important;
+    border-color: #002e40!important;
+	fill: #002e40!important;
+}
+
+.checkbox-toggle.checkbox-toggle--slider.checkbox-toggle--dark.ccc-tabbable {
+	outline: 3px solid transparent!important;
+}
+.checkbox-toggle.checkbox-toggle--slider.checkbox-toggle--dark.ccc-tabbable:focus-within {
+	outline: 3px solid #000!important;
+}
+
+#ccc #ccc-button-holder .ccc-notify-button:hover span {
+color: #002E40!important;
+}
+
+#ccc #ccc-button-holder .ccc-notify-button:focus-visible span {
+color: #fff!important;
+}
+
+#ccc #ccc-button-holder .ccc-notify-button:focus-visible, #ccc-content #ccc-close:focus-visible {
+outline: 1px solid #000;
+border: 3px solid #e3e9f2!important;
+	background-color:#002E40!important;
+	color: #fff!important;
+	fill: #fff!important;
+}
+
+#ccc hr {
+	opacity:0.5!important
+}
+
+#ccc .ccc-content--dark span.checkbox-toggle-off{
+	color: white!important;
+}
+/**/
+
+.tabs-content table td {
+	white-space: nowrap;
+	padding: 5px 10px;
+}
+.tabs-content table thead {
+	background: #002e40;
+  color: #fff;
+}
+.tabs-content table {
+	overflow: auto;
+	display: block;
+	margin-top: 20px;
+}
+
+
+.quest-form-wrp { max-width: 900px; margin: auto; }
+.question-section .btn-quest:focus .answer-close::before {
+    background: url(../../wp-content/themes/bgs/img/close-light-h.svg);
+}
+
+.quest-form-wrp .gform_confirmation_wrapper  {
+	background: white;
+    z-index: 1;
+    position: relative;
+    padding-bottom: 5px;
+    margin-top: -70px;
+    padding-top: 70px;
+}
+.question-section .icon-close::before {
+	width: 24px;
+}
+
+.btn-quest {
+	    position: absolute;
+    right: 20px;
+    top: 25px;
+    height: 42px;
+    width: 45px !important;
+    min-width: 0;
+}
+.question-section .answer-close {
+	right: 0;
+	top: 0;
+}
+
+.question-section .gform_validation_error .answer-positive, .question-section .gform_validation_error .answer-negative {
+	display: block;
+}
+
+.question-section .gform_wrapper div.validation_error, .question-section .gform_wrapper .validation_message {
+	color: #fff!important;
+}
+.question-section .gform_wrapper li.gfield_error textarea {
+	border-color: #fff!important;
+}
+.question-section .gform_wrapper .validation_message:before {
+	background: url(../../wp-content/uploads/2020/10/Error.svg); background-size: auto!important;
+}
+
+.content-section .owl-carousel .owl-item { max-height: none; }
+
+/* .gform_validation_error form {
+	display: block!important;
+} */
+
+#map { z-index:0; }
+
+/* .w3eden .btn-primary, .w3eden .btn-primary:hover {
+    color: #fff;
+    background-color: #4a8eff;
+    border-color: #4a8eff;
+} */
+
+.list-group-item .badge {
+	background:#2CA8FF;
+}
+
+.sidebar .cards-simple .media-wrap img { max-height: 200px; }
+
+footer .links a { display: inline; }
+
+.hero-section .social-wrap div { padding: 20px; }
+.social-wrap [class*="icon-"]::before, .social [class*="icon-"]::before {
+	height: 28px;
+}
+
+
+
+/* .w3eden .row {
+	flex-direction: column-reverse;
+	margin: 0;
+		background: #bbd0d4;
+	padding: 0 20px;
+	font-family: 'aileron';
+}
+.w3eden a.btn {
+	text-transform: none;
+	font-family: 'aileron-b';
+	border: 2px solid #002E40!important;
+	font-size: 16px;
+	box-shadow: none!important;
+}
+.w3eden a.btn:focus {
+	color: #000!important;
+    background-color: #CCD5D9!important;
+} */
+/* .w3eden a.btn:hover {
+	color: #000;
+    background-color: #E5EAEB!important;
+    border-color: #002E40!important;
+}
+.w3eden a.btn:hover:before, .w3eden a.btn:focus:before {
+	background-image: url(../../../wp-content/uploads/2019/12/Download_Button_black.svg); }
+.w3eden .col-md-7 {
+	max-width: 100%;
+	padding: 0;
+}
+.w3eden .col-md-7 > h1 {
+	width: calc(100% + 40px);
+    margin-left: -20px;
+	background: #002e40;
+  color: #fff;
+	margin-bottom: 0;
+	text-align: center;
+	padding: 40px;
+} */
+/* .w3eden .col-md-7 > h1:after {
+	content: 'BGS download';
+	    display: block;
+    font-size: 16px;
+  font-family: 'aileron';  
+	margin-top: 25px;
+}
+
+.w3eden .col-md-7 > h1:last-child {
+	margin-bottom: 40px;
+}
+.w3eden blockquote p {
+	margin-bottom: 0;
+}
+.w3eden .col-md-7 > *:not(h1) {
+	padding: 0 30px 16px;
+	max-width: 650px;
+    background: white;
+    margin: auto;
+} */
+/* .w3eden .col-md-7 > *:last-child:not(h1) {
+padding-bottom: 0;
+}
+.w3eden .col-md-7 > h1 + * {
+		margin-top: 40px;
+	padding-top: 30px
+}
+.w3eden .col-md-5 .list-group{
+	padding-top: 30px;
+}
+.w3eden .col-md-7 img {
+	padding-top: 16px;
+}
+.w3eden .col-md-5 {
+	background: #fff;
+	padding: 0 30px;
+	    max-width: 650px;
+    margin: 0 auto 40px;
+	display: flex;
+    flex-direction: column-reverse;
+} */
+/* .w3eden .list-group-item {
+	border-width: 0 0 2px 0;
+	    font-weight: 700;
+	padding: 6px 0;
+	border-radius: 0!important;
+	margin-top: 1px!important;
+}
+.w3eden .list-group-item:nth-child(2) {
+	border-top: 2px solid;
+    margin-top: 16px;
+	border-color: rgba(0,0,0,0.125);
+}
+.w3eden .list-group-item:nth-child(1),.w3eden .list-group-item:nth-child(3) {
+	display: none!important;
+}*/
+.w3eden .badge {
+	background-color: transparent;
+	color: #000;
+	font-size: 16px;
+	padding-right: 0;
+}
+/* .wpdm-button-area {
+	border: 0!important;
+} */
+/* .wpdm-button-area a {
+	background: #002e40!important;
+	border: 0!important;
+	max-width: 250px;
+	padding-left: 30px!important;
+	margin: auto;
+	border-radius: 0!important;
+} */
+
+/* .wpdm-button-area a:before {
+	margin-left: -30px;
+	pointer-events: none;
+    content: "";
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
+    position: absolute;
+    cursor: pointer;
+    z-index: 1;
+    height: 16px;
+    width: 16px;
+    top: calc(50% - 8px);
+	background-image: url(../../../wp-content/uploads/2019/12/Download_Button_white.svg);
+} */
+
+
+@media only screen and (min-width: 576px) {
+	
+	.hero-section .social-wrap div { padding: 14px; }
+ 
+	.modal-dialog {
+	max-width: 95%!important;
+}
+
+.ekko-lightbox-item {
+display: flex;
+	justify-content: center;
+}
+
+.ekko-lightbox-item img {
+	width: auto!important;
+	height: 100%;
+}
+
+.ekko-lightbox-container {
+	min-height: 400px;
+}
+}
+
+/* table fix */.tabs-content .ui-tabs-panel table tbody:first-child tr {
+    height: auto!important;
+}
+
+.tabs-content .ui-tabs-panel table tbody:first-child td {
+    height: auto!important;
+}
+
+.tabs-content table {
+    height: 100%!important;
+}
+
+
+.responsive-table td {
+    height: 100%!important;
+	min-height: 45px;
+}
+
+
+@media screen and (min-width: 992px){
+	.content-section .accordions .responsive-table {
+    max-width: 100% !important;
+}
+	
+	.responsive-table thead, .responsive-table tbody, .responsive-table th, .responsive-table td, .responsive-table tr {
+    display: block;
+}
+	.responsive-table td {
+		position: relative;
+	}
+	
+	.responsive-table td::before {
+    position: absolute;
+    top: 0;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    font-weight: bold;
+    padding: 5px 10px 5px 0;
+    content: attr(data-before);
+		display: block;
+}
+
+.content-section .accordions .responsive-table tr {
+    border-bottom: 1px solid #002E40;
+    padding: 15px 10px;
+}
+
+.responsive-table td {
+    text-align: left;
+    border: none;
+    position: relative;
+    padding: 5px 0 5px 50%;
+    min-height: 34px;
+}
+
+.responsive-table thead {
+    overflow: hidden;
+    height: 0;
+    width: calc(45% - 9px);
+	display: none;
+}
+}
+
+@media screen and (min-width: 1200px){
+.responsive-table th {
+    display: table-cell;
+    padding: 10px 20px;
+}
+	
+	.responsive-table thead tr {
+    display: table-row;
+    background-color: var(--primary-color);
+    color: var(--basic-color-1);
+    text-align: left;
+}
+	
+	.responsive-table td::before {
+		display: none;
+}
+
+.responsive-table td {
+    display: table-cell;
+    padding: 15px 20px;
+}
+
+.responsive-table thead {
+    display: table-header-group;
+    overflow: auto;
+    height: auto;
+    width: 100%;
+}
+
+.content-section .accordions .responsive-table tr:last-child {
+    border-bottom: 0;
+}
+
+	.responsive-table tr {
+    display: table-row;
+}
+	
+.responsive-table tbody {
+    display: table-row-group;
+}
+
+.content-section .accordions .responsive-table tr {
+    border-bottom: 1px solid #002E40;
+}
+
+}
+
+</style>
+<meta name="generator" content="WordPress Download Manager 3.3.58" />
+                <style>
+        /* WPDM Link Template Styles */        </style>
+                <style>
+
+            :root {
+                --color-primary: #4a8eff;
+                --color-primary-rgb: 74, 142, 255;
+                --color-primary-hover: #5998ff;
+                --color-primary-active: #3281ff;
+                --clr-sec: #6c757d;
+                --clr-sec-rgb: 108, 117, 125;
+                --clr-sec-hover: #6c757d;
+                --clr-sec-active: #6c757d;
+                --color-secondary: #6c757d;
+                --color-secondary-rgb: 108, 117, 125;
+                --color-secondary-hover: #6c757d;
+                --color-secondary-active: #6c757d;
+                --color-success: #018e11;
+                --color-success-rgb: 1, 142, 17;
+                --color-success-hover: #0aad01;
+                --color-success-active: #0c8c01;
+                --color-info: #2CA8FF;
+                --color-info-rgb: 44, 168, 255;
+                --color-info-hover: #2CA8FF;
+                --color-info-active: #2CA8FF;
+                --color-warning: #FFB236;
+                --color-warning-rgb: 255, 178, 54;
+                --color-warning-hover: #FFB236;
+                --color-warning-active: #FFB236;
+                --color-danger: #ff5062;
+                --color-danger-rgb: 255, 80, 98;
+                --color-danger-hover: #ff5062;
+                --color-danger-active: #ff5062;
+                --color-green: #30b570;
+                --color-blue: #0073ff;
+                --color-purple: #8557D3;
+                --color-red: #ff5062;
+                --color-muted: rgba(69, 89, 122, 0.6);
+                --wpdm-font: "Sen", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            }
+
+            .wpdm-download-link.btn.btn-primary {
+                border-radius: 4px;
+            }
+
+
+        </style>
+        <link rel='stylesheet' id='bgs-cus-owl-css' href='https://www.bgs.ac.uk/wp-content/themes/bgs/css/owl-style.css?ver=1.0.1' media='all' />
+<link rel='stylesheet' id='gforms_reset_css-css' href='https://www.bgs.ac.uk/wp-content/plugins/gravityforms/legacy/css/formreset.min.css?ver=2.10.4' media='all' />
+<link rel='stylesheet' id='gforms_formsmain_css-css' href='https://www.bgs.ac.uk/wp-content/plugins/gravityforms/legacy/css/formsmain.min.css?ver=2.10.4' media='all' />
+<link rel='stylesheet' id='gforms_ready_class_css-css' href='https://www.bgs.ac.uk/wp-content/plugins/gravityforms/legacy/css/readyclass.min.css?ver=2.10.4' media='all' />
+<link rel='stylesheet' id='gforms_browsers_css-css' href='https://www.bgs.ac.uk/wp-content/plugins/gravityforms/legacy/css/browsers.min.css?ver=2.10.4' media='all' />
+
+</head>
+
+<body class="wp-singular page-template-default page page-id-29418 page-child parent-pageid-16685 wp-custom-logo wp-theme-bgs">
+	
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PXMJ46J"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->	<header>
+				<div class="topnav primary-background">
+			<div class="container">
+				<button class="skip-to-content-btn" referrerpolicy="origin"><span class="button-content" tabindex="-1">Skip to Content</span></button>
+				<nav class="row">
+					<ul id="menu-top-bar-menu" class="col-12"><li id="menu-item-2290" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2290"><a href="https://www.bgs.ac.uk/news/">News and events</a></li>
+<li id="menu-item-2291" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2291"><a href="https://shop.bgs.ac.uk/Shop">BGS Shop</a></li>
+<li id="menu-item-11954" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11954"><a href="https://www.bgs.ac.uk/hosted-websites/">Hosted sites</a></li>
+</ul>				</nav>
+			</div>
+		</div>
+				<div class="header">
+			<div class="header-m-wrap">
+				<div class="container">
+					<div class="row">
+												<div class="col-sm-10 col-8 logo">
+							<a href="https://www.bgs.ac.uk/">
+								<img src="https://www.bgs.ac.uk/wp-content/uploads/2020/03/BGS-logo-large.png" class="logo-initial" alt="British Geological Survey" decoding="async" loading="lazy" />								<img src="https://www.bgs.ac.uk/wp-content/uploads/2020/03/BGS-logo_small.png" class="logo-sticky" alt="British Geological Survey" decoding="async" loading="lazy" />							</a>
+						</div>
+												<button class="skip-to-content-btn mob-skip-btn" referrerpolicy="origin"><span class="button-content" tabindex="-1">Skip to Content</span></button>
+						<button class="col-sm-1 col-2 search no-btn"><span class="button-content" tabindex="-1"></span><span class="screen-reader">Search Button</span></button>
+						<div class="col-sm-1 col-2 main-menu"><div class="menu-btn icon-menu"></div></div>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+											<div class="col-lg-2 col-sm-10 col-8 logo">
+							<a href="https://www.bgs.ac.uk/">
+								<img src="https://www.bgs.ac.uk/wp-content/uploads/2020/03/BGS-logo-large.png" class="logo-initial" alt="British Geological Survey" decoding="async" loading="lazy" />								<img src="https://www.bgs.ac.uk/wp-content/uploads/2020/03/BGS-logo_small.png" class="logo-sticky" alt="British Geological Survey" decoding="async" loading="lazy" />							</a>
+						</div>
+										    <div class="col-lg-8 col-sm-1 col-2 main-menu">
+        <nav class="mob-close" aria-label="main menu">
+            <ul id="mainmenubar" class="first-level" role="menubar" aria-label="main menu"><li id="menu-item-11644" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-11644 first-level-li" role="none"><a role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" href="https://www.bgs.ac.uk/about-bgs/" data-name="About BGS" class="first-level-a">About BGS</a>
+<ul class="second-level" role="menu">
+	<li id="menu-item-20190" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20190 second-level-li" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/" data-name="Overview" class="second-level-a">Overview</a></li>
+	<li id="menu-item-3479" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-3479 second-level-li" role="none"><a role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" href="https://www.bgs.ac.uk/about-bgs/our-work/" data-name="Our work" class="second-level-a icon-arrow">Our work</a>
+	<ul class="third-level" role="menu">
+		<li id="menu-item-30679" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-30679" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/our-work/who-we-work-with/" data-name="Who we work with">Who we work with</a></li>
+		<li id="menu-item-46141" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-46141" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/our-work/government-and-policy/" data-name="Government and policy">Government and policy</a></li>
+		<li id="menu-item-58294" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-58294" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/our-work/science-briefing-papers/" data-name="Science briefing papers">Science briefing papers</a></li>
+		<li id="menu-item-3481" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3481" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/our-work/our-history/" data-name="Our history">Our history</a></li>
+		<li id="menu-item-118555" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-118555" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/our-work/environmental-policy-and-sustainability-strategy/" data-name="Environmental policy and sustainability strategy">Environmental policy and sustainability strategy</a></li>
+		<li id="menu-item-104769" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-104769" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/our-work/how-we-use-drones/" data-name="How we use drones">How we use drones</a></li>
+		<li id="menu-item-120085" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-120085" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/our-work/accreditations/" data-name="Accreditations">Accreditations</a></li>
+	</ul>
+</li>
+	<li id="menu-item-3478" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-3478 second-level-li" role="none"><a role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" href="https://www.bgs.ac.uk/about-bgs/our-team/" data-name="Our team" class="second-level-a icon-arrow">Our team</a>
+	<ul class="third-level" role="menu">
+		<li id="menu-item-46142" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-46142" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/our-team/staff-profiles/" data-name="Staff profiles">Staff profiles</a></li>
+		<li id="menu-item-46145" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-46145" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/our-team/senior-management-board/" data-name="Senior Management Board">Senior Management Board</a></li>
+		<li id="menu-item-34482" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-34482" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/our-team/bgs-board/" data-name="BGS Board">BGS Board</a></li>
+		<li id="menu-item-46144" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-46144" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/our-team/science-advisory-committee/" data-name="Science Advisory Committee">Science Advisory Committee</a></li>
+		<li id="menu-item-46143" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-46143" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/working-with-us/equality-diversity-and-inclusion-edi/" data-name="Equality, diversity and inclusion at BGS">Equality, diversity and inclusion at BGS</a></li>
+		<li id="menu-item-57305" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-57305" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/our-team/organisational-structure/" data-name="Organisational structure">Organisational structure</a></li>
+	</ul>
+</li>
+	<li id="menu-item-3480" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-3480 second-level-li" role="none"><a role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" href="https://www.bgs.ac.uk/about-bgs/services/" data-name="Our data and services" class="second-level-a icon-arrow">Our data and services</a>
+	<ul class="third-level" role="menu">
+		<li id="menu-item-49542" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-49542" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/services/public/" data-name="General public">General public</a></li>
+		<li id="menu-item-49539" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-49539" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/services/business-services/" data-name="Business services">Business services</a></li>
+		<li id="menu-item-49538" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-49538" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/services/business-development/" data-name="Business development">Business development</a></li>
+		<li id="menu-item-50273" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50273" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/services/government/" data-name="Government and agencies">Government and agencies</a></li>
+		<li id="menu-item-49543" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-49543" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geological-data/opengeoscience/" data-name="OpenGeoscience">OpenGeoscience</a></li>
+		<li id="menu-item-49540" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-49540" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/services/academic-and-researchers/" data-name="Academics and researchers">Academics and researchers</a></li>
+		<li id="menu-item-91994" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-91994" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/services/climate-change-and-geohazards/" data-name="Climate change and geohazards">Climate change and geohazards</a></li>
+		<li id="menu-item-39482" class="menu-item menu-item-type-post_type menu-item-object-information-hub menu-item-39482" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/information-hub/licensing/" data-name="Digital data licensing and resellers">Digital data licensing and resellers</a></li>
+		<li id="menu-item-49544" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-49544" role="none"><a role="menuitem" tabindex="-1" href="https://shop.bgs.ac.uk/Shop/" data-name="GeoReports and online shop">GeoReports and online shop</a></li>
+		<li id="menu-item-121983" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-121983" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/services/bgs-forecasting-services/" data-name="BGS Forecasting services">BGS Forecasting services</a></li>
+	</ul>
+</li>
+	<li id="menu-item-46186" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-46186 second-level-li" role="none"><a role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" href="https://www.bgs.ac.uk/about-bgs/our-facilities/" data-name="Our facilities" class="second-level-a icon-arrow">Our facilities</a>
+	<ul class="third-level" role="menu">
+		<li id="menu-item-34489" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-34489" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geological-research/science-facilities/" data-name="Science facilities">Science facilities</a></li>
+		<li id="menu-item-34487" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-34487" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/services/library/" data-name="BGS Library">BGS Library</a></li>
+		<li id="menu-item-34488" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-34488" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/services/conference-facilities/" data-name="Conference facilities">Conference facilities</a></li>
+		<li id="menu-item-58627" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-58627" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/contact-us/bgs-geology-shops/" data-name="BGS Geology Shop">BGS Geology Shop</a></li>
+		<li id="menu-item-46190" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-46190" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/services/training/" data-name="BGS GeoSchool">BGS GeoSchool</a></li>
+		<li id="menu-item-46189" class="menu-item menu-item-type-post_type menu-item-object-research_project menu-item-46189" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geology-projects/uk-geoenergy-observatories/" data-name="UK Geoenergy Observatories">UK Geoenergy Observatories</a></li>
+		<li id="menu-item-34485" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-34485" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geological-data/national-geoscience-data-centre/" data-name="National Geoscience Data Centre">National Geoscience Data Centre</a></li>
+		<li id="menu-item-34486" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-34486" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geological-data/national-geological-repository/" data-name="National Geological Repository">National Geological Repository</a></li>
+	</ul>
+</li>
+	<li id="menu-item-3482" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-3482 second-level-li" role="none"><a role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" href="https://www.bgs.ac.uk/about-bgs/working-with-us/" data-name="Working with us" class="second-level-a icon-arrow">Working with us</a>
+	<ul class="third-level" role="menu">
+		<li id="menu-item-20085" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20085" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/working-with-us/bgs-case-studies/" data-name="Careers at BGS">Careers at BGS</a></li>
+		<li id="menu-item-85119" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-85119" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/working-with-us/job-vacancies/" data-name="Job vacancies">Job vacancies</a></li>
+		<li id="menu-item-20087" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20087" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/working-with-us/working-at-the-bgs/" data-name="Working at BGS">Working at BGS</a></li>
+		<li id="menu-item-57308" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-57308" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/working-with-us/equality-diversity-and-inclusion-edi/" data-name="Equality, diversity and inclusion at BGS">Equality, diversity and inclusion at BGS</a></li>
+		<li id="menu-item-103180" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-103180" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/working-with-us/pay-and-benefits/" data-name="Pay and benefits">Pay and benefits</a></li>
+		<li id="menu-item-115514" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-115514" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/working-with-us/work-experience/" data-name="Work experience">Work experience</a></li>
+	</ul>
+</li>
+	<li id="menu-item-3483" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-3483 second-level-li" role="none"><a role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" href="https://www.bgs.ac.uk/about-bgs/contact-us/" data-name="Contact us" class="second-level-a icon-arrow">Contact us</a>
+	<ul class="third-level" role="menu">
+		<li id="menu-item-28690" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28690" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/contact-us/locations/" data-name="Offices and locations">Offices and locations</a></li>
+		<li id="menu-item-34481" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-34481" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/contact-us/customer-feedback/" data-name="Customer feedback">Customer feedback</a></li>
+		<li id="menu-item-30638" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-30638" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/contact-us/press-office/" data-name="BGS Press Office">BGS Press Office</a></li>
+		<li id="menu-item-34477" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-34477" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/bgs-intellectual-property-rights/" data-name="BGS Intellectual Property Rights">BGS Intellectual Property Rights</a></li>
+		<li id="menu-item-34478" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-34478" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/contact-us/freedom-of-information-act/" data-name="Freedom of information act">Freedom of information act</a></li>
+		<li id="menu-item-84997" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-84997" role="none"><a role="menuitem" tabindex="-1" href="https://public.govdelivery.com/accounts/UKBGS/signup/32555" data-name="Subscribe to our newsletter">Subscribe to our newsletter</a></li>
+	</ul>
+</li>
+	<li id="menu-item-86890" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-86890 second-level-li" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/contact-us/#faqs" data-name="Frequently asked questions" class="second-level-a">Frequently asked questions</a></li>
+</ul>
+</li>
+<li id="menu-item-7742" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-7742 first-level-li" role="none"><a role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" href="https://www.bgs.ac.uk/geological-research/" data-name="Research" class="first-level-a">Research</a>
+<ul class="second-level" role="menu">
+	<li id="menu-item-10912" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-10912 second-level-li" role="none"><a role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" href="https://www.bgs.ac.uk/geological-research/" data-name="Overview" class="second-level-a icon-arrow">Overview</a>
+	<ul class="third-level" role="menu">
+		<li id="menu-item-57338" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-57338" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geological-research/research-projects/" data-name="Explore our research projects">Explore our research projects</a></li>
+		<li id="menu-item-38979" class="menu-item menu-item-type-post_type menu-item-object-information-hub menu-item-38979" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/information-hub/publications/" data-name="Publications">Publications</a></li>
+		<li id="menu-item-34476" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-34476" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geological-research/bufi/" data-name="BGS University Funding Initiative">BGS University Funding Initiative</a></li>
+	</ul>
+</li>
+	<li id="menu-item-113984" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-113984 second-level-li" role="none"><a role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" href="https://www.bgs.ac.uk/geological-research/environmental-change/" data-name="Environmental change" class="second-level-a icon-arrow">Environmental change</a>
+	<ul class="third-level" role="menu">
+		<li id="menu-item-38946" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-38946" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geological-research/science-facilities/environmental-geochemistry/" data-name="Environmental geochemistry laboratories">Environmental geochemistry laboratories</a></li>
+		<li id="menu-item-111153" class="menu-item menu-item-type-post_type menu-item-object-research_project menu-item-111153" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geology-projects/environmental-modelling/" data-name="Environmental modelling ">Environmental modelling </a></li>
+		<li id="menu-item-37348" class="menu-item menu-item-type-post_type menu-item-object-research_project menu-item-37348" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geology-projects/groundwater-research/" data-name="Groundwater research">Groundwater research</a></li>
+		<li id="menu-item-112679" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-112679" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geology-projects/medical-geochemistry/" data-name="Medical geology">Medical geology</a></li>
+		<li id="menu-item-37350" class="menu-item menu-item-type-post_type menu-item-object-research_project menu-item-37350" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geology-projects/sea-floor-marine-geoscience/" data-name="Sea floor: marine geoscience">Sea floor: marine geoscience</a></li>
+		<li id="menu-item-38947" class="menu-item menu-item-type-post_type menu-item-object-research_project menu-item-38947" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geology-projects/seafloor-scientific-ocean-drilling/" data-name="Sea floor: scientific ocean drilling">Sea floor: scientific ocean drilling</a></li>
+		<li id="menu-item-60644" class="menu-item menu-item-type-post_type menu-item-object-research_project menu-item-60644" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geology-projects/sustainable-soils/" data-name="Soils and landscapes">Soils and landscapes</a></li>
+		<li id="menu-item-37349" class="menu-item menu-item-type-post_type menu-item-object-research_project menu-item-37349" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geology-projects/urban-geoscience/" data-name="Urban geoscience">Urban geoscience</a></li>
+	</ul>
+</li>
+	<li id="menu-item-7917" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-7917 second-level-li" role="none"><a role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" href="https://www.bgs.ac.uk/geological-research/decarbonisation/" data-name="Decarbonisation" class="second-level-a icon-arrow">Decarbonisation</a>
+	<ul class="third-level" role="menu">
+		<li id="menu-item-38950" class="menu-item menu-item-type-post_type menu-item-object-research_project menu-item-38950" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geology-projects/mineral-resources/" data-name="Mineral resource security and flows">Mineral resource security and flows</a></li>
+		<li id="menu-item-38949" class="menu-item menu-item-type-post_type menu-item-object-research_project menu-item-38949" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geology-projects/radioactive-waste/" data-name="Geodisposal: radioactive waste">Geodisposal: radioactive waste</a></li>
+		<li id="menu-item-47573" class="menu-item menu-item-type-post_type menu-item-object-research_project menu-item-47573" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geology-projects/critical-raw-materials/" data-name="Critical raw materials">Critical raw materials</a></li>
+		<li id="menu-item-103578" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-103578" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geology-projects/geothermal-energy/" data-name="Geothermal energy">Geothermal energy</a></li>
+		<li id="menu-item-38952" class="menu-item menu-item-type-post_type menu-item-object-research_project menu-item-38952" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geology-projects/hydrocarbons-systems/" data-name="Hydrocarbon systems">Hydrocarbon systems</a></li>
+		<li id="menu-item-38953" class="menu-item menu-item-type-post_type menu-item-object-research_project menu-item-38953" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geology-projects/energy-storage/" data-name="Energy storage">Energy storage</a></li>
+		<li id="menu-item-38954" class="menu-item menu-item-type-post_type menu-item-object-research_project menu-item-38954" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geology-projects/carbon-capture-and-storage/" data-name="Carbon capture and storage">Carbon capture and storage</a></li>
+		<li id="menu-item-38955" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-38955" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geological-research/science-facilities/fluid-and-rock-processes/" data-name="Fluid and Rock Processes Laboratory Cluster">Fluid and Rock Processes Laboratory Cluster</a></li>
+		<li id="menu-item-38956" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-38956" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geological-research/science-facilities/rock-volume-cluster/" data-name="Rock Volume Characterisation Laboratory Cluster">Rock Volume Characterisation Laboratory Cluster</a></li>
+		<li id="menu-item-38957" class="menu-item menu-item-type-post_type menu-item-object-research_project menu-item-38957" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geology-projects/uk-geoenergy-observatories/" data-name="UK Geoenergy Observatories">UK Geoenergy Observatories</a></li>
+	</ul>
+</li>
+	<li id="menu-item-7916" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-7916 second-level-li" role="none"><a role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" href="https://www.bgs.ac.uk/geological-research/multihazards/" data-name="Multi-hazards" class="second-level-a icon-arrow">Multi-hazards</a>
+	<ul class="third-level" role="menu">
+		<li id="menu-item-36115" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-36115" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geology-projects/volcanoes/" data-name="Volcanology">Volcanology</a></li>
+		<li id="menu-item-51898" class="menu-item menu-item-type-post_type menu-item-object-research_project menu-item-51898" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geology-projects/earthquake-seismology/" data-name="Earthquakes and seismology research">Earthquakes and seismology research</a></li>
+		<li id="menu-item-36114" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-36114" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geology-projects/geomagnetism-science-capability/" data-name="Geomagnetism">Geomagnetism</a></li>
+		<li id="menu-item-38031" class="menu-item menu-item-type-post_type menu-item-object-research_project menu-item-38031" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geology-projects/geodesy/" data-name="Geodesy and Earth observation">Geodesy and Earth observation</a></li>
+		<li id="menu-item-38941" class="menu-item menu-item-type-post_type menu-item-object-research_project menu-item-38941" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geology-projects/geophysical-tomography/" data-name="Shallow geophysics">Shallow geophysics</a></li>
+		<li id="menu-item-36117" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-36117" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geology-projects/landslides/" data-name="Landslides research">Landslides research</a></li>
+		<li id="menu-item-94126" class="menu-item menu-item-type-post_type menu-item-object-research_project menu-item-94126" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geology-projects/coasts-and-estuaries/" data-name="Coasts and estuaries geohazards">Coasts and estuaries geohazards</a></li>
+		<li id="menu-item-36116" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-36116" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geology-projects/shallow-geohazards/" data-name="Shallow geohazards">Shallow geohazards</a></li>
+	</ul>
+</li>
+	<li id="menu-item-13400" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-13400 second-level-li" role="none"><a role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" href="https://www.bgs.ac.uk/geological-research/digital-geoscience/" data-name="Digital geoscience" class="second-level-a icon-arrow">Digital geoscience</a>
+	<ul class="third-level" role="menu">
+		<li id="menu-item-50275" class="menu-item menu-item-type-post_type menu-item-object-research_project menu-item-50275" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geology-projects/digital-lab/" data-name="Digital lab">Digital lab</a></li>
+		<li id="menu-item-50276" class="menu-item menu-item-type-post_type menu-item-object-research_project menu-item-50276" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geology-projects/hazard-and-resilience-modelling/" data-name="Hazard and resilience modelling">Hazard and resilience modelling</a></li>
+		<li id="menu-item-50281" class="menu-item menu-item-type-post_type menu-item-object-research_project menu-item-50281" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geology-projects/3d-visualisation-systems/" data-name="3D visualisation systems">3D visualisation systems</a></li>
+		<li id="menu-item-50279" class="menu-item menu-item-type-post_type menu-item-object-research_project menu-item-50279" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geology-projects/product-development/" data-name="Product development">Product development</a></li>
+		<li id="menu-item-50278" class="menu-item menu-item-type-post_type menu-item-object-research_project menu-item-50278" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geology-projects/citizen-science/" data-name="Citizen science">Citizen science</a></li>
+		<li id="menu-item-50274" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50274" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geological-data/" data-name="Data">Data</a></li>
+	</ul>
+</li>
+	<li id="menu-item-22781" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22781 second-level-li" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geological-research/national-geoscience/" data-name="National Geoscience" class="second-level-a">National Geoscience</a></li>
+	<li id="menu-item-22797" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-22797 second-level-li" role="none"><a role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" href="https://www.bgs.ac.uk/geological-research/bgs-international/" data-name="International geoscience" class="second-level-a icon-arrow">International geoscience</a>
+	<ul class="third-level" role="menu">
+		<li id="menu-item-119605" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-119605" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geological-research/bgs-international/international-geoscience-research-and-development/" data-name="International geoscience research and development">International geoscience research and development</a></li>
+		<li id="menu-item-119606" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-119606" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geological-research/bgs-international/international-commissioned-research/" data-name="International commissioned research">International commissioned research</a></li>
+	</ul>
+</li>
+	<li id="menu-item-13373" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-13373 second-level-li" role="none"><a role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" href="https://www.bgs.ac.uk/geological-research/science-facilities/" data-name="Science facilities" class="second-level-a icon-arrow">Science facilities</a>
+	<ul class="third-level" role="menu">
+		<li id="menu-item-26775" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-26775" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geological-research/science-facilities/environmental-geochemistry/" data-name="Environmental geochemistry laboratories">Environmental geochemistry laboratories</a></li>
+		<li id="menu-item-26776" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-26776" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geological-research/science-facilities/fluid-and-rock-processes/" data-name="Fluid and Rock Processes Laboratory Cluster">Fluid and Rock Processes Laboratory Cluster</a></li>
+		<li id="menu-item-26777" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-26777" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geological-research/science-facilities/engineering-geotechnical-capability/" data-name="Engineering and Geotechnical Capability">Engineering and Geotechnical Capability</a></li>
+		<li id="menu-item-26779" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-26779" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geological-research/science-facilities/rock-volume-cluster/" data-name="Rock Volume Characterisation Laboratory Cluster">Rock Volume Characterisation Laboratory Cluster</a></li>
+		<li id="menu-item-57323" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-57323" role="none"><a role="menuitem" tabindex="-1" href="http://geomag.bgs.ac.uk/operations/home.html" data-name="Geophysical observatories">Geophysical observatories</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-50282" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-50282 first-level-li" role="none"><a role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" href="https://www.bgs.ac.uk/geological-data/" data-name="Data" class="first-level-a">Data</a>
+<ul class="second-level" role="menu">
+	<li id="menu-item-10913" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-10913 second-level-li" role="none"><a role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" href="https://www.bgs.ac.uk/geological-data/" data-name="Data search" class="second-level-a icon-arrow">Data search</a>
+	<ul class="third-level" role="menu">
+		<li id="menu-item-1581" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1581" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/data/datasets/" data-name="Data product search">Data product search</a></li>
+		<li id="menu-item-13374" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13374" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geological-data/opengeoscience/" data-name="Open data">Open data</a></li>
+		<li id="menu-item-117599" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-117599" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geological-data/metadata-catalogue/" data-name="Data catalogues">Data catalogues</a></li>
+		<li id="menu-item-91995" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-91995" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/about-bgs/services/climate-change-and-geohazards/" data-name="Climate change and geohazards">Climate change and geohazards</a></li>
+	</ul>
+</li>
+	<li id="menu-item-23398" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-23398 second-level-li" role="none"><a role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" href="https://www.bgs.ac.uk/geological-data/map-viewers/" data-name="Map viewers" class="second-level-a icon-arrow">Map viewers</a>
+	<ul class="third-level" role="menu">
+		<li id="menu-item-85728" class="menu-item menu-item-type-post_type menu-item-object-map-viewer menu-item-85728" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/map-viewers/bgs-geology-viewer/" data-name="BGS Geology  Viewer">BGS Geology  Viewer</a></li>
+		<li id="menu-item-39786" class="menu-item menu-item-type-post_type menu-item-object-map-viewer menu-item-39786" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/map-viewers/geoindex-onshore/" data-name="GeoIndex (onshore)">GeoIndex (onshore)</a></li>
+		<li id="menu-item-39787" class="menu-item menu-item-type-post_type menu-item-object-map-viewer menu-item-39787" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/map-viewers/geoindex-offshore/" data-name="GeoIndex (offshore)">GeoIndex (offshore)</a></li>
+		<li id="menu-item-39788" class="menu-item menu-item-type-post_type menu-item-object-map-viewer menu-item-39788" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/map-viewers/uk-soil-observatory-ukso/" data-name="UK Soil Observatory">UK Soil Observatory</a></li>
+		<li id="menu-item-39796" class="menu-item menu-item-type-post_type menu-item-object-information-hub menu-item-39796" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/information-hub/bgs-maps-portal/" data-name="BGS maps portal">BGS maps portal</a></li>
+	</ul>
+</li>
+	<li id="menu-item-23399" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-23399 second-level-li" role="none"><a role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" href="https://www.bgs.ac.uk/geological-data/technologies/" data-name="Technologies" class="second-level-a icon-arrow">Technologies</a>
+	<ul class="third-level" role="menu">
+		<li id="menu-item-36255" class="menu-item menu-item-type-post_type menu-item-object-technology menu-item-36255" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/technologies/software/" data-name="Software">Software</a></li>
+		<li id="menu-item-36269" class="menu-item menu-item-type-post_type menu-item-object-technology menu-item-36269" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/technologies/web-services/" data-name="Web services and APIs">Web services and APIs</a></li>
+		<li id="menu-item-47308" class="menu-item menu-item-type-post_type menu-item-object-technology menu-item-47308" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/technologies/web-map-services-wms/" data-name="Web map services (WMS)">Web map services (WMS)</a></li>
+		<li id="menu-item-36272" class="menu-item menu-item-type-post_type menu-item-object-technology menu-item-36272" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/technologies/databases/" data-name="Databases">Databases</a></li>
+		<li id="menu-item-47310" class="menu-item menu-item-type-post_type menu-item-object-technology menu-item-47310" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/technologies/geotechnical-data-services/" data-name="Geotechnical data services">Geotechnical data services</a></li>
+		<li id="menu-item-47309" class="menu-item menu-item-type-post_type menu-item-object-technology menu-item-47309" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/technologies/collaborations/" data-name="Collaborations">Collaborations</a></li>
+	</ul>
+</li>
+	<li id="menu-item-23397" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-23397 second-level-li" role="none"><a role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" href="https://www.bgs.ac.uk/geological-data/information-hub/" data-name="Information hub" class="second-level-a icon-arrow">Information hub</a>
+	<ul class="third-level" role="menu">
+		<li id="menu-item-39792" class="menu-item menu-item-type-post_type menu-item-object-information-hub menu-item-39792" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/information-hub/licensing/" data-name="Digital data licensing and resellers">Digital data licensing and resellers</a></li>
+		<li id="menu-item-39789" class="menu-item menu-item-type-post_type menu-item-object-information-hub menu-item-39789" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/information-hub/publications/" data-name="Publications">Publications</a></li>
+		<li id="menu-item-39790" class="menu-item menu-item-type-post_type menu-item-object-information-hub menu-item-39790" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/information-hub/data-collections/" data-name="Data collections">Data collections</a></li>
+		<li id="menu-item-39791" class="menu-item menu-item-type-post_type menu-item-object-information-hub menu-item-39791" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/information-hub/dictionaries/" data-name="Dictionaries">Dictionaries</a></li>
+		<li id="menu-item-39793" class="menu-item menu-item-type-post_type menu-item-object-information-hub menu-item-39793" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/information-hub/bgs-maps-portal/" data-name="BGS maps portal">BGS maps portal</a></li>
+		<li id="menu-item-47312" class="menu-item menu-item-type-post_type menu-item-object-information-hub menu-item-47312" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/information-hub/scanned-records/" data-name="Scanned records">Scanned records</a></li>
+		<li id="menu-item-47313" class="menu-item menu-item-type-post_type menu-item-object-information-hub menu-item-47313" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/information-hub/photos-and-images/" data-name="Photographs and images">Photographs and images</a></li>
+		<li id="menu-item-47314" class="menu-item menu-item-type-post_type menu-item-object-information-hub menu-item-47314" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/information-hub/borehole-records/" data-name="Borehole records">Borehole records</a></li>
+	</ul>
+</li>
+	<li id="menu-item-38012" class="menu-item menu-item-type-post_type menu-item-object-information-hub menu-item-38012 second-level-li" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/information-hub/licensing/" data-name="Digital data licensing and resellers" class="second-level-a">Digital data licensing and resellers</a></li>
+	<li id="menu-item-77921" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-77921 second-level-li" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geological-data/datasets/digital-data-product-development/" data-name="Digital data product development" class="second-level-a">Digital data product development</a></li>
+	<li id="menu-item-3719" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-3719 second-level-li" role="none"><a role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" href="https://www.bgs.ac.uk/geological-data/national-geological-repository/" data-name="National Geological Repository" class="second-level-a icon-arrow">National Geological Repository</a>
+	<ul class="third-level" role="menu">
+		<li id="menu-item-4007" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4007" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geological-data/national-geological-repository/accessing-ngr-material-collections/" data-name="Accessing the NGR material collections">Accessing the NGR material collections</a></li>
+		<li id="menu-item-4008" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4008" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geological-data/national-geological-repository/ngr-tour/" data-name="NGR tour">NGR tour</a></li>
+		<li id="menu-item-4006" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4006" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geological-data/national-geological-repository/donations-and-loans-of-materials-collections/" data-name="Donations and loans of materials collections">Donations and loans of materials collections</a></li>
+		<li id="menu-item-4009" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4009" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geological-data/national-geological-repository/palaeontology-collections/" data-name="Palaeontology and biostratigraphy collections">Palaeontology and biostratigraphy collections</a></li>
+		<li id="menu-item-4011" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4011" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geological-data/national-geological-repository/borehole-core-collections/" data-name="Borehole core collections">Borehole core collections</a></li>
+		<li id="menu-item-4012" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4012" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geological-data/national-geological-repository/hydrocarbons-database/" data-name="NGR hydrocarbons (well samples) database">NGR hydrocarbons (well samples) database</a></li>
+	</ul>
+</li>
+	<li id="menu-item-7011" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-7011 second-level-li" role="none"><a role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" href="https://www.bgs.ac.uk/geological-data/national-geoscience-data-centre/" data-name="National Geoscience Data Centre" class="second-level-a icon-arrow">National Geoscience Data Centre</a>
+	<ul class="third-level" role="menu">
+		<li id="menu-item-119366" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-119366" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/ngdc/deposit-data-with-ngdc/" data-name="Deposit data with NGDC">Deposit data with NGDC</a></li>
+		<li id="menu-item-119364" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-119364" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/ngdc/access-data/" data-name="Accessing data &#8211; NGDC">Accessing data &#8211; NGDC</a></li>
+		<li id="menu-item-119365" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-119365" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/ngdc/citing-data/" data-name="NGDC citing data">NGDC citing data</a></li>
+		<li id="menu-item-27690" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27690" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/geological-data/national-geological-repository/archives/" data-name="Archives">Archives</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-1579" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor menu-item-has-children menu-item-1579 first-level-li" role="none"><a role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" href="https://www.bgs.ac.uk/discovering-geology/" data-name="Discovering Geology" class="first-level-a">Discovering Geology</a>
+<ul class="second-level" role="menu">
+	<li id="menu-item-3473" class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor menu-item-3473 second-level-li" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/discovering-geology/" data-name="Overview" class="second-level-a">Overview</a></li>
+	<li id="menu-item-7888" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7888 second-level-li" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/discovering-geology/rocks-and-minerals/" data-name="Rocks and minerals" class="second-level-a">Rocks and minerals</a></li>
+	<li id="menu-item-22543" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-22543 second-level-li" role="none"><a role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" href="https://www.bgs.ac.uk/discovering-geology/geological-processes/" data-name="Geological processes" class="second-level-a icon-arrow">Geological processes</a>
+	<ul class="third-level" role="menu">
+		<li id="menu-item-22540" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22540" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/discovering-geology/geological-processes/landforms/" data-name="Landforms">Landforms</a></li>
+		<li id="menu-item-22542" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22542" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/discovering-geology/geological-processes/relief/" data-name="Relief">Relief</a></li>
+		<li id="menu-item-22541" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22541" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/discovering-geology/geological-processes/weathering/" data-name="Weathering">Weathering</a></li>
+		<li id="menu-item-22539" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22539" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/discovering-geology/geological-processes/erosion/" data-name="Erosion">Erosion</a></li>
+		<li id="menu-item-22538" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22538" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/discovering-geology/geological-processes/deposition/" data-name="Deposition">Deposition</a></li>
+	</ul>
+</li>
+	<li id="menu-item-3508" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-3508 second-level-li" role="none"><a role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" href="https://www.bgs.ac.uk/discovering-geology/climate-change/" data-name="Discovering Geology: climate change" class="second-level-a icon-arrow">Discovering Geology: climate change</a>
+	<ul class="third-level" role="menu">
+		<li id="menu-item-3509" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3509" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/discovering-geology/climate-change/what-causes-the-earths-climate-to-change/" data-name="What causes the Earth’s climate to change?">What causes the Earth’s climate to change?</a></li>
+		<li id="menu-item-20241" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20241" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/discovering-geology/climate-change/impacts-of-climate-change/" data-name="Impacts of climate change">Impacts of climate change</a></li>
+		<li id="menu-item-3510" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3510" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/discovering-geology/climate-change/the-carbon-story/" data-name="The carbon story">The carbon story</a></li>
+		<li id="menu-item-20242" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20242" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/discovering-geology/climate-change/how-does-the-greenhouse-effect-work/" data-name="The greenhouse effect">The greenhouse effect</a></li>
+		<li id="menu-item-20240" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20240" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/discovering-geology/climate-change/carbon-capture-and-storage/" data-name="Understanding carbon capture and storage">Understanding carbon capture and storage</a></li>
+		<li id="menu-item-20239" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20239" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/discovering-geology/climate-change/what-are-we-doing-about-climate-change/" data-name="What are we doing about climate change?">What are we doing about climate change?</a></li>
+	</ul>
+</li>
+	<li id="menu-item-26608" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-26608 second-level-li" role="none"><a role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" href="https://www.bgs.ac.uk/discovering-geology/earth-hazards/" data-name="Earth hazards" class="second-level-a icon-arrow">Earth hazards</a>
+	<ul class="third-level" role="menu">
+		<li id="menu-item-26607" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-26607" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/discovering-geology/earth-hazards/earthquakes/" data-name="Earthquakes">Earthquakes</a></li>
+		<li id="menu-item-26606" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-26606" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/discovering-geology/earth-hazards/landslides/" data-name="Understanding landslides">Understanding landslides</a></li>
+		<li id="menu-item-26605" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-26605" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/discovering-geology/earth-hazards/volcanoes/" data-name="Volcanoes">Volcanoes</a></li>
+		<li id="menu-item-46191" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-46191" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/discovering-geology/earth-hazards/sinkholes/" data-name="Understanding sinkholes and karst">Understanding sinkholes and karst</a></li>
+	</ul>
+</li>
+	<li id="menu-item-30642" class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current-menu-parent current-page-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-30642 second-level-li" role="none"><a role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/" data-name="Fossils and geological time" class="second-level-a icon-arrow">Fossils and geological time</a>
+	<ul class="third-level" role="menu">
+		<li id="menu-item-30641" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-30641" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/geological-timechart/" data-name="Geological timechart">Geological timechart</a></li>
+		<li id="menu-item-30639" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-29418 current_page_item menu-item-30639" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/fossils/" aria-current="page" data-name="Fossils">Fossils</a></li>
+	</ul>
+</li>
+	<li id="menu-item-46192" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-46192 second-level-li" role="none"><a role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0" href="https://www.bgs.ac.uk/discovering-geology/maps-and-resources/" data-name="Maps and resources" class="second-level-a icon-arrow">Maps and resources</a>
+	<ul class="third-level" role="menu">
+		<li id="menu-item-57309" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-57309" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/discovering-geology/maps-and-resources/climate-change-through-time/" data-name="Climate change through time">Climate change through time</a></li>
+		<li id="menu-item-57310" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-57310" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/discovering-geology/maps-and-resources/earth-hazards/" data-name="Earth hazards resources">Earth hazards resources</a></li>
+		<li id="menu-item-87049" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-87049" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/discovering-geology/maps-and-resources/energy-resources/" data-name="Energy resources">Energy resources</a></li>
+		<li id="menu-item-57311" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-57311" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/discovering-geology/maps-and-resources/fossils-and-geological-time-resources/" data-name="Fossils and geological time resources">Fossils and geological time resources</a></li>
+		<li id="menu-item-57312" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-57312" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/discovering-geology/maps-and-resources/maps/" data-name="Maps">Maps</a></li>
+		<li id="menu-item-97846" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-97846" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/discovering-geology/maps-and-resources/rock-observation-resources/" data-name="Rock observation resources">Rock observation resources</a></li>
+		<li id="menu-item-75791" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-75791" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/discovering-geology/maps-and-resources/office-geology/" data-name="Postcard geology">Postcard geology</a></li>
+	</ul>
+</li>
+	<li id="menu-item-121391" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-121391 second-level-li" role="none"><a role="menuitem" tabindex="-1" href="https://www.bgs.ac.uk/discovering-geology/public-engagement-events/" data-name="Public engagement events" class="second-level-a">Public engagement events</a></li>
+</ul>
+</li>
+</ul>        </nav>
+    </div>
+    											<button class="col-lg-2 col-sm-1 col-2 search no-btn"><span class="hidden h-open">Search</span><span class="hidden h-close hidden-dis"></span><span class="button-content" tabindex="-1"></span></button>
+									</div>
+			</div>
+		</div>
+		<div class="search-wrap search-wrap-js">
+	<div class="primary-background">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<form action="https://www.bgs.ac.uk/" >
+												<label for="main-search-form-18138" class="screen-reader">Search</label>
+						<input type="search" name="s" id="main-search-form-18138" placeholder="Search" class="main-search" />
+						<button class="search-clear no-btn">
+							<span class="button-content icon-close" tabindex="-1"></span><span class="screen-reader">Clear Search Button</span>
+						</button>
+						<input type="submit" value="Submit" />
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="results-wrap">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+										<div class="quick-links">
+						<h6>Quick links</h6>
+						<ul>
+							<li><a href="https://www.bgs.ac.uk/research/climate-change/" >Climate change</a></li><li><a href="https://www.bgs.ac.uk/research/multiple-hazards/" >Multiple hazards</a></li><li><a href="https://www.bgs.ac.uk/research/decarbonisation/" >Decarbonisation</a></li>						</ul>
+					</div>
+										<div class="results">
+						<ul>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+		<span class="alert-box"></span>
+	</header>
+
+	<main>
+	<section class="breadcrumb-section rock-background-f">
+	<div class="container breadcrumb">
+		<div class="row">
+			<div class="col-12">
+				<div class="breadcrumbs">
+					<span class="dots" title="Expand"><strong>...</strong></span>
+					<span><a property="v:title" rel="v:url" href="https://www.bgs.ac.uk/" >Home</a> &raquo; <a property="v:title" rel="v:url" href="https://www.bgs.ac.uk/discovering-geology/" >Discovering Geology</a> &raquo; <a property="v:title" rel="v:url" href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/" >Fossils and geological time</a> &raquo; <a property="v:title" rel="v:url" href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/fossils/" >Fossils</a></span>				</div>
+			</div>
+		</div>
+	</div>
+</section>
+				<section class="hero-section hero-section-with-social">
+								<div class="hero-info-wrap">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="hero-info">
+									<h1>Fossils</h1>
+									<p>Discovering Geology &mdash; Fossils and geological time</p>								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								
+			<div class="social-wrap social-wrap-inline-them">
+				<div class="sea-background-f">
+					<span>Share this article</span><a target="_blank"  href="https://www.facebook.com/sharer/sharer.php?u=https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/fossils/"><span class="icon-facebook"><span class="hidden">Facebook</span></span></a><a target="_blank"  href="https://twitter.com/intent/tweet?text=Fossils&#038;url=https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/fossils/"><span class="icon-twitter"><span class="hidden">Twitter</span></span></a><a   onclick="javascript:void( (function() {var e=document.createElement('script' );e.setAttribute('type','text/javascript' );e.setAttribute('charset','UTF-8' );e.setAttribute('src','//assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)})());"  href="javascript:void(0);"><span class="icon-pinterest"><span class="hidden">Pinterest</span></span></a><a target="_blank"  href="https://wa.me?text=https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/fossils/"><span class="icon-whatsapp"><span class="hidden">WhatsApp</span></span></a><a   href="mailto:?subject=Fossils&#038;body=What%20is%20a%20fossil%20and%20why%20do%20we%20study%20them?%20Explore%20the%20different%20methods%20of%20fossil%20preservation.%20(https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/fossils/)"><span class="icon-mail"><span class="hidden">Email</span></span></a><a href="#" data-copy="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/fossils/" class="copy-url-on-click"><span class="icon-link"><span class="hidden">Copy Link</span></span></a></div></div>							</section>
+			
+
+
+<section class="wp-block-bgs-blocks-content-container content-section"><div class="container"><div class="row"><div class="col-12">
+<h2 class="wp-block-heading">What is a fossil?</h2>
+
+
+
+<p class="wp-block-paragraph">Fossils are the preserved remains of plants and animals whose bodies were buried in sediments, such as sand and mud, under ancient seas, lakes and rivers. Fossils also include any preserved trace of life that is typically more than 10&nbsp;000 years old. </p>
+
+
+
+<p class="wp-block-paragraph">Soft body parts decay soon after death, but the hard parts, such as bones, shells and teeth can be replaced by minerals that harden into rock. In very exceptional cases, soft parts like feathers, plant ferns or other evidence of life, such as footprints or dung, may also be preserved. Remains can include microscopically small fossils, such as single-celled <a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/foraminifera/">foraminifera</a> or pollen grains, as well as more familiar fossils such as <a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/ammonites/">ammonites</a> and <a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/trilobites/">trilobites</a>.</p>
+
+
+
+				<div  class="accordions-more">
+					<div class="acc-wrap">
+						<div class="acc-top">
+							<div class="acc-icon">
+								<img decoding="async" alt="Question Mark" src="https://www.bgs.ac.uk/wp-content/themes/bgs/img/questionmark.svg" alt="Question mark icon">
+							</div>
+							<p class="acc-title">Fast fact</p>
+							<div class="acc-intro"><p>The word fossil is derived from the Latin <em>fossilis </em>meaning ‘unearthed’.</p>
+</div>
+						</div>
+						
+					</div>
+				</div>
+
+
+<p class="wp-block-paragraph">Preserved evidence of the body parts of ancient animals, plants and other life forms are called &#8216;body fossils&#8217;. &#8216;Trace fossils&#8217; are the evidence left by organisms in sediment, such as footprints, burrows and plant roots.</p>
+
+
+
+<h2 class="wp-block-heading">Why do we study fossils?</h2>
+
+
+
+<p class="wp-block-paragraph">Fossils give us a useful insight into the history of life on Earth. They can teach us where life and humans came from, show us how the Earth and our environment have changed through geological time, and how continents, now widely separated, were once connected.</p>
+
+
+
+<p class="wp-block-paragraph">Fossils provide important evidence for evolution and the adaptation of plants and animals to their environments. Fossil evidence provides a record of how creatures evolved and how this process can be represented by a &#8216;tree of life&#8217;, showing that all species are related to each other.</p>
+
+
+
+<p class="wp-block-paragraph">Fossils can also be used to date rocks. Through the process of evolution, different kinds of fossils occur in rocks of different ages, enabling geologists to use fossils to understand geological history. For geologists, fossils are one of the most important tools for age correlation. <a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/ammonites/">Ammonites</a>, for example, make excellent guide fossils for stratigraphy; they can be used to determine the relative age of two or more layers of rock, or strata, that are in different places within the same country or somewhere else in the world.</p>
+
+
+
+<p class="wp-block-paragraph">Fossils can be used to recreate different worlds like worlds populated by dinosaurs or dragonflies with a two-metre wing span.</p>
+
+
+
+<h2 class="wp-block-heading">How do fossils form?</h2>
+
+
+
+<p class="wp-block-paragraph">Fossils are typically found in sedimentary rocks and occasionally some fine-grained, low-grade metamorphic rocks. Sometimes the fossils have been removed, leaving moulds in the surrounding rock, or the moulds may have later been filled by other materials, forming casts of the original fossils.</p>
+
+
+
+<p class="wp-block-paragraph">Rapid burial by sediments that were previously suspended in water is required for fossilisation to occur. The burial process isolates the remains from the biological and physical processes that would otherwise break up or dissolve the body material. </p>
+
+
+
+<p class="wp-block-paragraph">Fossils are more likely to be preserved in marine environments for example, where rapid burial by sediments is possible. Less favourable environments include rocky mountaintops where carcasses decay quickly or few sediments are being deposited to bury them.</p>
+
+
+
+<p class="wp-block-paragraph">There are four main ways of describing fossil preservation:</p>
+
+
+
+<ul class="wp-block-list"><li><a href="#pet">petrification</a></li><li><a href="#comp">compression</a></li><li><a href="#mc">moulds and casts</a></li><li><a href="#pr">preserved remains</a></li></ul>
+
+
+
+<h2 class="wp-block-heading" id="pet">Petrification</h2>
+
+
+
+<p class="wp-block-paragraph">The most common method of fossilisation is petrification through a process called permineralisation. After a shell, bone or tooth is buried in sediment, it may be exposed to mineral-rich fluids moving through the porous rock material and becomes filled with preserving minerals such as calcium carbonate or silica. Eventually, the minerals entirely replace the organic material and the remains are literally turned into stone or &#8216;petrified&#8217;. (<em>Petra</em> was the Latin word for rock or stone.)</p>
+
+
+<figure  class="img-wrap"><a href="https://www.bgs.ac.uk/wp-content/uploads/2020/05/P585277_1332X690.jpg" data-toggle="lightbox" data-footer="&lt;p&gt;This tree stump, found in East Fife, Scotland, is a good example of a petrified tree fossil produced by permineralisation. BGS © UKRI.&lt;/p&gt;
+" data-gallery="gallery_96801"><img decoding="async" src="https://www.bgs.ac.uk/wp-content/uploads/2020/05/P585277_1332X690-150x150.jpg" class="lazy-blur" alt="This tree stump, found in East Fife, Scotland, is a good example of a petrified tree fossil produced by permineralisation." data-src="https://www.bgs.ac.uk/wp-content/uploads/2020/05/P585277_1332X690-960x497.jpg" /></a><figcaption class="caption ">
+					<div class="caption-icon">
+						<img decoding="async" src="https://www.bgs.ac.uk/wp-content/themes/bgs/img/info-caption.svg" alt="Information icon">
+					</div>
+					<div class="caption-text"><p>This tree stump, found in East Fife, Scotland, is a good example of a petrified tree fossil produced by permineralisation. BGS © UKRI.</p>
+</div>
+					<div class="expand-box expand-box-top"><a href="https://www.bgs.ac.uk/wp-content/uploads/2020/05/P585277_1332X690.jpg" ><img decoding="async" src="https://www.bgs.ac.uk/wp-content/themes/bgs/img/expand.svg" alt="Expand icon"></a></div>
+				</figcaption></figure>
+
+
+<h2 class="wp-block-heading" id="comp">Compression</h2>
+
+
+
+<p class="wp-block-paragraph">Some fossils form when their remains are compressed at depth. A dark imprint of the fossil is produced as a result of high-pressure forces exerted by the weight of overlying sediments and perhaps sea water.</p>
+
+
+<figure  class="img-wrap"><a href="https://www.bgs.ac.uk/wp-content/uploads/2020/05/P521051_1332X690.jpg" data-toggle="lightbox" data-footer="&lt;p&gt;Plant leaves and ferns are good examples of fossils produced by compression. This image shows &lt;span style=&quot;font-style: normal !msorm;&quot;&gt;&lt;em&gt;Coniopteris&lt;/em&gt;&lt;/span&gt;, which is a type of true fern, or pteropsid, fossil from the Jurassic Period. &lt;a href=&quot;https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/plants-2/&quot;&gt;More about fossil plants&lt;/a&gt;. BGS © UKRI.&lt;/p&gt;
+" data-gallery="gallery_12926"><img decoding="async" src="https://www.bgs.ac.uk/wp-content/uploads/2020/05/P521051_1332X690-150x150.jpg" class="lazy-blur" alt="Plant leaves and ferns are good examples of fossils produced by compression. This image shows Coniopteris is a genus of true fern, or pteropsid, fossil from the Jurassic Period." data-src="https://www.bgs.ac.uk/wp-content/uploads/2020/05/P521051_1332X690-960x497.jpg" /></a><figcaption class="caption ">
+					<div class="caption-icon">
+						<img decoding="async" src="https://www.bgs.ac.uk/wp-content/themes/bgs/img/info-caption.svg" alt="Information icon">
+					</div>
+					<div class="caption-text"><p>Plant leaves and ferns are good examples of fossils produced by compression. This image shows <span style="font-style: normal !msorm;"><em>Coniopteris</em></span>, which is a type of true fern, or pteropsid, fossil from the Jurassic Period. <a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/plants-2/">More about fossil plants</a>. BGS © UKRI.</p>
+</div>
+					<div class="expand-box expand-box-top"><a href="https://www.bgs.ac.uk/wp-content/uploads/2020/05/P521051_1332X690.jpg" ><img decoding="async" src="https://www.bgs.ac.uk/wp-content/themes/bgs/img/expand.svg" alt="Expand icon"></a></div>
+				</figcaption></figure>
+
+
+<h2 class="wp-block-heading" id="mc">Moulds and casts</h2>
+
+
+
+<p class="wp-block-paragraph">In cases where the original shell or bone is dissolved away<ins>,</ins> it may leave behind a space in the shape of the original material called a mould. At some point in the future, sediments may fill the space to form a matching cast. Soft-bodied sea creatures such as snails are commonly found as moulds and casts because their shells dissolve easily. A cast is a positive impression of the original material formed by contact with the mould. <a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/gastropods/">More about gastropods.</a></p>
+
+
+<figure  class="img-wrap"><a href="https://www.bgs.ac.uk/wp-content/uploads/2020/05/P550288_1332X690px.jpg" data-toggle="lightbox" data-footer="&lt;p&gt;This image is a mould of an ancient snail or slug called &lt;em&gt;Bellerophon&lt;/em&gt;, a &lt;a href=&quot;https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/gastropods/&quot;&gt;gastropod&lt;/a&gt;. Fossils can form when mould of the interior of the shell is made by water-borne minerals percolating through it, but later the shell material dissolves away. BGS © UKRI.&lt;/p&gt;
+" data-gallery="gallery_89954"><img decoding="async" src="https://www.bgs.ac.uk/wp-content/uploads/2020/05/P550288_1332X690px-150x150.jpg" class="lazy-blur" alt="This image is a mould of an ancient snail or slug called Bellerophon, a gastropod. Fossils can form when mould of the interior of the shell is made by water-borne minerals percolating through it, but later the shell material dissolves away." data-src="https://www.bgs.ac.uk/wp-content/uploads/2020/05/P550288_1332X690px-960x497.jpg" /></a><figcaption class="caption ">
+					<div class="caption-icon">
+						<img decoding="async" src="https://www.bgs.ac.uk/wp-content/themes/bgs/img/info-caption.svg" alt="Information icon">
+					</div>
+					<div class="caption-text"><p>This image is a mould of an ancient snail or slug called <em>Bellerophon</em>, a <a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/gastropods/">gastropod</a>. Fossils can form when mould of the interior of the shell is made by water-borne minerals percolating through it, but later the shell material dissolves away. BGS © UKRI.</p>
+</div>
+					<div class="expand-box expand-box-top"><a href="https://www.bgs.ac.uk/wp-content/uploads/2020/05/P550288_1332X690px.jpg" ><img decoding="async" src="https://www.bgs.ac.uk/wp-content/themes/bgs/img/expand.svg" alt="Expand icon"></a></div>
+				</figcaption></figure>
+
+
+<h2 class="wp-block-heading" id="pr">Preserved remains</h2>
+
+
+
+<p class="wp-block-paragraph">The rarest form of fossilisation is the preservation of original skeletons and soft body parts. Insects that have been trapped and preserved perfectly in amber (fossilised tree resin) are examples of preserved remains.</p>
+
+
+<figure  class="img-wrap"><a href="https://www.bgs.ac.uk/wp-content/uploads/2020/05/P549580_1332X690px.jpg" data-toggle="lightbox" data-footer="&lt;p&gt;A fly and spider trapped in amber. Many different animals have been fossilised in amber, from flies and mosquitoes to spiders and snails, and, in very rare instances, &lt;a href=&quot;https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/ostracods/&quot;&gt;ostracods&lt;/a&gt;. BGS © UKRI.&lt;/p&gt;
+" data-gallery="gallery_84865"><img decoding="async" src="https://www.bgs.ac.uk/wp-content/uploads/2020/05/P549580_1332X690px-150x150.jpg" class="lazy-blur" alt="A fly and spider trapped in amber. Many different animals have been fossilised in amber, from flies and mosquitoes to spiders and snails, and in very rare instances ostracods (&#039;water fleas&#039;)." data-src="https://www.bgs.ac.uk/wp-content/uploads/2020/05/P549580_1332X690px-960x497.jpg" /></a><figcaption class="caption ">
+					<div class="caption-icon">
+						<img decoding="async" src="https://www.bgs.ac.uk/wp-content/themes/bgs/img/info-caption.svg" alt="Information icon">
+					</div>
+					<div class="caption-text"><p>A fly and spider trapped in amber. Many different animals have been fossilised in amber, from flies and mosquitoes to spiders and snails, and, in very rare instances, <a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/ostracods/">ostracods</a>. BGS © UKRI.</p>
+</div>
+					<div class="expand-box expand-box-top"><a href="https://www.bgs.ac.uk/wp-content/uploads/2020/05/P549580_1332X690px.jpg" ><img decoding="async" src="https://www.bgs.ac.uk/wp-content/themes/bgs/img/expand.svg" alt="Expand icon"></a></div>
+				</figcaption></figure></div></div></div></section>
+
+
+		<section id="in-this-section-3199-block_5eb1024c14a2d" class="grid-section  primary-background   " >
+			<div class="container">
+								<div class="row header-of-section">
+					<div class="col-12">
+						<h2>Browse fossil records</h2>
+											</div>
+				</div>
+												<div class="row grid-wrap">
+					<div class="col-md-6 col-lg-4">
+	<div class="cards-over-img cards  cards-find-more ">
+		<a class="media-wrap" href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/ammonites/">
+		<img decoding="async" src="https://www.bgs.ac.uk/wp-content/uploads/2020/06/feature_ammonite_P885148-150x150.jpg" class="lazy-blur wp-post-image" alt="ammonite p885148" data-src="https://www.bgs.ac.uk/wp-content/uploads/2020/06/feature_ammonite_P885148.jpg" />	</a>
+		<div class="info-wrap">
+		<div class="info">
+			<h2><a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/ammonites/">Ammonites</a></h2>
+								</div>
+		<a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/ammonites/">Show more</a>	</div>
+	</div>
+</div>
+<div class="col-md-6 col-lg-4">
+	<div class="cards-over-img cards  cards-find-more ">
+		<a class="media-wrap" href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/belemnites/">
+		<img decoding="async" src="https://www.bgs.ac.uk/wp-content/uploads/2020/09/feature_belemnite_P521001-150x150.jpg" class="lazy-blur wp-post-image" alt="belemnite p521001" data-src="https://www.bgs.ac.uk/wp-content/uploads/2020/09/feature_belemnite_P521001.jpg" />	</a>
+		<div class="info-wrap">
+		<div class="info">
+			<h2><a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/belemnites/">Belemnites</a></h2>
+								</div>
+		<a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/belemnites/">Show more</a>	</div>
+	</div>
+</div>
+<div class="col-md-6 col-lg-4">
+	<div class="cards-over-img cards  cards-find-more ">
+		<a class="media-wrap" href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/bivalves/">
+		<img decoding="async" src="https://www.bgs.ac.uk/wp-content/uploads/2020/06/feature_bivalves_P549460-150x150.jpg" class="lazy-blur wp-post-image" alt="bivalves p549460" data-src="https://www.bgs.ac.uk/wp-content/uploads/2020/06/feature_bivalves_P549460.jpg" />	</a>
+		<div class="info-wrap">
+		<div class="info">
+			<h2><a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/bivalves/">Bivalves</a></h2>
+								</div>
+		<a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/bivalves/">Show more</a>	</div>
+	</div>
+</div>
+<div class="col-md-6 col-lg-4">
+	<div class="cards-over-img cards  cards-find-more ">
+		<a class="media-wrap" href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/brachiopods/">
+		<img decoding="async" src="https://www.bgs.ac.uk/wp-content/uploads/2020/06/feature_brachiopods_P871945-150x150.jpg" class="lazy-blur wp-post-image" alt="brachiopod p871945" data-src="https://www.bgs.ac.uk/wp-content/uploads/2020/06/feature_brachiopods_P871945.jpg" />	</a>
+		<div class="info-wrap">
+		<div class="info">
+			<h2><a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/brachiopods/">Brachiopods</a></h2>
+								</div>
+		<a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/brachiopods/">Show more</a>	</div>
+	</div>
+</div>
+<div class="col-md-6 col-lg-4">
+	<div class="cards-over-img cards  cards-find-more ">
+		<a class="media-wrap" href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/corals/">
+		<img decoding="async" src="https://www.bgs.ac.uk/wp-content/uploads/2020/06/feature_coral_P549521-150x150.jpg" class="lazy-blur wp-post-image" alt="coral p549521" data-src="https://www.bgs.ac.uk/wp-content/uploads/2020/06/feature_coral_P549521.jpg" />	</a>
+		<div class="info-wrap">
+		<div class="info">
+			<h2><a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/corals/">Corals</a></h2>
+								</div>
+		<a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/corals/">Show more</a>	</div>
+	</div>
+</div>
+<div class="col-md-6 col-lg-4">
+	<div class="cards-over-img cards  cards-find-more ">
+		<a class="media-wrap" href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/crinoids/">
+		<img decoding="async" src="https://www.bgs.ac.uk/wp-content/uploads/2020/06/feature_crinoid_P550304-150x150.jpg" class="lazy-blur wp-post-image" alt="crinoid p550304" data-src="https://www.bgs.ac.uk/wp-content/uploads/2020/06/feature_crinoid_P550304.jpg" />	</a>
+		<div class="info-wrap">
+		<div class="info">
+			<h2><a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/crinoids/">Crinoids</a></h2>
+								</div>
+		<a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/crinoids/">Show more</a>	</div>
+	</div>
+</div>
+<div class="col-md-6 col-lg-4">
+	<div class="cards-over-img cards  cards-find-more ">
+		<a class="media-wrap" href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/echinoids/">
+		<img decoding="async" src="https://www.bgs.ac.uk/wp-content/uploads/2020/06/feature_echinoid_P549574-150x150.jpg" class="lazy-blur wp-post-image" alt="echinoid p549574" data-src="https://www.bgs.ac.uk/wp-content/uploads/2020/06/feature_echinoid_P549574.jpg" />	</a>
+		<div class="info-wrap">
+		<div class="info">
+			<h2><a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/echinoids/">Echinoids</a></h2>
+								</div>
+		<a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/echinoids/">Show more</a>	</div>
+	</div>
+</div>
+<div class="col-md-6 col-lg-4">
+	<div class="cards-over-img cards  cards-find-more ">
+		<a class="media-wrap" href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/fish/">
+		<img decoding="async" src="https://www.bgs.ac.uk/wp-content/uploads/2020/06/feature_fish_P549583-150x150.jpg" class="lazy-blur wp-post-image" alt="fish p549583" data-src="https://www.bgs.ac.uk/wp-content/uploads/2020/06/feature_fish_P549583.jpg" />	</a>
+		<div class="info-wrap">
+		<div class="info">
+			<h2><a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/fish/">Fish</a></h2>
+								</div>
+		<a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/fish/">Show more</a>	</div>
+	</div>
+</div>
+<div class="col-md-6 col-lg-4">
+	<div class="cards-over-img cards  cards-find-more ">
+		<a class="media-wrap" href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/foraminifera/">
+		<img decoding="async" src="https://www.bgs.ac.uk/wp-content/uploads/2021/08/P724541-150x150.jpg" class="lazy-blur wp-post-image" alt="Foraminifera" data-src="https://www.bgs.ac.uk/wp-content/uploads/2021/08/P724541.jpg" />	</a>
+		<div class="info-wrap">
+		<div class="info">
+			<h2><a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/foraminifera/">Foraminifera</a></h2>
+								</div>
+		<a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/foraminifera/">Show more</a>	</div>
+	</div>
+</div>
+<div class="col-md-6 col-lg-4">
+	<div class="cards-over-img cards  cards-find-more ">
+		<a class="media-wrap" href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/gastropods/">
+		<img decoding="async" src="https://www.bgs.ac.uk/wp-content/uploads/2020/06/feature_gastropods_P550284-150x150.jpg" class="lazy-blur wp-post-image" alt="Gastropods p550284" data-src="https://www.bgs.ac.uk/wp-content/uploads/2020/06/feature_gastropods_P550284.jpg" />	</a>
+		<div class="info-wrap">
+		<div class="info">
+			<h2><a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/gastropods/">Gastropods</a></h2>
+								</div>
+		<a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/gastropods/">Show more</a>	</div>
+	</div>
+</div>
+<div class="col-md-6 col-lg-4">
+	<div class="cards-over-img cards  cards-find-more ">
+		<a class="media-wrap" href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/graptolites/">
+		<img decoding="async" src="https://www.bgs.ac.uk/wp-content/uploads/2020/06/feature_graptolites_P549553-150x150.jpg" class="lazy-blur wp-post-image" alt="Plant p549553" data-src="https://www.bgs.ac.uk/wp-content/uploads/2020/06/feature_graptolites_P549553.jpg" />	</a>
+		<div class="info-wrap">
+		<div class="info">
+			<h2><a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/graptolites/">Graptolites</a></h2>
+								</div>
+		<a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/graptolites/">Show more</a>	</div>
+	</div>
+</div>
+<div class="col-md-6 col-lg-4">
+	<div class="cards-over-img cards  cards-find-more ">
+		<a class="media-wrap" href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/ostracods/">
+		<img decoding="async" src="https://www.bgs.ac.uk/wp-content/uploads/2020/06/feature_ostrocods_gigantocypris-150x150.jpg" class="lazy-blur wp-post-image" alt="Ostrocod gigantocypris" data-src="https://www.bgs.ac.uk/wp-content/uploads/2020/06/feature_ostrocods_gigantocypris.jpg" />	</a>
+		<div class="info-wrap">
+		<div class="info">
+			<h2><a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/ostracods/">Ostracods</a></h2>
+								</div>
+		<a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/ostracods/">Show more</a>	</div>
+	</div>
+</div>
+<div class="col-md-6 col-lg-4">
+	<div class="cards-over-img cards  cards-find-more ">
+		<a class="media-wrap" href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/plants-2/">
+		<img decoding="async" src="https://www.bgs.ac.uk/wp-content/uploads/2020/06/feature_plant_P257568-150x150.jpg" class="lazy-blur wp-post-image" alt="Plant p257568" data-src="https://www.bgs.ac.uk/wp-content/uploads/2020/06/feature_plant_P257568.jpg" />	</a>
+		<div class="info-wrap">
+		<div class="info">
+			<h2><a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/plants-2/">Plants</a></h2>
+								</div>
+		<a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/plants-2/">Show more</a>	</div>
+	</div>
+</div>
+<div class="col-md-6 col-lg-4">
+	<div class="cards-over-img cards  cards-find-more ">
+		<a class="media-wrap" href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/trilobites/">
+		<img decoding="async" src="https://www.bgs.ac.uk/wp-content/uploads/2020/06/Trilobite_640x430px-150x150.jpg" class="lazy-blur wp-post-image" alt="Trilobite p550300" data-src="https://www.bgs.ac.uk/wp-content/uploads/2020/06/Trilobite_640x430px.jpg" />	</a>
+		<div class="info-wrap">
+		<div class="info">
+			<h2><a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/trilobites/">Trilobites</a></h2>
+								</div>
+		<a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/trilobites/">Show more</a>	</div>
+	</div>
+</div>
+				</div>
+							</div>
+		</section>
+		
+
+
+
+					<section   id="latest-content-8094-block_5eb10583dd52a" class="grid-section  primary-background   " >
+						<div class="container">
+													<div class="row header-of-section">
+								<div class="col-12">
+									<h2>You may also be interested in</h2>
+								</div>
+							</div>
+														<div class="row grid-wrap">
+														<div class="col-lg-6 col-12">
+	<div class="cards cards-orizontal-sm  cards-find-more  cards-bordered">
+				<a href="https://www.bgs.ac.uk/discovering-geology/" class="media-wrap">
+			<img decoding="async" src="https://www.bgs.ac.uk/wp-content/uploads/2020/04/feature_homepage_p815563-150x150.jpg" class="lazy-blur wp-post-image" alt="Ammonite p815563" data-src="https://www.bgs.ac.uk/wp-content/uploads/2020/04/feature_homepage_p815563.jpg" />					</a>
+				<div class="info-wrap">
+			<div class="info">
+				<h4><a href="https://www.bgs.ac.uk/discovering-geology/">Discovering Geology</a></h4>
+													<p>Discovering Geology introduces a range of geoscience topics to school-age students and learners of all ages.</p>
+							</div>
+			<a href="https://www.bgs.ac.uk/discovering-geology/">Show more</a>
+		</div>
+	</div>
+</div>
+<div class="col-lg-6 col-12">
+	<div class="cards cards-orizontal-sm  cards-find-more  cards-bordered">
+				<a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/" class="media-wrap">
+			<img decoding="async" src="https://www.bgs.ac.uk/wp-content/uploads/2021/06/fishThroughTime-150x150.jpg" class="lazy-blur wp-post-image" alt="fishThroughTime" data-src="https://www.bgs.ac.uk/wp-content/uploads/2021/06/fishThroughTime.jpg" />					</a>
+				<div class="info-wrap">
+			<div class="info">
+				<h4><a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/">Fossils and geological time</a></h4>
+													<p>Take a look at the history of the Earth, from its formation over four and a half billion years ago to present times.</p>
+							</div>
+			<a href="https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/">Show more</a>
+		</div>
+	</div>
+</div>
+							</div>
+														<div class="row">
+								<div class="col-12">
+																	</div>
+							</div>
+													</div>
+					</section>
+						<section class="question-section basic-background-1">
+			<div class="container">
+				<div class="row header-of-section">
+					<div class="col-12">
+						<h2>Was this page helpful?</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<div class="btn-wrap">
+							<button class="primary-background button button-positive"><span class="button-content" tabindex="-1">Yes</span></button>
+							<button class="basic-background-1 button button-negative"><span class="button-content" tabindex="-1">No</span></button>
+						</div>
+					</div>
+					<div class="col-12 quest-form-wrp">
+						<button class="button no-btn btn-quest d-none"><span class="button-content answer-close icon-close" tabindex="-1"></span><span class="screen-reader">Close Button</span></button>
+						
+                <div class='gf_browser_chrome gform_wrapper gform_legacy_markup_wrapper gform-theme--no-framework' data-form-theme='legacy' data-form-index='0' id='gform_wrapper_1' ><div id='gf_1' class='gform_anchor' tabindex='-1'></div><form method='post' enctype='multipart/form-data' target='gform_ajax_frame_1' id='gform_1'   class="answer-positive primary-background-b" action="/#" novalidate>
+                        <div class='gform-body gform_body'><ul id='gform_fields_1' class='gform_fields top_label form_sublabel_below description_below validation_below'><li id="field_1_1" class="gfield gfield--type-html gfield_html gfield_no_follows_desc field_sublabel_below gfield--no-description field_description_below field_validation_below gfield_visibility_visible"  ><div class="triagle"></div>
+<p>How can we make this section better?*</p></li><li id="field_1_2" class="gfield gfield--type-textarea gfield_contains_required field_sublabel_below gfield--no-description field_description_below field_validation_below gfield_visibility_visible"  ><label class='gfield_label gform-field-label' for='input_1_2'>How can we make this section better?<span class="gfield_required"><span class="gfield_required gfield_required_asterisk">*</span></span></label><div class='ginput_container ginput_container_textarea'><textarea name='input_2' id='input_1_2' class='textarea medium'    placeholder='Write something...' aria-required="true" aria-invalid="false"   rows='10' cols='50'></textarea></div></li><li id="field_1_3" class="gfield gfield--type-captcha field_sublabel_below gfield--no-description field_description_below field_validation_below gfield_visibility_visible"  ><label class='gfield_label gform-field-label' for='input_1_3'>CAPTCHA</label><div id='input_1_3' class='ginput_container ginput_recaptcha' data-sitekey='6LfJddAZAAAAAMRa5RIOMJkDugf7i7IL3rcCYibH'  data-theme='light' data-tabindex='-1' data-size='invisible' data-badge='inline'></div></li></ul></div>
+        <div class='gform-footer gform_footer top_label'> <input type='submit' id='gform_submit_button_1' class='gform_button button' onclick='gform.submission.handleButtonClick(this);' data-submission-type='submit' value='Submit'  /> <input type='hidden' name='gform_ajax' value='form_id=1&amp;title=&amp;description=&amp;tabindex=0&amp;theme=legacy&amp;hash=69b11c31c58a0b8182415c7ab95e06fb' />
+            <input type='hidden' class='gform_hidden' name='gform_submission_method' data-js='gform_submission_method_1' value='iframe' />
+            <input type='hidden' class='gform_hidden' name='gform_theme' data-js='gform_theme_1' id='gform_theme_1' value='legacy' />
+            <input type='hidden' class='gform_hidden' name='gform_style_settings' data-js='gform_style_settings_1' id='gform_style_settings_1' value='' />
+            <input type='hidden' class='gform_hidden' name='is_submit_1' value='1' />
+            <input type='hidden' class='gform_hidden' name='gform_submit' value='1' />
+            
+            <input type='hidden' class='gform_hidden' name='gform_currency' data-currency='GBP' value='NzoL+cUbCw2goPcxk7Vk8I5y0Z84b8cedx0s3ReuKYaa6lekrsfdqD4iQxaeU6KfuCPFda1TByCvCiW3EUpsJ+PoFi7p0KEgbhRptKq9thiuVrY=' />
+            <input type='hidden' class='gform_hidden' name='gform_unique_id' value='' />
+            <input type='hidden' class='gform_hidden' name='state_1' value='WyJbXSIsIjg5Yzk3N2M1MjQ4M2Y4NzU2N2Y0YTU0MWZlOTNhOTJmIl0=' />
+            <input type='hidden' autocomplete='off' class='gform_hidden' name='gform_target_page_number_1' id='gform_target_page_number_1' value='0' />
+            <input type='hidden' autocomplete='off' class='gform_hidden' name='gform_source_page_number_1' id='gform_source_page_number_1' value='1' />
+            <input type='hidden' name='gform_field_values' value='' />
+            
+        </div>
+                        </form>
+                        </div>
+		                <iframe style='display:none;width:0px;height:0px;' src='about:blank' name='gform_ajax_frame_1' id='gform_ajax_frame_1' title='This iframe contains the logic required to handle Ajax powered Gravity Forms.'></iframe>
+		                <script>
+gform.initializeOnLoaded( function() {gformInitSpinner( 1, 'https://www.bgs.ac.uk/wp-content/plugins/gravityforms/images/spinner.svg', true );jQuery('#gform_ajax_frame_1').on('load',function(){var contents = jQuery(this).contents().find('*').html();var is_postback = contents.indexOf('GF_AJAX_POSTBACK') >= 0;if(!is_postback){return;}var form_content = jQuery(this).contents().find('#gform_wrapper_1');var is_confirmation = jQuery(this).contents().find('#gform_confirmation_wrapper_1').length > 0;var is_redirect = contents.indexOf('gformRedirect(){') >= 0;var is_form = form_content.length > 0 && ! is_redirect && ! is_confirmation;var mt = parseInt(jQuery('html').css('margin-top'), 10) + parseInt(jQuery('body').css('margin-top'), 10) + 100;if(is_form){jQuery('#gform_wrapper_1').html(form_content.html());if(form_content.hasClass('gform_validation_error')){jQuery('#gform_wrapper_1').addClass('gform_validation_error');} else {jQuery('#gform_wrapper_1').removeClass('gform_validation_error');}setTimeout( function() { /* delay the scroll by 50 milliseconds to fix a bug in chrome */ jQuery(document).scrollTop(jQuery('#gform_wrapper_1').offset().top - mt); }, 50 );if(window['gformInitDatepicker']) {gformInitDatepicker();}if(window['gformInitPriceFields']) {gformInitPriceFields();}var current_page = jQuery('#gform_source_page_number_1').val();gformInitSpinner( 1, 'https://www.bgs.ac.uk/wp-content/plugins/gravityforms/images/spinner.svg', true );jQuery(document).trigger('gform_page_loaded', [1, current_page]);window['gf_submitting_1'] = false;}else if(!is_redirect){var confirmation_content = jQuery(this).contents().find('.GF_AJAX_POSTBACK').html();if(!confirmation_content){confirmation_content = contents;}jQuery('#gform_wrapper_1').replaceWith(confirmation_content);jQuery(document).scrollTop(jQuery('#gf_1').offset().top - mt);jQuery(document).trigger('gform_confirmation_loaded', [1]);window['gf_submitting_1'] = false;wp.a11y.speak(jQuery('#gform_confirmation_message_1').text());}else{jQuery('#gform_1').append(contents);if(window['gformRedirect']) {gformRedirect();}}jQuery(document).trigger("gform_pre_post_render", [{ formId: "1", currentPage: "current_page", abort: function() { this.preventDefault(); } }]);        if (event && event.defaultPrevented) {                return;        }        const gformWrapperDiv = document.getElementById( "gform_wrapper_1" );        if ( gformWrapperDiv ) {            const visibilitySpan = document.createElement( "span" );            visibilitySpan.id = "gform_visibility_test_1";            gformWrapperDiv.insertAdjacentElement( "afterend", visibilitySpan );        }        const visibilityTestDiv = document.getElementById( "gform_visibility_test_1" );        let postRenderFired = false;        function triggerPostRender() {            if ( postRenderFired ) {                return;            }            postRenderFired = true;            gform.core.triggerPostRenderEvents( 1, current_page );            if ( visibilityTestDiv ) {                visibilityTestDiv.parentNode.removeChild( visibilityTestDiv );            }        }        function debounce( func, wait, immediate ) {            var timeout;            return function() {                var context = this, args = arguments;                var later = function() {                    timeout = null;                    if ( !immediate ) func.apply( context, args );                };                var callNow = immediate && !timeout;                clearTimeout( timeout );                timeout = setTimeout( later, wait );                if ( callNow ) func.apply( context, args );            };        }        const debouncedTriggerPostRender = debounce( function() {            triggerPostRender();        }, 200 );        if ( visibilityTestDiv && visibilityTestDiv.offsetParent === null ) {            const observer = new MutationObserver( ( mutations ) => {                mutations.forEach( ( mutation ) => {                    if ( mutation.type === 'attributes' && visibilityTestDiv.offsetParent !== null ) {                        debouncedTriggerPostRender();                        observer.disconnect();                    }                });            });            observer.observe( document.body, {                attributes: true,                childList: false,                subtree: true,                attributeFilter: [ 'style', 'class' ],            });        } else {            triggerPostRender();        }    } );} );
+</script>
+						
+                <div class='gf_browser_chrome gform_wrapper gform_legacy_markup_wrapper gform-theme--no-framework' data-form-theme='legacy' data-form-index='0' id='gform_wrapper_3' ><div id='gf_3' class='gform_anchor' tabindex='-1'></div><form method='post' enctype='multipart/form-data' target='gform_ajax_frame_3' id='gform_3'   class="answer-negative primary-background-b" action="/#" novalidate>
+                        <div class='gform-body gform_body'><ul id='gform_fields_3' class='gform_fields top_label form_sublabel_below description_below validation_below'><li id="field_3_1" class="gfield gfield--type-html gfield_html gfield_no_follows_desc field_sublabel_below gfield--no-description field_description_below field_validation_below gfield_visibility_visible"  ><div class="triagle"></div>
+<p>Please select a reason*</p></li><li id="field_3_3" class="gfield gfield--type-select half-column gfield_contains_required field_sublabel_below gfield--no-description field_description_below field_validation_below gfield_visibility_visible"  ><label class='gfield_label gform-field-label' for='input_3_3'>Please select a reason<span class="gfield_required"><span class="gfield_required gfield_required_asterisk">*</span></span></label><div class='ginput_container ginput_container_select'><select name='input_3' id='input_3_3' class='medium gfield_select'    aria-required="true" aria-invalid="false" ><option value='' selected='selected' class='gf_placeholder'>Select reason</option><option value='Didn&#039;t answer my question' >Didn&#039;t answer my question</option><option value='Too confusing' >Too confusing</option><option value='Links are broken/Doesn&#039;t work' >Links are broken/Doesn&#039;t work</option></select></div></li><li id="field_3_4" class="gfield gfield--type-html gfield_html gfield_html_formatted gfield_no_follows_desc field_sublabel_below gfield--no-description field_description_below field_validation_below gfield_visibility_visible"  ><p>How can we make this section better?*</p></li><li id="field_3_2" class="gfield gfield--type-textarea gfield_contains_required field_sublabel_below gfield--no-description field_description_below field_validation_below gfield_visibility_visible"  ><label class='gfield_label gform-field-label' for='input_3_2'>How can we make this section better?<span class="gfield_required"><span class="gfield_required gfield_required_asterisk">*</span></span></label><div class='ginput_container ginput_container_textarea'><textarea name='input_2' id='input_3_2' class='textarea medium'    placeholder='Write something...' aria-required="true" aria-invalid="false"   rows='10' cols='50'></textarea></div></li><li id="field_3_5" class="gfield gfield--type-captcha field_sublabel_below gfield--no-description field_description_below field_validation_below gfield_visibility_visible"  ><label class='gfield_label gform-field-label' for='input_3_5'>CAPTCHA</label><div id='input_3_5' class='ginput_container ginput_recaptcha' data-sitekey='6LfJddAZAAAAAMRa5RIOMJkDugf7i7IL3rcCYibH'  data-theme='light' data-tabindex='-1' data-size='invisible' data-badge='inline'></div></li></ul></div>
+        <div class='gform-footer gform_footer top_label'> <input type='submit' id='gform_submit_button_3' class='gform_button button' onclick='gform.submission.handleButtonClick(this);' data-submission-type='submit' value='Submit'  /> <input type='hidden' name='gform_ajax' value='form_id=3&amp;title=&amp;description=&amp;tabindex=0&amp;theme=legacy&amp;hash=0047f7093552c575d9f14509ceb6d733' />
+            <input type='hidden' class='gform_hidden' name='gform_submission_method' data-js='gform_submission_method_3' value='iframe' />
+            <input type='hidden' class='gform_hidden' name='gform_theme' data-js='gform_theme_3' id='gform_theme_3' value='legacy' />
+            <input type='hidden' class='gform_hidden' name='gform_style_settings' data-js='gform_style_settings_3' id='gform_style_settings_3' value='' />
+            <input type='hidden' class='gform_hidden' name='is_submit_3' value='1' />
+            <input type='hidden' class='gform_hidden' name='gform_submit' value='3' />
+            
+            <input type='hidden' class='gform_hidden' name='gform_currency' data-currency='GBP' value='3mre6unZ7hDyCyo6zd7gMVjicP2BpcpqyCiKYLNKbtMN6giDJVT9nBqb+od/QnQR62gYWlCm4nQ4DY/u8KGK4ZInh98TISRJM/i31ZvqMZ6y5WE=' />
+            <input type='hidden' class='gform_hidden' name='gform_unique_id' value='' />
+            <input type='hidden' class='gform_hidden' name='state_3' value='WyJbXSIsIjg5Yzk3N2M1MjQ4M2Y4NzU2N2Y0YTU0MWZlOTNhOTJmIl0=' />
+            <input type='hidden' autocomplete='off' class='gform_hidden' name='gform_target_page_number_3' id='gform_target_page_number_3' value='0' />
+            <input type='hidden' autocomplete='off' class='gform_hidden' name='gform_source_page_number_3' id='gform_source_page_number_3' value='1' />
+            <input type='hidden' name='gform_field_values' value='' />
+            
+        </div>
+                        </form>
+                        </div>
+		                <iframe style='display:none;width:0px;height:0px;' src='about:blank' name='gform_ajax_frame_3' id='gform_ajax_frame_3' title='This iframe contains the logic required to handle Ajax powered Gravity Forms.'></iframe>
+		                <script>
+gform.initializeOnLoaded( function() {gformInitSpinner( 3, 'https://www.bgs.ac.uk/wp-content/plugins/gravityforms/images/spinner.svg', true );jQuery('#gform_ajax_frame_3').on('load',function(){var contents = jQuery(this).contents().find('*').html();var is_postback = contents.indexOf('GF_AJAX_POSTBACK') >= 0;if(!is_postback){return;}var form_content = jQuery(this).contents().find('#gform_wrapper_3');var is_confirmation = jQuery(this).contents().find('#gform_confirmation_wrapper_3').length > 0;var is_redirect = contents.indexOf('gformRedirect(){') >= 0;var is_form = form_content.length > 0 && ! is_redirect && ! is_confirmation;var mt = parseInt(jQuery('html').css('margin-top'), 10) + parseInt(jQuery('body').css('margin-top'), 10) + 100;if(is_form){jQuery('#gform_wrapper_3').html(form_content.html());if(form_content.hasClass('gform_validation_error')){jQuery('#gform_wrapper_3').addClass('gform_validation_error');} else {jQuery('#gform_wrapper_3').removeClass('gform_validation_error');}setTimeout( function() { /* delay the scroll by 50 milliseconds to fix a bug in chrome */ jQuery(document).scrollTop(jQuery('#gform_wrapper_3').offset().top - mt); }, 50 );if(window['gformInitDatepicker']) {gformInitDatepicker();}if(window['gformInitPriceFields']) {gformInitPriceFields();}var current_page = jQuery('#gform_source_page_number_3').val();gformInitSpinner( 3, 'https://www.bgs.ac.uk/wp-content/plugins/gravityforms/images/spinner.svg', true );jQuery(document).trigger('gform_page_loaded', [3, current_page]);window['gf_submitting_3'] = false;}else if(!is_redirect){var confirmation_content = jQuery(this).contents().find('.GF_AJAX_POSTBACK').html();if(!confirmation_content){confirmation_content = contents;}jQuery('#gform_wrapper_3').replaceWith(confirmation_content);jQuery(document).scrollTop(jQuery('#gf_3').offset().top - mt);jQuery(document).trigger('gform_confirmation_loaded', [3]);window['gf_submitting_3'] = false;wp.a11y.speak(jQuery('#gform_confirmation_message_3').text());}else{jQuery('#gform_3').append(contents);if(window['gformRedirect']) {gformRedirect();}}jQuery(document).trigger("gform_pre_post_render", [{ formId: "3", currentPage: "current_page", abort: function() { this.preventDefault(); } }]);        if (event && event.defaultPrevented) {                return;        }        const gformWrapperDiv = document.getElementById( "gform_wrapper_3" );        if ( gformWrapperDiv ) {            const visibilitySpan = document.createElement( "span" );            visibilitySpan.id = "gform_visibility_test_3";            gformWrapperDiv.insertAdjacentElement( "afterend", visibilitySpan );        }        const visibilityTestDiv = document.getElementById( "gform_visibility_test_3" );        let postRenderFired = false;        function triggerPostRender() {            if ( postRenderFired ) {                return;            }            postRenderFired = true;            gform.core.triggerPostRenderEvents( 3, current_page );            if ( visibilityTestDiv ) {                visibilityTestDiv.parentNode.removeChild( visibilityTestDiv );            }        }        function debounce( func, wait, immediate ) {            var timeout;            return function() {                var context = this, args = arguments;                var later = function() {                    timeout = null;                    if ( !immediate ) func.apply( context, args );                };                var callNow = immediate && !timeout;                clearTimeout( timeout );                timeout = setTimeout( later, wait );                if ( callNow ) func.apply( context, args );            };        }        const debouncedTriggerPostRender = debounce( function() {            triggerPostRender();        }, 200 );        if ( visibilityTestDiv && visibilityTestDiv.offsetParent === null ) {            const observer = new MutationObserver( ( mutations ) => {                mutations.forEach( ( mutation ) => {                    if ( mutation.type === 'attributes' && visibilityTestDiv.offsetParent !== null ) {                        debouncedTriggerPostRender();                        observer.disconnect();                    }                });            });            observer.observe( document.body, {                attributes: true,                childList: false,                subtree: true,                attributeFilter: [ 'style', 'class' ],            });        } else {            triggerPostRender();        }    } );} );
+</script>
+					</div>
+				</div>
+			</div>
+		</section>
+		</main>
+
+<footer  >
+		<div class="cookies-wrap sky-background-e cookies-no-display">
+		<div class="container">
+			<div class="row">
+								<div class="col-lg-2">
+					<h2>Cookies policy</h2>
+				</div>
+								<div class="col-lg-10">
+					<p>This website uses cookies to improve your experience. We&#8217;ll assume you&#8217;re okay with this, but you can opt out if you wish. <a href="https://www.bgs.ac.uk/cookies-policy/">More information</a>.</p>
+					<div class="btn-wrap">
+													<button class="primary-background button cookies-accept"><span class="button-content" tabindex="-1">Accept</span></button>
+																									<button class="button cookies-reminder"><span class="button-content" tabindex="-1">Remind me later</span></button>
+											</div>
+				</div>
+			</div>
+		</div>
+	</div>
+			<div class="footer-top basic-background-6">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<img src="https://www.bgs.ac.uk/wp-content/uploads/2026/07/UKRINERCLogo_2026.svg" class="lazy-blur" alt="UKRINERCLogo_2026" data-src="https://www.bgs.ac.uk/wp-content/uploads/2026/07/UKRINERCLogo_2026.svg" decoding="async" loading="lazy" />				</div>
+			</div>
+		</div>
+	</div>
+		<div class="footer"  >
+		<div class="footer-layer">
+			<div class="container">
+				<div class="row">
+										<div class="col-lg-6">
+												<h5>Useful links</h5>
+						<nav class="links">
+							<ul id="menu-useful-links" class="menu"><li id="menu-item-3584" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3584"><a href="https://www.bgs.ac.uk/about-bgs/">About BGS</a></li>
+<li id="menu-item-3585" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3585"><a href="https://www.bgs.ac.uk/news/">News and events</a></li>
+<li id="menu-item-3586" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3586"><a href="https://www.bgs.ac.uk/about-bgs/contact-us/">Contact us</a></li>
+<li id="menu-item-29883" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-29883"><a href="https://www.bgs.ac.uk/about-bgs/contact-us/press-office/">Press office</a></li>
+<li id="menu-item-75770" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-75770"><a href="https://www.bgs.ac.uk/legal-and-policy/accessibility/">Accessibility</a></li>
+<li id="menu-item-85643" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-85643"><a href="https://www.bgs.ac.uk/about-bgs/working-with-us/job-vacancies/">Job vacancies</a></li>
+</ul>						</nav>
+					</div>
+															<div class="col-lg-2 col-sm-4">
+												<h5>Policies &amp; legal</h5>
+						<nav class="links">
+							<ul id="menu-policies-legal" class="menu"><li id="menu-item-3591" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3591"><a href="https://www.bgs.ac.uk/legal-and-policy/privacy/">Privacy policy</a></li>
+<li id="menu-item-6107" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6107"><a href="https://www.bgs.ac.uk/legal-and-policy/cookies-policy/">Cookies policy</a></li>
+<li id="menu-item-34508" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-34508"><a href="https://www.bgs.ac.uk/legal-and-policy/terms-of-use/">Terms of use</a></li>
+<li id="menu-item-34490" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-34490"><a href="https://www.bgs.ac.uk/about-bgs/contact-us/freedom-of-information-act/">Freedom of information (FOI)</a></li>
+<li id="menu-item-34491" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-34491"><a href="https://www.bgs.ac.uk/bgs-intellectual-property-rights/">Intellectual property rights</a></li>
+</ul>						</nav>
+					</div>
+										<div class="col-lg-4 col-sm-8">
+						<h5>Join the BGS Newsletter</h5><p>Keep up to date with all the latest research, products and events news. </p><a href="https://public.govdelivery.com/accounts/UKBGS/signup/32555"  target="_blank" class="button secondary-background button-round m-0">Register</a>					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">© UKRI 2026 </div>					<div class="col-sm-6 social"><a href="https://twitter.com/BritGeoSurvey"  rel="nofollow"  target="_blank"><span class="icon-social-twitter"></span><span class="hidden">Twitter</span></a><a href="https://www.facebook.com/BritishGeologicalSurvey/"  rel="nofollow"  target="_blank"><span class="icon-social-facebook"></span><span class="hidden">Facebook</span></a><a href="https://www.youtube.com/user/bgschannel"  rel="nofollow"  target="_blank"><span class="icon-social-socialvideo"></span><span class="hidden">Youtube</span></a><a href="https://www.linkedin.com/company/british-geological-survey/"  rel="nofollow"  target="_blank"><span class="icon-social-in"></span><span class="hidden">LinkedIn</span></a></div>				</div>
+			</div>
+		</div>
+	</div>
+	</footer>
+
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/bgs/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+            <script>
+                const abmsg = "We noticed an ad blocker. Consider whitelisting us to support the site ❤️";
+                const abmsgd = "download";
+                const iswpdmpropage = 0;
+                jQuery(function($){
+
+                    
+                });
+            </script>
+            <div id="fb-root"></div>
+            <script id="ccc-cookie-control-js" src="//cc.cdn.civiccomputing.com/9/cookieControl-9.x.min.js?ver=7.0.4"></script>
+<script id="wp-hooks-js" src="https://www.bgs.ac.uk/wp-includes/js/dist/hooks.min.js?ver=7496969728ca0f95732d"></script>
+<script id="wp-i18n-js" src="https://www.bgs.ac.uk/wp-includes/js/dist/i18n.min.js?ver=781d11515ad3d91786ec"></script>
+<script id="wp-i18n-js-after">
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+//# sourceURL=wp-i18n-js-after
+</script>
+<script id="jquery-form-js" src="https://www.bgs.ac.uk/wp-includes/js/jquery/jquery.form.min.js?ver=4.3.0"></script>
+<script id="luvdev-google-fonts-js-extra">
+var data = {"fonts":["Open+Sans:400,700,800:latin-ext"]};
+//# sourceURL=luvdev-google-fonts-js-extra
+</script>
+<script id="luvdev-google-fonts-js" src="https://www.bgs.ac.uk/wp-content/mu-plugins/luvdev/js/google-fonts-async.js?ver=2.0.0"></script>
+<script id="bgs-observer-js" src="https://www.bgs.ac.uk/wp-content/themes/bgs/js/intersection-observer.js?ver=1.2"></script>
+<script id="bgs-lazyload-js" src="https://www.bgs.ac.uk/wp-content/themes/bgs/js/lazyload.min.js?ver=1.2"></script>
+<script id="bgs-bootstrap-js" src="https://www.bgs.ac.uk/wp-content/themes/bgs/js/bootstrap.min.js?ver=1.2"></script>
+<script id="bgs-owl-js" src="https://www.bgs.ac.uk/wp-content/themes/bgs/js/owl.carousel.min.js?ver=1.2"></script>
+<script id="bgs-owl-thumbs-js" src="https://www.bgs.ac.uk/wp-content/themes/bgs/js/OwlCarousel2Thumbs.min.js?ver=1.2"></script>
+<script id="bgs-select2-js" src="https://www.bgs.ac.uk/wp-content/themes/bgs/js/select2.min.js?ver=1.2"></script>
+<script id="bgs-ui-tabs-js" src="https://www.bgs.ac.uk/wp-content/themes/bgs/js/jquery-ui.js?ver=1.2"></script>
+<script id="bgs-cookie-js" src="https://www.bgs.ac.uk/wp-content/themes/bgs/js/js.cookie.min.js?ver=1.2"></script>
+<script id="bgs-menubar-js" src="https://www.bgs.ac.uk/wp-content/themes/bgs/js/menubar.js?ver=1.2"></script>
+<script id="bgs-ekko-lightbox-js" src="https://www.bgs.ac.uk/wp-content/themes/bgs/js/ekko-lightbox.min.js?ver=1.2"></script>
+<script id="before-after-slider-js-js" src="https://www.bgs.ac.uk/wp-content/themes/bgs/js/before-after-slider.js?ver=1.2"></script>
+<script id="bgs-nouislider-js-js" src="https://www.bgs.ac.uk/wp-content/themes/bgs/js/nouislider.min.js?ver=1.2"></script>
+<script id="bgs-scripts-js-extra">
+var cookieSettings = {"remind":"86400000","accept":"2592000000","decline":"86400000","alert":"604800000"};
+var generalInfo = {"url":"https://www.bgs.ac.uk/","themeUrl":"https://www.bgs.ac.uk/wp-content/themes/bgs","themeVersion":"1.2","sortTxt":"Sort","unavailableTxt":"Unavailable","isHome":"","autocomplete":{"url":"https://www.bgs.ac.uk/wp-admin/admin-ajax.php","amNonce":"fa02d2f4d7","action":"bgs_autocomplete"},"earthquakes":{"feed":"https://www.bgs.ac.uk/wp-json/bgsfeed/v1.2/earthquakes/all","alert":"https://www.bgs.ac.uk/wp-json/bgsfeed/v1.2/earthquakes/alert"}};
+//# sourceURL=bgs-scripts-js-extra
+</script>
+<script id="bgs-scripts-js" src="https://www.bgs.ac.uk/wp-content/themes/bgs/js/scripts.js?ver=1.2"></script>
+<script id="__ytprefsfitvids__-js" src="https://www.bgs.ac.uk/wp-content/plugins/youtube-embed-plus/scripts/fitvids.min.js?ver=14.2.6"></script>
+<script id="wp-dom-ready-js" src="https://www.bgs.ac.uk/wp-includes/js/dist/dom-ready.min.js?ver=a06281ae5cf5500e9317"></script>
+<script id="wp-a11y-js-translations">
+( function( domain, translations ) {
+	var localeData = translations.locale_data[ domain ] || translations.locale_data.messages;
+	localeData[""].domain = domain;
+	wp.i18n.setLocaleData( localeData, domain );
+} )( "default", {"translation-revision-date":"2026-05-19 18:30:50+0000","generator":"GlotPress\/4.0.3","domain":"messages","locale_data":{"messages":{"":{"domain":"messages","plural-forms":"nplurals=2; plural=n != 1;","lang":"en_GB"},"Notifications":["Notifications"]}},"comment":{"reference":"wp-includes\/js\/dist\/a11y.js"}} );
+//# sourceURL=wp-a11y-js-translations
+</script>
+<script id="wp-a11y-js" src="https://www.bgs.ac.uk/wp-includes/js/dist/a11y.min.js?ver=af934e5259bc51b8718e"></script>
+<script id="gform_json-js" defer='defer' src="https://www.bgs.ac.uk/wp-content/plugins/gravityforms/js/jquery.json.min.js?ver=2.10.4"></script>
+<script id="gform_gravityforms-js-extra">
+var gform_i18n = {"datepicker":{"days":{"monday":"Mo","tuesday":"Tu","wednesday":"We","thursday":"Th","friday":"Fr","saturday":"Sa","sunday":"Su"},"months":{"january":"January","february":"February","march":"March","april":"April","may":"May","june":"June","july":"July","august":"August","september":"September","october":"October","november":"November","december":"December"},"firstDay":1,"iconText":"Select date"}};
+var gf_legacy_multi = [];
+var gform_gravityforms = {"strings":{"invalid_file_extension":"This type of file is not allowed. Must be one of the following:","file_uploaded":"File uploaded","delete_file":"Delete this file","in_progress":"in progress","file_exceeds_limit":"File exceeds size limit","illegal_extension":"This type of file is not allowed.","max_reached":"Maximum number of files reached","unknown_error":"There was a problem while saving the file on the server","currently_uploading":"Please wait for the uploading to complete","cancel":"Cancel","cancel_upload":"Cancel this upload","cancelled":"Cancelled","error":"Error","message":"Message"},"vars":{"images_url":"https://www.bgs.ac.uk/wp-content/plugins/gravityforms/images"}};
+var gf_global = {"gf_currency_config":{"name":"Pound Sterling","symbol_left":"&#163;","symbol_right":"","symbol_padding":" ","thousand_separator":",","decimal_separator":".","decimals":2,"code":"GBP"},"base_url":"https://www.bgs.ac.uk/wp-content/plugins/gravityforms","number_formats":[],"spinnerUrl":"https://www.bgs.ac.uk/wp-content/plugins/gravityforms/images/spinner.svg","version_hash":"ddadefbdb98edc8969e635bd93bbbb88","strings":{"newRowAdded":"New row added.","rowRemoved":"Row removed","formSaved":"The form has been saved.  The content contains the link to return and complete the form."}};
+var gf_global = {"gf_currency_config":{"name":"Pound Sterling","symbol_left":"&#163;","symbol_right":"","symbol_padding":" ","thousand_separator":",","decimal_separator":".","decimals":2,"code":"GBP"},"base_url":"https://www.bgs.ac.uk/wp-content/plugins/gravityforms","number_formats":[],"spinnerUrl":"https://www.bgs.ac.uk/wp-content/plugins/gravityforms/images/spinner.svg","version_hash":"ddadefbdb98edc8969e635bd93bbbb88","strings":{"newRowAdded":"New row added.","rowRemoved":"Row removed","formSaved":"The form has been saved.  The content contains the link to return and complete the form."}};
+//# sourceURL=gform_gravityforms-js-extra
+</script>
+<script id="gform_gravityforms-js" defer='defer' src="https://www.bgs.ac.uk/wp-content/plugins/gravityforms/js/gravityforms.min.js?ver=2.10.4"></script>
+<script id="gform_recaptcha-js" defer='defer' src="https://www.google.com/recaptcha/api.js?hl=en&#038;&#038;ver=7.0.4#038;render=explicit"></script>
+<script id="gform_placeholder-js" defer='defer' src="https://www.bgs.ac.uk/wp-content/plugins/gravityforms/js/placeholders.jquery.min.js?ver=2.10.4"></script>
+<script id="gform_gravityforms_utils-js" defer='defer' src="https://www.bgs.ac.uk/wp-content/plugins/gravityforms/assets/js/dist/utils.min.js?ver=3f278756f0a3032bed328ff6a9f6c01d"></script>
+<script id="gform_gravityforms_theme_vendors-js" defer='defer' src="https://www.bgs.ac.uk/wp-content/plugins/gravityforms/assets/js/dist/vendor-theme.min.js?ver=7c651d0ba638ce98b9c65141edddd567"></script>
+<script id="gform_gravityforms_theme-js-extra">
+var gform_theme_config = {"common":{"form":{"honeypot":{"version_hash":"ddadefbdb98edc8969e635bd93bbbb88"},"ajax":{"ajaxurl":"https://www.bgs.ac.uk/wp-admin/admin-ajax.php","ajax_submission_nonce":"8505c75556","i18n":{"step_announcement":"Step %1$s of %2$s, %3$s","unknown_error":"There was an unknown error processing your request. Please try again.","error_403":"The request was blocked (403 error) for unknown security reasons. Remove any code-like text (scripts or DB queries) and try again."}}}},"hmr_dev":"","public_path":"https://www.bgs.ac.uk/wp-content/plugins/gravityforms/assets/js/dist/","config_nonce":"a26224af81"};
+//# sourceURL=gform_gravityforms_theme-js-extra
+</script>
+<script id="gform_gravityforms_theme-js" defer='defer' src="https://www.bgs.ac.uk/wp-content/plugins/gravityforms/assets/js/dist/scripts-theme.min.js?ver=301fdc9aa6144168f3b854c4c2c8f6d3"></script>
+<script id="wp-emoji-settings" type="application/json">
+{"baseUrl":"https://s.w.org/images/core/emoji/17.0.2/72x72/","ext":".png","svgUrl":"https://s.w.org/images/core/emoji/17.0.2/svg/","svgExt":".svg","source":{"concatemoji":"https://www.bgs.ac.uk/wp-includes/js/wp-emoji-release.min.js?ver=7.0.4"}}
+</script>
+<script type="module">
+/*! This file is auto-generated */
+var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof HTMLScriptElement))throw new Error("Element missing: "+e);const r=JSON.parse(t.text),s=(window._wpemojiSettings=r,"wpEmojiSettingsSupports"),o=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(s,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const r=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===r[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,r){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!r(e,"\ud83e\u1fac8")}return!1}function f(e,t,n,r){let a;const s=(a="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),o=(s.textBaseline="top",s.font="600 32px Arial",{});return e.forEach(e=>{o[e]=t(s,e,n,r)}),o}function a(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}r.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(s));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(o),u.toString(),c.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"});const a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=e=>{i(n=e.data),a.terminate(),t(n)})}catch(e){}i(n=f(o,u,c,p))}t(n)}).then(e=>{for(const n in e)r.supports[n]=e[n],r.supports.everything=r.supports.everything&&r.supports[n],"flag"!==n&&(r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&r.supports[n]);var t;r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&!r.supports.flag,r.supports.everything||((t=r.source||{}).concatemoji?a(t.concatemoji):t.wpemoji&&t.twemoji&&(a(t.twemoji),a(t.wpemoji)))});
+//# sourceURL=https://www.bgs.ac.uk/wp-includes/js/wp-emoji-loader.min.js
+</script>
+<script>
+gform.initializeOnLoaded( function() { jQuery(document).on('gform_post_render', function(event, formId, currentPage){if(formId == 1) {if(typeof Placeholders != 'undefined'){
+                        Placeholders.enable();
+                    }} } );jQuery(document).on('gform_post_conditional_logic', function(event, formId, fields, isInit){} ) } );
+</script>
+<script>
+gform.initializeOnLoaded( function() {jQuery(document).trigger("gform_pre_post_render", [{ formId: "1", currentPage: "1", abort: function() { this.preventDefault(); } }]);        if (event && event.defaultPrevented) {                return;        }        const gformWrapperDiv = document.getElementById( "gform_wrapper_1" );        if ( gformWrapperDiv ) {            const visibilitySpan = document.createElement( "span" );            visibilitySpan.id = "gform_visibility_test_1";            gformWrapperDiv.insertAdjacentElement( "afterend", visibilitySpan );        }        const visibilityTestDiv = document.getElementById( "gform_visibility_test_1" );        let postRenderFired = false;        function triggerPostRender() {            if ( postRenderFired ) {                return;            }            postRenderFired = true;            gform.core.triggerPostRenderEvents( 1, 1 );            if ( visibilityTestDiv ) {                visibilityTestDiv.parentNode.removeChild( visibilityTestDiv );            }        }        function debounce( func, wait, immediate ) {            var timeout;            return function() {                var context = this, args = arguments;                var later = function() {                    timeout = null;                    if ( !immediate ) func.apply( context, args );                };                var callNow = immediate && !timeout;                clearTimeout( timeout );                timeout = setTimeout( later, wait );                if ( callNow ) func.apply( context, args );            };        }        const debouncedTriggerPostRender = debounce( function() {            triggerPostRender();        }, 200 );        if ( visibilityTestDiv && visibilityTestDiv.offsetParent === null ) {            const observer = new MutationObserver( ( mutations ) => {                mutations.forEach( ( mutation ) => {                    if ( mutation.type === 'attributes' && visibilityTestDiv.offsetParent !== null ) {                        debouncedTriggerPostRender();                        observer.disconnect();                    }                });            });            observer.observe( document.body, {                attributes: true,                childList: false,                subtree: true,                attributeFilter: [ 'style', 'class' ],            });        } else {            triggerPostRender();        }    } );
+</script>
+<script>
+gform.initializeOnLoaded( function() { jQuery(document).on('gform_post_render', function(event, formId, currentPage){if(formId == 3) {if(typeof Placeholders != 'undefined'){
+                        Placeholders.enable();
+                    }} } );jQuery(document).on('gform_post_conditional_logic', function(event, formId, fields, isInit){} ) } );
+</script>
+<script>
+gform.initializeOnLoaded( function() {jQuery(document).trigger("gform_pre_post_render", [{ formId: "3", currentPage: "1", abort: function() { this.preventDefault(); } }]);        if (event && event.defaultPrevented) {                return;        }        const gformWrapperDiv = document.getElementById( "gform_wrapper_3" );        if ( gformWrapperDiv ) {            const visibilitySpan = document.createElement( "span" );            visibilitySpan.id = "gform_visibility_test_3";            gformWrapperDiv.insertAdjacentElement( "afterend", visibilitySpan );        }        const visibilityTestDiv = document.getElementById( "gform_visibility_test_3" );        let postRenderFired = false;        function triggerPostRender() {            if ( postRenderFired ) {                return;            }            postRenderFired = true;            gform.core.triggerPostRenderEvents( 3, 1 );            if ( visibilityTestDiv ) {                visibilityTestDiv.parentNode.removeChild( visibilityTestDiv );            }        }        function debounce( func, wait, immediate ) {            var timeout;            return function() {                var context = this, args = arguments;                var later = function() {                    timeout = null;                    if ( !immediate ) func.apply( context, args );                };                var callNow = immediate && !timeout;                clearTimeout( timeout );                timeout = setTimeout( later, wait );                if ( callNow ) func.apply( context, args );            };        }        const debouncedTriggerPostRender = debounce( function() {            triggerPostRender();        }, 200 );        if ( visibilityTestDiv && visibilityTestDiv.offsetParent === null ) {            const observer = new MutationObserver( ( mutations ) => {                mutations.forEach( ( mutation ) => {                    if ( mutation.type === 'attributes' && visibilityTestDiv.offsetParent !== null ) {                        debouncedTriggerPostRender();                        observer.disconnect();                    }                });            });            observer.observe( document.body, {                attributes: true,                childList: false,                subtree: true,                attributeFilter: [ 'style', 'class' ],            });        } else {            triggerPostRender();        }    } );
+</script>
+            <script type="text/javascript">
+                var config = {
+                    apiKey: '9ad437f1123fcc71efef21cf62db62b092169446',
+                    product: 'PRO',
+                    logConsent: false,
+                    notifyOnce: true,
+                    initialState: 'OPEN',
+                    position: 'LEFT',
+                    theme: 'DARK',
+                    layout: 'SLIDEOUT',
+                    toggleType: 'slider',
+                    acceptBehaviour: 'all',
+                    closeOnGlobalChange: true,
+                    iabCMP: false,
+                                        closeStyle: 'icon',
+                    consentCookieExpiry: 90,
+                    subDomains: true,
+                                        secureCookie: false,
+                    mode: 'gdpr',
+                    rejectButton: true,
+                    settingsStyle: 'button',
+                    encodeCookie: false,
+                    setInnerHTML: true,
+                    wrapInnerHTML: false,
+                    accessibility: {
+                        accessKey: 'C',
+                        highlightFocus: false,
+                        outline: true,
+                        overlay: true,
+                        disableSiteScrolling: false,
+                    },
+                                        text: {
+                        title: 'This site uses cookies',
+                        intro: 'Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.',
+                        necessaryTitle: 'Necessary Cookies',
+                        necessaryDescription: 'Necessary cookies enable core functionality. The website cannot function properly without these cookies, and can only be disabled by changing your browser preferences.',
+                        thirdPartyTitle: 'Warning: Some cookies require your attention',
+                        thirdPartyDescription: 'Consent for the following cookies could not be automatically revoked. Please follow the link(s) below to opt out manually.',
+                        on: 'On',
+                        off: 'Off',
+                        accept: 'Accept',
+                        settings: 'Cookie Preferences',
+                        acceptRecommended: 'Accept Recommended Settings',
+                        acceptSettings: 'Accept All Cookies',
+                        notifyTitle: 'Your choice regarding cookies on this site',
+                        notifyDescription: 'We use cookies to optimise site functionality and give you the best possible experience.',
+                        closeLabel: 'Close',
+                        cornerButton: 'Set cookie preferences.',
+                        landmark: 'Cookie preferences.',
+                        showVendors: 'Show vendors within this category',
+                        thirdPartyCookies: 'This vendor may set third party cookies.',
+                        readMore: 'Read more',
+                        accessibilityAlert: 'This site uses cookies to store information. Press accesskey C to learn more about your options.',
+                        rejectSettings: 'Reject All Cookies',
+                        reject: 'Reject',
+                                            },
+                    
+                        branding: {
+                            fontColor: '#fff',
+                            fontFamily: 'Arial,sans-serif',
+                            fontSizeTitle: '1.2em',
+                            fontSizeHeaders: '1.1em',
+                            fontSize: '1em',
+                            backgroundColor: '#e3e9f2',
+                            toggleText: '#fff',
+                            toggleColor: '#ffffff',
+                            toggleBackground: '#002e40',
+                            alertText: '#fff',
+                            alertBackground: '#111125',
+                            acceptText: '#ffffff',
+                            acceptBackground: '#111125',
+                            rejectText: '#ffffff',
+                            rejectBackground: '#111125',
+                            closeText: '#111125',
+                            closeBackground: '#FFF',
+                            notifyFontColor: '#FFF',
+                            notifyBackgroundColor: '#313147',
+                                                            buttonIcon: null,
+                                                        buttonIconWidth: '64px',
+                            buttonIconHeight: '64px',
+                            removeIcon: false,
+                            removeAbout: false                        },
+                                        
+                                                                    
+                    
+                                                                                    
+                                            necessaryCookies: ['wordpress_*','wordpress_logged_in_*','wp_consent_*','JSESSIONID','QUES0','QUES1','QUES2','QUES3','QUES4','QUESHID','BBC-UID','s1','PREF','NID','SNID'],
+                    
+                                            optionalCookies: [
+                                                             {
+                                        name: 'cookies_that_measure_website_use',
+                                        label: 'Cookies that measure website use',
+                                        description: 'We use Google Analytics to measure how you use the website so we can improve it based on user needs. Google Analytics sets cookies that store anonymised information about how you got to the site, the pages you visit, how long you spend on each page and what you click on while you\&#039;re visiting the site.',
+                                                                                cookies: ['_ga', '_gid', '_gat', '__utma', '__utmb', '__utmc', '__utmz'],
+                                        onAccept: function() {
+                                            gtag('consent', 'update', {'ad_storage': 'granted','analytics_storage': 'granted', 'functionality_storage': 'granted', 'security_storage': 'granted', 'ad_personalization': 'granted','ad_user_data': 'granted', 'personalization_storage': 'granted'});                                        },
+                                        onRevoke: function() {
+                                            gtag('consent', 'update', {'ad_storage': 'denied','analytics_storage': 'denied', 'functionality_storage': 'denied', 'security_storage': 'denied', 'ad_personalization': 'denied','ad_user_data': 'denied', 'personalization_storage': 'denied'});                                        },
+                                                                                recommendedState: 'off',
+                                        lawfulBasis: 'consent',
+
+                                        
+                                    },
+                                                                                    ],
+                                                                statement: {
+                            description: 'For more detailed information please check our',
+                            name: 'cookie policy (opens in a new tab)',
+                            url: 'https://www.bgs.ac.uk/legal-and-policy/cookies-policy/',
+                            updated: '11/02/2022'
+                        },
+                                        sameSiteCookie: true,
+                    sameSiteValue: 'Strict',
+                    notifyDismissButton: true
+                };
+                CookieControl.load(config);
+            </script>
+
+
+</body>
+
+</html>
