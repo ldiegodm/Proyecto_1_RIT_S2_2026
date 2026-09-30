@@ -1,0 +1,4 @@
+# El arañador usa casi solo la biblioteca estándar (como la Tarea02).
+pypdf>=4.0          # texto de los PDF (politica P2)
+matplotlib>=3.8     # curva de frecuencia de palabras (estadisticas.py)
+pytest>=8.0         # solo para desarrollo

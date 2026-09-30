@@ -1,0 +1,12 @@
+# URLs semilla (seccion 4 del documento). Se toman de la Tarea02.
+# La URL 4 se usa sin el fragmento #zjhws82 (politica P6).
+https://www.nhm.ac.uk/discover/what-are-dinosaurs.html
+https://www.nhm.ac.uk/discover/dino-directory.html
+https://www.bgs.ac.uk/discovering-geology/fossils-and-geological-time/fossils/
+https://www.bbc.co.uk/bitesize/articles/zt3ntrd
+https://ucmp.berkeley.edu/diapsids/dinosaur.html
+https://australian.museum/learn/australia-over-time/fossils/how-do-fossils-form/
+https://nhmu.utah.edu/articles/exploring-dinosaurs-z
+https://www.nps.gov/subjects/fossils/dinosaurs.htm
+https://www.nps.gov/dino/learn/nature/dinosaurs-of-dinosaur.htm
+https://www.discovermagazine.com/what-are-fossils-and-where-are-they-found-the-most-45694

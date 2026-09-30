@@ -1,0 +1,81 @@
+# Diccionario del tema para el filtro tematico (politica P3).
+# Formato: termino [peso]. Peso por defecto 1.0. Se ignoran plurales simples (dinosaurs = dinosaur).
+# Terminos nucleares (peso 1)
+dinosaur
+dinosaurian
+paleontology
+palaeontology
+paleontologist
+palaeontologist
+fossil
+fossilization
+fossilisation
+jurassic
+cretaceous
+triassic
+mesozoic
+paleogene
+theropod
+sauropod
+sauropodomorph
+ornithischian
+ornithopod
+ceratopsian
+hadrosaur
+tyrannosaur
+tyrannosaurus
+triceratops
+stegosaurus
+stegosaur
+velociraptor
+diplodocus
+brachiosaurus
+allosaurus
+spinosaurus
+ankylosaurus
+iguanodon
+apatosaurus
+archaeopteryx
+pterosaur
+ichthyosaur
+plesiosaur
+mosasaur
+coelurosaur
+maniraptoran
+raptor
+chicxulub
+extinction
+# Terminos de apoyo (peso menor: aparecen tambien en biologia y geologia generales)
+strata 0.4
+stratigraphy 0.5
+sediment 0.3
+sedimentary 0.3
+geological 0.3
+geology 0.3
+palaeozoic 0.5
+paleozoic 0.5
+cenozoic 0.5
+permian 0.5
+carboniferous 0.5
+devonian 0.5
+cambrian 0.5
+ordovician 0.5
+silurian 0.5
+amber 0.3
+skeleton 0.3
+bone 0.3
+skull 0.3
+vertebrate 0.3
+taxon 0.3
+clade 0.4
+genus 0.3
+species 0.2
+evolution 0.2
+feathered 0.5
+feather 0.3
+reptile 0.3
+excavation 0.3
+formation 0.2
+specimen 0.3
+radiometric 0.4
+asteroid 0.3

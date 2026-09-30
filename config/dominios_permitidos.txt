@@ -1,0 +1,12 @@
+# Lista blanca de dominios (politica P1), ademas de los dominios de las semillas.
+# Un dominio cubre todos sus subdominios (nhm.ac.uk cubre www.nhm.ac.uk).
+# Museos, gobierno y universidades (.edu, .gov, .ac.uk) tambien se evaluan solos si alguien los enlaza.
+# Verificados con verificar_dominios.py; el grupo decide si deja todos.
+usgs.gov
+plos.org
+copernicus.org
+nature.com
+fieldmuseum.org
+sciencedaily.com
+phys.org
+sciencenews.org

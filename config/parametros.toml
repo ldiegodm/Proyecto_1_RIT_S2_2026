@@ -1,0 +1,33 @@
+# Parametros de las politicas de arañado. Los valores numericos son iniciales (ver seccion 2 del documento).
+
+[general]
+# Se incluye en el User-Agent (politica P13): PaleoBuscaBot/1.0 (+correo).
+correo_contacto = "luis.delgado@estudiantec.cr"
+hilos = 8                   # P15 (mismo valor que el documento). Subirlo solo sirve si hay muchos hosts listos a la vez
+objetivo_gb = 10.0          # el arañador se detiene al llegar a este tamaño de texto limpio
+carpeta_datos = "datos"     # aqui van arana.db, repositorio/ y logs/
+
+[seleccion]
+profundidad_maxima = 6      # P5
+min_palabras = 150          # P8
+umbral_tematico = 4.0       # P3: aciertos ponderados por cada 1000 palabras
+cuota_dominio = 0.15        # P12: maximo de documentos por dominio
+calentamiento_docs = 500    # P12: la cuota se aplica despues de este numero de documentos
+max_bytes_descarga = 40000000
+max_paginas_pdf = 300
+procesos_pdf = 2            # procesos aparte para extraer texto de PDF (evita que el GIL frene los hilos)
+# P1: un dominio descubierto solo se evalua si su host termina en alguno de estos sufijos
+sufijos_elegibles = [".edu", ".gov", ".ac.uk", ".gov.uk", ".museum", ".edu.au", ".gov.au", ".ac.nz", ".edu.ar", ".edu.mx"]
+
+[cortesia]
+retardo_host_s = 1.5        # P11
+timeout_s = 10              # P14
+reintentos = 3              # P14 (espera 2, 4 y 8 s)
+retry_after_max_s = 60      # P14: si Retry-After pide mas que esto, se abandona la URL y el host descansa ese tiempo
+robots_ttl_s = 86400        # P10
+
+[revisita]
+# P9: en corridas posteriores (python -m arana --revisita) se vuelven a pedir, con GET condicional,
+# los documentos cuya ultima descarga es mas vieja que este periodo.
+revisita_noticia_dias = 1
+revisita_estable_dias = 30

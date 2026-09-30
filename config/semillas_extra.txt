@@ -1,0 +1,14 @@
+# Semillas de volumen (textos largos de divulgacion y acceso abierto). Se usan ademas de las 10 de semillas.txt.
+# Verificadas el 2026-09-30 con verificar_dominios.py (responden 200, robots.txt las permite y tienen texto).
+# Descartadas por la verificacion: amnh.org, biodiversitylibrary.org y naturalhistory.si.edu (403, bloquean robots),
+# palaeo-electronica.org y peerj.com (paginas casi sin texto, dependen de JavaScript), app.pan.pl (certificado SSL
+# invalido: P13 exige verificarlo), usgs.gov/science/... (404).
+https://journals.plos.org/plosone/browse/paleontology
+https://jm.copernicus.org/
+https://fr.copernicus.org/
+https://www.nature.com/subjects/palaeontology
+https://www.fieldmuseum.org/
+https://www.sciencedaily.com/news/fossils_ruins/dinosaurs/
+https://phys.org/tags/dinosaur/
+https://www.sciencenews.org/topic/paleontology
+https://geology.utah.gov/

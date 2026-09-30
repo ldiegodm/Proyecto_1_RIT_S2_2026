@@ -1,0 +1,9 @@
+# Datos generados por el arañador (pesan GB): no van a git
+datos/
+logs/
+*.db
+*.db-wal
+*.db-shm
+__pycache__/
+.pytest_cache/
+*.pyc
