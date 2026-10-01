@@ -62,6 +62,51 @@ def test_es_tienda():
     assert not proc.es_tienda("https://example.org/workshop/fossils")      # "workshop" no es "shop"
 
 
+def test_es_trampa_y_parametros_de_presentacion():
+    p = parametros()
+    p.rutas_excluidas, p.hosts_excluidos, p.parametros_excluidos = ["/search", "/article/file"], ["idp"], ["_csrf", "q"]
+    trampa = lambda u: proc.es_trampa(u, p.rutas_excluidas, p.hosts_excluidos, p.parametros_excluidos)
+    assert trampa("https://idp.nature.com/authorize?client_id=x")
+    assert trampa("https://www.usgs.gov/search?keywords=geology")
+    assert trampa("https://journals.plos.org/plosone/article/file?id=10.1371/x&type=supplementary")
+    assert trampa("https://www.nature.com/articles/s41559/save?_csrf=abc")
+    assert not trampa("https://www.nature.com/articles/s41559-022-01664-8")
+    assert not trampa("https://journals.plos.org/plosone/browse/taphonomy?page=2")
+    # PLOS repetia cada pagina de listado con distinto orden/vista: P6 las vuelve una sola URL
+    assert proc.normalizar_url("https://j.org/browse/x?page=1&resultView=list&sortOrder=MOST_VIEWS") == \
+        proc.normalizar_url("https://j.org/browse/x?page=1")
+
+
+def test_wikipedia_solo_articulos_en_ingles():
+    from arana.arana import cargar_parametros
+    p = cargar_parametros(RAIZ / "config" / "parametros.toml")
+    trampa = lambda u: proc.es_trampa(u, p.rutas_excluidas, p.hosts_excluidos, p.parametros_excluidos,
+                                      p.patron_hosts_excluidos)
+    assert not trampa("https://en.wikipedia.org/wiki/Tyrannosaurus")
+    assert not trampa("https://simple.wikipedia.org/wiki/Dinosaur")
+    assert not trampa("https://en.wikipedia.org/wiki/Category:Dinosaurs")      # las categorias son indices utiles
+    assert trampa("https://fr.wikipedia.org/wiki/Dinosaure")                    # otros idiomas
+    assert trampa("https://es.m.wikipedia.org/wiki/Dinosauria")
+    assert trampa("https://en.wikipedia.org/wiki/Special:Search?search=x")
+    assert trampa("https://en.wikipedia.org/wiki/Talk:Dinosaur")
+    assert trampa("https://en.wikipedia.org/w/index.php?title=Dinosaur&action=history")
+    assert trampa("https://en.wikipedia.org/wiki/Dinosaur?oldid=12345")
+    assert not trampa("https://ca.gov/algo")                                    # el patron no confunde codigos de idioma con otros sitios
+
+
+def test_reanudar_descarta_trampas_pendientes(tmp_path):
+    p = parametros()
+    p.rutas_excluidas, p.hosts_excluidos, p.parametros_excluidos = ["/search"], [], []
+    almacen = Almacen(tmp_path)
+    almacen.registrar_urls([("https://a.org/buena", "", "", "", "https://a.org/", "a.org", "a.org", 1, 5.0),
+                            ("https://a.org/search?x=1", "", "", "", "https://a.org/", "a.org", "a.org", 1, 5.0)])
+    cal = Calendarizador(p, almacen, TEMA, {"a.org"}, [])
+    cal.cargar_pendientes(almacen.cargar_pendientes())
+    assert cal.estado()[0] == 1                                        # solo la buena vuelve a la frontera
+    assert almacen.db.execute("SELECT motivo FROM urls WHERE url_normalizada='https://a.org/search?x=1'").fetchone()[0] == "trampa"
+    almacen.cerrar()
+
+
 def test_extension_bloqueada():
     assert proc.extension_bloqueada("https://x.org/foto.JPG")
     assert proc.extension_bloqueada("https://x.org/a/estilo.css?v=2")
@@ -100,6 +145,20 @@ def test_puntaje_tematico_distingue_temas():
 def test_hash_ignora_espacios_y_mayusculas():
     assert proc.hash_texto("Hola   Mundo\n") == proc.hash_texto("hola mundo")
     assert proc.hash_texto("hola mundo") != proc.hash_texto("hola mundos")
+
+
+def test_bloques_de_wikipedia_no_entran_al_texto():
+    html = (b"<html><head><title>T. rex</title></head><body><div id='siteSub'>From Wikipedia, the free encyclopedia</div>"
+            b"<table class='infobox biota'><tr><td>Kingdom: Animalia <table><tr><td>anidada</td></tr></table></td></tr></table>"
+            b"<p>Tyrannosaurus is a genus of large theropod dinosaur that lived in western North America.<sup class='reference'>"
+            b"<a href='#cite_note-1'>[1]</a></sup> It was the apex predator of its ecosystem.</p>"
+            b"<div class='reflist'><ol class='references'><li>Autor, A. (2020). Un articulo citado.</li></ol></div>"
+            b"<div id='catlinks'><ul><li>CS1 maint: deprecated archival service</li></ul></div>"
+            b"<p>Segunda parte del articulo con suficientes palabras para conservarse.</p></body></html>")
+    texto = proc.extraer_html(html, "text/html", "https://en.wikipedia.org/wiki/T").texto
+    assert "Tyrannosaurus is a genus" in texto and "Segunda parte del articulo" in texto   # el texto sigue
+    for ruido in ("Kingdom", "anidada", "[1]", "Autor, A.", "CS1 maint", "From Wikipedia"):
+        assert ruido not in texto, ruido
 
 
 def test_meta_robots_y_head_sin_cerrar():

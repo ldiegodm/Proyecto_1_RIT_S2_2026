@@ -1,4 +1,4 @@
-"""Calendarizador (diapositiva 6): decide que URL se visita y cuando.
+"""Calendarizador: decide que URL se visita y cuando.
 
 Se divide como en clase:
     Largo plazo (que visitar y con que prioridad)
@@ -141,8 +141,14 @@ class Calendarizador:
         with self.candado:
             for clave in self.almacen.cargar_vistas():
                 self.vistas.add(_clave(clave))
+            trampas = []
             for (url, original, padre, anchor, semilla, host, dominio, prof, prio) in filas:
+                if self._es_trampa(url) or proc.es_tienda(url):          # filtros nuevos sobre lo ya pendiente
+                    trampas.append(url)
+                    continue
                 self._meter(Tarea(url, original, padre, anchor, semilla, host, dominio, prof, prio))
+        self.almacen.descartar_pendientes(trampas, "trampa")
+        self.contadores["trampa_al_reanudar"] += len(trampas)
 
     def encolar(self, enlaces, padre, puntaje_padre, profundidad=None):
         """Politicas P1, P2 (extension), P4, P5, P6. enlaces: [(url_normalizada, anchor)]."""
@@ -160,6 +166,9 @@ class Calendarizador:
                     continue
                 if proc.es_tienda(url):                                  # P1: tiendas
                     self.contadores["tienda"] += 1
+                    continue
+                if self._es_trampa(url):                                 # P5/P6: busquedas, login, adjuntos
+                    self.contadores["trampa"] += 1
                     continue
                 if proc.extension_bloqueada(url):                        # P2
                     self.contadores["extension"] += 1
@@ -184,6 +193,10 @@ class Calendarizador:
         if not normal:
             return 0
         return self.encolar([(normal, padre.anchor)], padre, padre.prioridad, profundidad=padre.profundidad)
+
+    def _es_trampa(self, url):
+        return proc.es_trampa(url, self.p.rutas_excluidas, self.p.hosts_excluidos, self.p.parametros_excluidos,
+                              self.p.patron_hosts_excluidos)
 
     def encolar_revisita(self, tareas):
         """Politica P9: mete en la frontera documentos ya guardados para pedirlos con GET condicional."""

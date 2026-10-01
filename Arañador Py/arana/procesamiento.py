@@ -14,6 +14,7 @@ Parte del codigo de extraccion de enlaces viene de extraer_link.py de la Tarea02
 import hashlib
 import io
 import re
+from functools import lru_cache
 from dataclasses import dataclass, field
 from html.parser import HTMLParser
 from urllib.parse import parse_qsl, quote, urlencode, urljoin, urlsplit, urlunsplit
@@ -26,7 +27,9 @@ from urllib.parse import parse_qsl, quote, urlencode, urljoin, urlsplit, urlunsp
 # pero son la causa tipica de "mismo contenido con diferentes URLs", diapositiva 6).
 PREFIJOS_RASTREO = ("utm_", "mc_", "pk_", "hsa_")
 PARAMETROS_RASTREO = {"fbclid", "gclid", "dclid", "msclkid", "igshid", "ref_src", "_ga",
-                      "phpsessid", "jsessionid", "sessionid", "session_id", "sid", "sessid"}
+                      "phpsessid", "jsessionid", "sessionid", "session_id", "sid", "sessid",
+                      # solo cambian el orden o la vista de la misma lista (PLOS repetia cada pagina de listado asi)
+                      "sortorder", "resultview", "sort", "orderby"}
 PUERTOS_POR_DEFECTO = {"http": 80, "https": 443}
 
 # Esquemas que no son documentos descargables (de la Tarea02)
@@ -107,6 +110,28 @@ def es_tienda(url):
     return any(seg in _SEGMENTOS_TIENDA for seg in partes.path.lower().split("/"))
 
 
+@lru_cache(maxsize=None)
+def _patron(texto):
+    return re.compile(texto) if texto else None
+
+
+def es_trampa(url, rutas, hosts, parametros, patron_host=""):
+    """Politicas P5/P6: URLs que no son contenido y generan espacios infinitos (busquedas con filtros,
+    login, descargas de adjuntos, enlaces con token). Las listas vienen de config/parametros.toml."""
+    partes = urlsplit(url)
+    if partes.hostname and partes.hostname.split(".")[0] in hosts:
+        return True
+    if partes.hostname and _patron(patron_host) and _patron(patron_host).match(partes.hostname):
+        return True
+    ruta = partes.path.lower()
+    if any(r in ruta for r in rutas):
+        return True
+    if partes.query:
+        claves = {k.lower() for k, _ in parse_qsl(partes.query, keep_blank_values=True)}
+        return bool(claves & set(parametros))
+    return False
+
+
 def extension_bloqueada(url):
     """Politica P2 (antes de descargar): True si la URL apunta a un archivo que no es texto."""
     ruta = urlsplit(url).path.lower()
@@ -125,6 +150,17 @@ ETIQUETAS_SALTADAS = {"script", "style", "noscript", "nav", "header", "footer", 
 ETIQUETAS_DE_BLOQUE = {"p", "div", "br", "li", "tr", "td", "th", "h1", "h2", "h3", "h4", "h5",
                        "h6", "section", "article", "table", "ul", "ol", "blockquote", "pre",
                        "dd", "dt", "figcaption", "main"}
+
+
+# Bloques que no son el texto del articulo, reconocidos por su class o id (MediaWiki y sitios parecidos): fichas laterales,
+# referencias, cajas de navegacion, categorias, indice, marcas [1] y [edit]. Se compara por palabra completa de la clase.
+CLASES_SALTADAS = {"infobox", "infobox_v2", "navbox", "navbox-inner", "vertical-navbox", "sidebar", "reflist", "references",
+                   "refbegin", "mw-references-wrap", "reference", "mw-editsection", "catlinks", "mw-hidden-catlinks",
+                   "toc", "hatnote", "noprint", "navigation-not-searchable", "authority-control", "mw-jump-link",
+                   "metadata", "ambox", "sistersitebox", "printfooter", "cookie-banner", "breadcrumb", "breadcrumbs"}
+IDS_SALTADOS = {"toc", "catlinks", "sitesub", "contentsub", "jump-to-nav", "mw-navigation", "footer", "p-lang-btn"}
+ETIQUETAS_VACIAS = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source",
+                    "track", "wbr"}
 
 
 @dataclass
@@ -155,6 +191,8 @@ class ExtractorHTML(HTMLParser):
         self._anchor = []
         self.noindex = False
         self.nofollow = False
+        self.tag_clase = None        # etiqueta del bloque saltado por su class/id (CLASES_SALTADAS)
+        self.prof_clase = 0          # cuantas etiquetas iguales hay abiertas dentro de ese bloque
 
     def _cerrar_enlace(self):
         if self._href is not None:
@@ -173,9 +211,18 @@ class ExtractorHTML(HTMLParser):
             self.en_titulo = True
         elif etiqueta == "body":
             self.saltar = 0          # </head> es opcional: un <head> sin cerrar no debe tapar la pagina
+            self.tag_clase, self.prof_clase = None, 0
         elif etiqueta in ("a", "area") and attrs.get("href"):
             self._cerrar_enlace()
             self._href = attrs["href"]
+
+        if etiqueta not in ETIQUETAS_VACIAS:
+            if self.tag_clase is None:
+                clases = set((attrs.get("class") or "").lower().split())
+                if clases & CLASES_SALTADAS or (attrs.get("id") or "").lower() in IDS_SALTADOS:
+                    self.tag_clase, self.prof_clase = etiqueta, 1
+            elif etiqueta == self.tag_clase:
+                self.prof_clase += 1
 
         if etiqueta in ETIQUETAS_SALTADAS:
             self.saltar += 1
@@ -183,6 +230,10 @@ class ExtractorHTML(HTMLParser):
             self.partes.append("\n")
 
     def handle_endtag(self, etiqueta):
+        if self.tag_clase is not None and etiqueta == self.tag_clase:
+            self.prof_clase -= 1
+            if self.prof_clase == 0:
+                self.tag_clase = None
         if etiqueta == "title":
             self.en_titulo = False
         elif etiqueta == "a":
@@ -197,7 +248,7 @@ class ExtractorHTML(HTMLParser):
             self.titulo.append(datos)
         if self._href is not None:
             self._anchor.append(datos)
-        if self.saltar == 0 and not self.en_titulo:
+        if self.saltar == 0 and self.tag_clase is None and not self.en_titulo:
             self.partes.append(datos)
 
 

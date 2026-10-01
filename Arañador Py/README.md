@@ -93,6 +93,15 @@ El diseño se siguió casi literal: profundidad 6, 150 palabras mínimo, 1,5 s p
   o repetida: una página índice corta pero temática puede llevar a muchas páginas útiles. Las semillas siempre se siguen.
 - **P10:** además de robots.txt se respetan las etiquetas `meta robots noindex/nofollow` (diapositiva 6 del curso).
   Si robots.txt no se puede leer por error de red o 5xx se asume prohibido (RFC 9309) y se reintenta a los 15 minutos.
+- **Trampas de araña (P5/P6):** la primera corrida larga gastó su cortesía en login de Nature, descargas de adjuntos de PLOS,
+  buscadores con filtros de USGS y fichas de bases de datos. `[trampas]` en `config/parametros.toml` lista las rutas, hosts y
+  parámetros que no son contenido; también se aplica a lo pendiente al reanudar. P6 además ignora parámetros de orden y vista
+  (`sortOrder`, `resultView`), que repetían cada listado.
+- **Wikipedia (decisión del grupo):** `en.` y `simple.` como fuente de volumen y cobertura temática. Los demás idiomas, las
+  páginas de sistema (`Special:`, `Talk:`, historial, `?oldid=`) y la edición se excluyen en `[trampas]`.
+- **Texto limpio de MediaWiki:** además de menús y scripts, la extracción salta fichas laterales (infobox), referencias, cajas
+  de navegación, categorías, índice y marcas `[1]`/`[edit]`, reconocidas por su `class`/`id` (`CLASES_SALTADAS` en
+  `procesamiento.py`). Es genérico y no cambió las 10 páginas de la Tarea02.
 - **Redirecciones:** no se siguen solas; el destino se trata como un enlace nuevo y pasa por P1, P5, P6 y robots.txt.
 - **PDF:** el texto se extrae en procesos aparte para que el GIL de Python no frene los hilos de descarga.
 - **Módulos:** 5 en vez de los 8 de la tabla 2.6, siguiendo la arquitectura de la clase. P10 (robots.txt) vive en

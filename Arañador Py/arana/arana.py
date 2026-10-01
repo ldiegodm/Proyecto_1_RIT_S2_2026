@@ -1,4 +1,4 @@
-"""PaleoBuscaBot: modulo de control del arañador (diapositiva 6).
+"""PaleoBuscaBot: modulo de control del arañador.
 
 Politica P15: un grupo de hilos trabajadores toma URLs del calendarizador, las descarga,
 las procesa y las guarda. Cada decision queda en la bitacora (logs/bitacora.log).
@@ -60,6 +60,10 @@ class Parametros:
     reintentos: int = 3
     retry_after_max_s: float = 60
     robots_ttl_s: float = 86400
+    rutas_excluidas: list = field(default_factory=list)
+    hosts_excluidos: list = field(default_factory=list)
+    parametros_excluidos: list = field(default_factory=list)
+    patron_hosts_excluidos: str = ""
     revisita_noticia_dias: float = 1
     revisita_estable_dias: float = 30
 

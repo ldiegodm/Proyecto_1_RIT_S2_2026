@@ -12,3 +12,13 @@ https://www.sciencedaily.com/news/fossils_ruins/dinosaurs/
 https://phys.org/tags/dinosaur/
 https://www.sciencenews.org/topic/paleontology
 https://geology.utah.gov/
+# Segunda tanda (2026-10-01), verificadas con verificar_dominios.py. Wikipedia: decision del grupo (volumen y buena
+# cobertura tematica; solo ingles y Simple English, el resto de idiomas se excluye en [trampas]).
+https://en.wikipedia.org/wiki/Category:Dinosaurs
+https://en.wikipedia.org/wiki/Dinosaur
+https://simple.wikipedia.org/wiki/Dinosaur
+https://se.copernicus.org/
+https://cp.copernicus.org/
+https://kgs.ku.edu/
+https://www.geolsoc.org.uk/
+https://www.frontiersin.org/journals/earth-science

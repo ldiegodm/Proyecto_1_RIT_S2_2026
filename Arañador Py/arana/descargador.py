@@ -1,4 +1,4 @@
-"""Descargador (diapositivas 5 y 6): peticiones HTTP corteses y lectura de robots.txt.
+"""Descargador: peticiones HTTP corteses y lectura de robots.txt.
 
 Politicas que se implementan aqui:
     P2  solo se lee el cuerpo si el Content-Type es texto/HTML/PDF

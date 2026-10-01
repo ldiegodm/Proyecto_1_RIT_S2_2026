@@ -10,3 +10,7 @@ fieldmuseum.org
 sciencedaily.com
 phys.org
 sciencenews.org
+wikipedia.org
+ku.edu
+geolsoc.org.uk
+frontiersin.org

@@ -28,6 +28,22 @@ reintentos = 3              # P14 (espera 2, 4 y 8 s)
 retry_after_max_s = 60      # P14: si Retry-After pide mas que esto, se abandona la URL y el host descansa ese tiempo
 robots_ttl_s = 86400        # P10
 
+[trampas]
+# P5/P6: URLs que no son contenido y generan espacios infinitos. Salieron de la bitacora de la primera corrida larga:
+# login de Nature (idp.*), descargas de figuras y adjuntos de PLOS, busquedas con filtros de USGS, tokens _csrf.
+rutas_excluidas = ["/search", "/login", "/signin", "/authorize", "/cas-redirect", "/save-research", "/metrics",
+                   "/article/file", "/article/figure", "/article/related", "/article/comments", "/article/authors",
+                   "/print/", "/share/", "/palaeosaurus/record",
+                   # Wikipedia: paginas de sistema, discusion y edicion (no son articulos)
+                   "/w/index.php", "/wiki/special:", "/wiki/talk:", "/wiki/user:", "/wiki/user_talk:", "/wiki/file:",
+                   "/wiki/template:", "/wiki/template_talk:", "/wiki/help:", "/wiki/wikipedia:", "/wiki/portal:",
+                   "/wiki/draft:", "/wiki/mediawiki:", "/wiki/module:"]
+hosts_excluidos = ["idp", "login", "auth", "sso", "accounts"]
+parametros_excluidos = ["_csrf", "download", "error", "f[0]", "filterjournals", "filtersubjects", "q", "keywords",
+                        "search", "s", "oldid", "diff", "action", "veaction", "printable", "redirect"]
+# Wikipedia en otros idiomas: la coleccion es en ingles (el diccionario de P3 tambien), asi que solo en. y simple.
+patron_hosts_excluidos = "^(?!(en|simple)\\.)[a-z-]+\\.(m\\.)?wikipedia\\.org$"
+
 [revisita]
 # P9: en corridas posteriores (python -m arana --revisita) se vuelven a pedir, con GET condicional,
 # los documentos cuya ultima descarga es mas vieja que este periodo.

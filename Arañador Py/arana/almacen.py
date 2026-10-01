@@ -112,6 +112,17 @@ class Almacen:
                                 "VALUES (?,?,?,?,?,?,?,?,?,?)", [f + (fecha,) for f in filas])
             self.db.execute("COMMIT")
 
+    def descartar_pendientes(self, urls, motivo):
+        """Marca como descartadas, de una vez, URLs pendientes (al reanudar con filtros nuevos)."""
+        if not urls:
+            return
+        fecha = ahora()
+        with self.candado:
+            self.db.execute("BEGIN")
+            self.db.executemany("UPDATE urls SET estado='descartado', motivo=?, fecha_proceso=? WHERE url_normalizada=?",
+                                [(motivo, fecha, u) for u in urls])
+            self.db.execute("COMMIT")
+
     def marcar_url(self, url_normalizada, estado, motivo="", codigo=0, intentos=0, error="", duplicado_de=None):
         with self.candado:
             self.db.execute("UPDATE urls SET estado=?, motivo=?, codigo_http=?, intentos=?, error=?, "
