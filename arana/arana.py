@@ -14,6 +14,7 @@ Al volver a ejecutar, continua donde quedo (la frontera esta guardada en SQLite)
 
 import argparse
 import logging
+import shutil
 import threading
 import time
 import tomllib
@@ -41,12 +42,13 @@ bitacora = logging.getLogger("bitacora")
 class Parametros:
     """Valores de config/parametros.toml (el 'archivo de configuracion de politicas' de la diapositiva 6)."""
     correo_contacto: str = "CAMBIAR@correo.com"
-    hilos: int = 8
+    hilos: int = 32
     objetivo_gb: float = 10.0
     carpeta_datos: str = "datos"
+    min_disco_libre_gb: float = 2.0
     profundidad_maxima: int = 6
     min_palabras: int = 150
-    umbral_tematico: float = 4.0
+    umbral_tematico: float = 8.0
     cuota_dominio: float = 0.15
     calentamiento_docs: int = 500
     max_bytes_descarga: int = 40_000_000
@@ -192,18 +194,19 @@ def procesar(ctx, tarea):
     p, cal, alm = ctx.p, ctx.cal, ctx.almacen
 
     if not verificar_robots(ctx, tarea):
-        cal.resolver_dominio(tarea.dominio, False)
+        cal.resolver_dominio(tarea.dominio, False, evaluada=False)
         descartar(ctx, tarea, None, "robots")
         return 0.0
 
     # P13, P14, P2: descarga
     resp = descargador.descargar(tarea.url, p, detener=ctx.parar)
     if resp.redireccion:
+        cal.resolver_dominio(tarea.dominio, False, evaluada=False)     # el destino volvera a pasar por P1
         descartar(ctx, tarea, resp, "redireccion")
         cal.encolar_redireccion(resp.redireccion, tarea)
         return resp.retry_after
     if resp.rechazo or resp.cuerpo is None:
-        cal.resolver_dominio(tarea.dominio, False)
+        cal.resolver_dominio(tarea.dominio, False, evaluada=False)
         if resp.rechazo:
             motivo = f"{resp.rechazo}:{resp.content_type}" if resp.rechazo == "content_type" else resp.rechazo
         else:
@@ -213,7 +216,7 @@ def procesar(ctx, tarea):
 
     extraido = extraer_texto(ctx, resp, tarea.url)
     if extraido is None:
-        cal.resolver_dominio(tarea.dominio, False)
+        cal.resolver_dominio(tarea.dominio, False, evaluada=False)
         descartar(ctx, tarea, resp, "pdf_ilegible")
         return 0.0
     titulo, texto, enlaces, noindex, nofollow = extraido
@@ -387,6 +390,9 @@ def main(argv=None):
                     ctx.parar.set()
                 elif args.duracion_min and time.time() - inicio >= args.duracion_min * 60:
                     print("Duracion maxima alcanzada.")
+                    ctx.parar.set()
+                elif shutil.disk_usage(carpeta).free < p.min_disco_libre_gb * 1e9:
+                    print(f"Quedan menos de {p.min_disco_libre_gb} GB libres en el disco: se detiene para no llenarlo.")
                     ctx.parar.set()
                 elif archivo_parar.exists():
                     print("Archivo PARAR encontrado.")

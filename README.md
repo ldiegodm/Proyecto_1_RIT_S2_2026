@@ -69,9 +69,16 @@ La bitácora (`datos/logs/bitacora.log`) tiene una línea por URL: `fecha | hilo
 ## Cambios respecto al documento de diseño
 
 El diseño se siguió casi literal: profundidad 6, 150 palabras mínimo, 1,5 s por host, 15 % por dominio, 3 reintentos
-(2, 4 y 8 s), 8 hilos, hash SHA-256, etc. no cambiaron. Lo que sí hay que reflejar en el documento final:
+(2, 4 y 8 s), hash SHA-256, etc. no cambiaron. Lo que sí hay que reflejar en el documento final:
 
-**Un cambio real a una política**
+**Cambios a valores o políticas (con justificación)**
+- **P15, hilos: 8 → 32.** En una corrida de prueba había 44 hosts con URLs pendientes y 8 hilos solo podían atender 8 a la vez,
+  así que había hosts listos sin atender. Con 32 el ritmo se duplicó (de ~100 a ~240 documentos por minuto). La cortesía no
+  cambia: sigue siendo una conexión por host y 1,5 s entre peticiones (P11).
+- **P3, umbral: 8 puntos por 1000 palabras** (el doc lo dejaba por calibrar). Con 4 pasaban tiendas de museos y artículos de
+  biología sin relación con dinosaurios; con 8 el puntaje mínimo guardado subió a 8,0 y esas páginas dejaron de entrar.
+- **P1, tiendas:** se descartan URLs de tiendas (`shop.`, `/store/`, `/cart`, `/checkout`). Es la justificación que ya daba P1
+  ("evitar tiendas de juguetes"): la tienda de un museo pasa el filtro temático porque lista fósiles, pero no sirve al colectivo.
 - **P12:** la cuota del 15 % se aplica después de 500 documentos guardados. No es por el volumen: al principio cualquier
   dominio tiene 100 % de los documentos (el primero guardado ya rompería la regla), así que la regla no tiene sentido
   con pocos datos. El valor está en `calentamiento_docs`.
@@ -79,7 +86,9 @@ El diseño se siguió casi literal: profundidad 6, 150 palabras mínimo, 1,5 s p
 **Detalles que el documento no especificaba (no contradicen ninguna política)**
 - **P1:** "un dominio nuevo entra si su primera página supera P3" se implementó así: solo se evalúan dominios cuyo host
   termine en `.edu`, `.gov`, `.ac.uk`, `.museum`, etc. (lista en `config/parametros.toml`), y mientras se evalúa se
-  encola una sola URL suya. Si la página no es relevante, el dominio queda rechazado.
+  encola una sola URL suya: la de anchor text más cercano al tema, no una portada cualquiera. Si la página no es
+  relevante, el dominio queda rechazado. Si no se pudo evaluar (403, 404, robots, redirección) se reintenta con otra URL,
+  hasta 3 veces, porque un error no dice nada del tema.
 - **P3 + P8 + P7:** los enlaces se siguen según la relevancia de la página (P3), aunque luego no se guarde por ser corta
   o repetida: una página índice corta pero temática puede llevar a muchas páginas útiles. Las semillas siempre se siguen.
 - **P10:** además de robots.txt se respetan las etiquetas `meta robots noindex/nofollow` (diapositiva 6 del curso).
@@ -104,7 +113,9 @@ enlace (la página depende de JavaScript), error SSL (no se desactiva la verific
 
 ## Pendientes conocidos
 
-- Calibrar `umbral_tematico` (hoy 4,0) con una corrida corta real y revisar qué se descarta como `fuera_de_tema`.
+- **Volumen:** en las corridas de prueba el ritmo fue de unos 3 MB de texto por minuto (~190 MB por hora). Llegar a 10 GB
+  toma varios días de corrida o fuentes de textos más largos (PDF de acceso abierto); hay que reportar lo que haya.
 - `robots: ok` en la verificación solo dice que la URL de entrada está permitida; dentro de cada sitio el arañador
   vuelve a consultar robots.txt en cada URL.
-- La PC tiene poco espacio libre en `C:` (unos 14 GB): para 10 GB de texto conviene usar `--datos` con otro disco.
+- Poco espacio libre en `C:`: el arañador se detiene solo si quedan menos de `min_disco_libre_gb` (2 GB). Para 10 GB de texto
+  conviene usar `--datos` con otro disco.

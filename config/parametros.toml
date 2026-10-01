@@ -3,14 +3,16 @@
 [general]
 # Se incluye en el User-Agent (politica P13): PaleoBuscaBot/1.0 (+correo).
 correo_contacto = "luis.delgado@estudiantec.cr"
-hilos = 8                   # P15 (mismo valor que el documento). Subirlo solo sirve si hay muchos hosts listos a la vez
+hilos = 32                  # P15. El doc decia 8; en la corrida de prueba habia 44 hosts con URLs pendientes y 8 hilos
+                            # no alcanzaban a atenderlos (la cortesia sigue siendo 1 conexion por host, P11)
 objetivo_gb = 10.0          # el arañador se detiene al llegar a este tamaño de texto limpio
 carpeta_datos = "datos"     # aqui van arana.db, repositorio/ y logs/
+min_disco_libre_gb = 2.0    # el arañador se detiene si el disco queda con menos espacio libre que esto
 
 [seleccion]
 profundidad_maxima = 6      # P5
 min_palabras = 150          # P8
-umbral_tematico = 4.0       # P3: aciertos ponderados por cada 1000 palabras
+umbral_tematico = 8.0       # P3: aciertos ponderados por cada 1000 palabras (calibrado con la corrida de prueba)
 cuota_dominio = 0.15        # P12: maximo de documentos por dominio
 calentamiento_docs = 500    # P12: la cuota se aplica despues de este numero de documentos
 max_bytes_descarga = 40000000

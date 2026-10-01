@@ -54,6 +54,14 @@ def test_dominio_de():
     assert proc.dominio_de("www.bbc.co.uk") == "bbc.co.uk"
 
 
+def test_es_tienda():
+    assert proc.es_tienda("https://shop.bgs.ac.uk/Shop")
+    assert proc.es_tienda("https://australian.museum/store/toys")
+    assert proc.es_tienda("https://example.org/cart")
+    assert not proc.es_tienda("https://www.nhm.ac.uk/discover/what-are-dinosaurs.html")
+    assert not proc.es_tienda("https://example.org/workshop/fossils")      # "workshop" no es "shop"
+
+
 def test_extension_bloqueada():
     assert proc.extension_bloqueada("https://x.org/foto.JPG")
     assert proc.extension_bloqueada("https://x.org/a/estilo.css?v=2")
@@ -154,6 +162,27 @@ def test_lista_blanca_y_dominios_candidatos(almacen):
     cal2.encolar([("https://otra.edu/a", "")], padre, 1.0)
     cal2.resolver_dominio("otra.edu", False)
     assert cal2.encolar([("https://otra.edu/b", "")], padre, 1.0) == 0   # rechazado por la primera pagina
+
+
+def test_dominio_candidato_usa_el_enlace_mas_prometedor(almacen):
+    cal = nuevo_calendarizador(almacen)
+    n = cal.encolar([("https://uni.edu/", "home"), ("https://uni.edu/dinosaur-fossils", "dinosaur fossils")],
+                    tarea_semilla(), 1.0)
+    assert n == 1
+    tarea, _ = cal.siguiente()
+    assert tarea.url == "https://uni.edu/dinosaur-fossils"               # no la portada, aunque viniera primero
+
+
+def test_dominio_candidato_no_se_rechaza_por_un_error(almacen):
+    cal = nuevo_calendarizador(almacen)
+    padre = tarea_semilla()
+    cal.encolar([("https://uni.edu/a", "")], padre, 1.0)
+    cal.resolver_dominio("uni.edu", False, evaluada=False)               # 403: no se pudo evaluar
+    assert cal.encolar([("https://uni.edu/b", "")], padre, 1.0) == 1     # vuelve a intentarse con otra URL
+    cal.resolver_dominio("uni.edu", False, evaluada=False)
+    assert cal.encolar([("https://uni.edu/c", "")], padre, 1.0) == 1
+    cal.resolver_dominio("uni.edu", False, evaluada=False)               # tercer fallo: rechazado
+    assert cal.encolar([("https://uni.edu/d", "")], padre, 1.0) == 0
 
 
 def test_un_host_a_la_vez_y_retardo(almacen):

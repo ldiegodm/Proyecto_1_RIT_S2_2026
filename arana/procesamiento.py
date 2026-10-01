@@ -95,6 +95,18 @@ EXTENSIONES_BLOQUEADAS = {
 }
 
 
+_ETIQUETAS_TIENDA = ("shop", "store", "tienda", "buy", "cart")
+_SEGMENTOS_TIENDA = {"shop", "store", "tienda", "cart", "checkout", "basket", "donate"}
+
+
+def es_tienda(url):
+    """Politica P1: URLs de tiendas y pagos (shop.museo.org, /store/, /cart...) no sirven al colectivo."""
+    partes = urlsplit(url)
+    if partes.hostname and partes.hostname.split(".")[0] in _ETIQUETAS_TIENDA:
+        return True
+    return any(seg in _SEGMENTOS_TIENDA for seg in partes.path.lower().split("/"))
+
+
 def extension_bloqueada(url):
     """Politica P2 (antes de descargar): True si la URL apunta a un archivo que no es texto."""
     ruta = urlsplit(url).path.lower()

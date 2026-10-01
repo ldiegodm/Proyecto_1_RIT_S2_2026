@@ -68,8 +68,11 @@ class Calendarizador:
         self.n_pendientes = 0
         self.docs_por_dominio = Counter(almacen.docs_por_dominio())
         self.contadores = Counter()      # por que se descartaron enlaces (para el resumen)
+        self.fallos_eval = Counter()     # P1: intentos fallidos de evaluar un dominio candidato
 
-        self.dominios = almacen.cargar_dominios()          # dominio -> aprobado | candidato | rechazado
+        # dominio -> aprobado | candidato | rechazado. Un candidato de una corrida anterior que no llego a
+        # evaluarse se olvida: volvera a entrar como candidato cuando alguien lo enlace.
+        self.dominios = {d: e for d, e in almacen.cargar_dominios().items() if e in ("aprobado", "rechazado")}
         for d in dominios_semilla:
             self._aprobar(d, "semilla")
         for d in dominios_lista:
@@ -101,13 +104,26 @@ class Calendarizador:
         with self.candado:
             return self.dominios.get(dominio) == "candidato"
 
-    def resolver_dominio(self, dominio, relevante):
-        """La primera pagina de un dominio descubierto decide si entra a la lista blanca (P1 + P3)."""
+    def resolver_dominio(self, dominio, relevante, evaluada=True):
+        """La primera pagina de un dominio descubierto decide si entra a la lista blanca (P1 + P3).
+
+        evaluada=False significa que la pagina no se pudo evaluar (403, 404, robots, redireccion...): eso no dice
+        nada del tema, asi que el dominio puede volver a intentarse con otra URL, hasta 3 veces.
+        """
         with self.candado:
             if self.dominios.get(dominio) != "candidato":
                 return
-            nuevo = "aprobado" if relevante else "rechazado"
-            self.dominios[dominio] = nuevo
+            if relevante:
+                nuevo = "aprobado"
+            elif evaluada or self.fallos_eval[dominio] + 1 >= 3:
+                nuevo = "rechazado"
+            else:
+                self.fallos_eval[dominio] += 1
+                nuevo = "sin_evaluar"
+            if nuevo == "sin_evaluar":
+                del self.dominios[dominio]
+            else:
+                self.dominios[dominio] = nuevo
         self.almacen.guardar_dominio(dominio, "descubierto", nuevo)
 
     # ---- largo plazo: encolar ----------------------------------------------------
@@ -135,9 +151,15 @@ class Calendarizador:
             self.contadores["profundidad"] += len(enlaces)
             return 0
         tareas = []
+        # Los enlaces con mas terminos del tema en su anchor o URL van primero: si el dominio es nuevo, la URL que
+        # lo evalua (P1) es la mas prometedora y no una portada cualquiera.
+        enlaces = sorted(enlaces, key=lambda e: -self.tema.bonus_anchor(e[1] + " " + e[0]))
         with self.candado:
             for url, anchor in enlaces:
                 if _clave(url) in self.vistas:                           # P6
+                    continue
+                if proc.es_tienda(url):                                  # P1: tiendas
+                    self.contadores["tienda"] += 1
                     continue
                 if proc.extension_bloqueada(url):                        # P2
                     self.contadores["extension"] += 1
