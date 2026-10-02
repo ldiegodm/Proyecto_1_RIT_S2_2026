@@ -1,0 +1,68 @@
+ESTADISTICAS DEL REPOSITORIO - scrapy
+==========================================================
+Carpeta analizada            : C:\Users\dmm14\Documents\TEC\10mo_Semestre\RIT\Proyecto 1\Proyecto_1_RIT_S2_2026\crawler_scrapy\repo
+
+1. Tamano total del repositorio
+     texto plano (suma de archivos) : 332,715,373 bytes = 317.30 MB = 0.310 GB
+     ocupado en disco (bloques 4 KB): 417,624,064 bytes = 398.28 MB = 0.389 GB
+2. Cantidad de documentos      : 42,148
+3. Cantidad de palabras        : 47,871,401
+4. Palabras distintas          : 470,973
+
+Derivados utiles para el analisis
+     palabras por documento    : 1,136 (promedio)
+     KB de texto por documento : 7.7 (promedio)
+     riqueza lexica (distintas/totales): 0.0098
+     dominios distintos        : 1,734
+
+Top 30 palabras de la coleccion
+    1. the               2,870,846  (6.00 %)
+    2. of                1,814,183  (3.79 %)
+    3. and               1,332,740  (2.78 %)
+    4. a                 1,060,257  (2.21 %)
+    5. in                  941,629  (1.97 %)
+    6. to                  769,326  (1.61 %)
+    7. is                  412,481  (0.86 %)
+    8. that                401,324  (0.84 %)
+    9. from                386,531  (0.81 %)
+   10. as                  284,850  (0.60 %)
+   11. for                 272,733  (0.57 %)
+   12. with                268,549  (0.56 %)
+   13. on                  264,767  (0.55 %)
+   14. it                  248,966  (0.52 %)
+   15. this                240,334  (0.50 %)
+   16. s                   237,838  (0.50 %)
+   17. are                 234,936  (0.49 %)
+   18. was                 232,575  (0.49 %)
+   19. by                  208,213  (0.43 %)
+   20. have                189,102  (0.40 %)
+   21. at                  161,294  (0.34 %)
+   22. dinosaur            159,657  (0.33 %)
+   23. an                  156,527  (0.33 %)
+   24. dinosaurs           155,321  (0.32 %)
+   25. were                151,063  (0.32 %)
+   26. new                 149,524  (0.31 %)
+   27. j                   145,707  (0.30 %)
+   28. fossil              143,585  (0.30 %)
+   29. be                  140,602  (0.29 %)
+   30. species             140,032  (0.29 %)
+
+Top 15 dominios por cantidad de documentos
+   en.wikipedia.org                     2,993 (7.1 %)
+   dinoanimals.com                      1,726 (4.1 %)
+   fossilera.com                        1,443 (3.4 %)
+   link.springer.com                    1,217 (2.9 %)
+   prehistoric-wildlife.com             1,148 (2.7 %)
+   smithsonianmag.com                   1,058 (2.5 %)
+   sci.news                             1,020 (2.4 %)
+   dinosaurpictures.org                   826 (2.0 %)
+   livescience.com                        826 (2.0 %)
+   dinochecker.com                        788 (1.9 %)
+   scitechdaily.com                       657 (1.6 %)
+   theconversation.com                    576 (1.4 %)
+   zmescience.com                         566 (1.3 %)
+   screenrant.com                         549 (1.3 %)
+   independent.co.uk                      450 (1.1 %)
+
+Cola de la distribucion
+     palabras que aparecen UNA sola vez: 211,609 (44.9 % del vocabulario)
