@@ -48,6 +48,10 @@ class Parametros:
     min_disco_libre_gb: float = 2.0
     profundidad_maxima: int = 6
     min_palabras: int = 150
+    min_enlaces_indice: int = 10
+    enlaces_densos: int = 300
+    host_saturado: int = 2000
+    max_evaluaciones_dominio: int = 5
     umbral_tematico: float = 8.0
     cuota_dominio: float = 0.15
     calentamiento_docs: int = 500
@@ -228,16 +232,17 @@ def procesar(ctx, tarea):
     palabras = proc.contar_palabras(texto)
     puntaje, terminos = ctx.tema.puntaje(texto)                          # P3
     relevante = puntaje >= p.umbral_tematico
-    cal.resolver_dominio(tarea.dominio, relevante)                       # P1: primera pagina de un dominio nuevo
+    indice = not relevante and proc.es_indice(titulo, tarea.url, enlaces, ctx.tema, p.min_enlaces_indice)
+    cal.resolver_dominio(tarea.dominio, relevante or indice)             # P1: primera pagina de un dominio nuevo
 
     # Solo se siguen los enlaces de paginas relevantes (P3). Las semillas se consideran relevantes por diseño.
-    if (relevante or tarea.profundidad == 0) and not nofollow and enlaces:
-        cal.encolar(enlaces, tarea, puntaje)
+    if (relevante or indice or tarea.profundidad == 0) and not nofollow and enlaces:
+        cal.encolar(enlaces, tarea, max(puntaje, p.umbral_tematico) if indice else puntaje)
 
     if noindex:
         descartar(ctx, tarea, resp, "noindex")
     elif not relevante:
-        descartar(ctx, tarea, resp, f"fuera_de_tema:{puntaje:.1f}")
+        descartar(ctx, tarea, resp, f"fuera_de_tema:{puntaje:.1f}" + (":indice" if indice else ""))
     elif palabras < p.min_palabras:                                      # P8
         descartar(ctx, tarea, resp, f"muy_corto:{palabras}")
     else:
@@ -307,11 +312,11 @@ def resumen(ctx, inicio):
           f"pendientes={pend} en_vuelo={en_vuelo} hosts={hosts}", flush=True)
 
 
-def construir(p, carpeta, semillas, dominios_lista, tema, reanudar=True):
+def construir(p, carpeta, semillas, dominios_lista, tema, reanudar=True, reevaluar_dominios=False):
     """Crea almacen, calendarizador y contexto, y carga la frontera (pendientes de corridas anteriores + semillas)."""
     dominios_semilla = {proc.dominio_de(urlsplit(n).netloc) for n in map(proc.normalizar_url, semillas) if n}
     almacen = Almacen(carpeta)
-    cal = Calendarizador(p, almacen, tema, dominios_semilla, dominios_lista)
+    cal = Calendarizador(p, almacen, tema, dominios_semilla, dominios_lista, reevaluar_dominios)
     if reanudar:
         cal.cargar_pendientes(almacen.cargar_pendientes())
         for url in semillas:
@@ -339,6 +344,8 @@ def main(argv=None):
     ap.add_argument("--duracion-min", type=float, help="parar despues de estos minutos")
     ap.add_argument("--revisita", action="store_true",
                     help="P9: en vez de arañar sitios nuevos, revisar con GET condicional los documentos ya guardados")
+    ap.add_argument("--reevaluar-dominios", action="store_true",
+                    help="volver a evaluar los dominios rechazados con las reglas actuales (se hace una vez)")
     ap.add_argument("--max-revisitas", type=int, default=100_000)
     ap.add_argument("--permitir-correo-falso", action="store_true",
                     help="solo para pruebas locales: no exigir un correo real en el User-Agent")
@@ -364,7 +371,7 @@ def main(argv=None):
     semillas = leer_lista(config / "semillas.txt") + leer_lista(config / "semillas_extra.txt")
     tema = proc.Tema(config / "terminos_tema.txt")
     ctx = construir(p, carpeta, semillas, leer_lista(config / "dominios_permitidos.txt"), tema,
-                    reanudar=not args.revisita)
+                    reanudar=not args.revisita, reevaluar_dominios=args.reevaluar_dominios)
     almacen, cal = ctx.almacen, ctx.cal
     if args.revisita:
         cal.encolar_revisita(tareas_de_revisita(almacen, p, args.max_revisitas))

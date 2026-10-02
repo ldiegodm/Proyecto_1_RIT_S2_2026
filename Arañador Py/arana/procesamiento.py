@@ -158,6 +158,7 @@ CLASES_SALTADAS = {"infobox", "infobox_v2", "navbox", "navbox-inner", "vertical-
                    "refbegin", "mw-references-wrap", "reference", "mw-editsection", "catlinks", "mw-hidden-catlinks",
                    "toc", "hatnote", "noprint", "navigation-not-searchable", "authority-control", "mw-jump-link",
                    "metadata", "ambox", "sistersitebox", "printfooter", "cookie-banner", "breadcrumb", "breadcrumbs"}
+CLASES_SIN_ENLACES = {"catlinks", "mw-hidden-catlinks"}
 IDS_SALTADOS = {"toc", "catlinks", "sitesub", "contentsub", "jump-to-nav", "mw-navigation", "footer", "p-lang-btn"}
 ETIQUETAS_VACIAS = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source",
                     "track", "wbr"}
@@ -191,6 +192,7 @@ class ExtractorHTML(HTMLParser):
         self._anchor = []
         self.noindex = False
         self.nofollow = False
+        self.bloque_sin_enlaces = False   # dentro de las categorias de una pagina: sus enlaces suben a toda la enciclopedia
         self.tag_clase = None        # etiqueta del bloque saltado por su class/id (CLASES_SALTADAS)
         self.prof_clase = 0          # cuantas etiquetas iguales hay abiertas dentro de ese bloque
 
@@ -212,7 +214,7 @@ class ExtractorHTML(HTMLParser):
         elif etiqueta == "body":
             self.saltar = 0          # </head> es opcional: un <head> sin cerrar no debe tapar la pagina
             self.tag_clase, self.prof_clase = None, 0
-        elif etiqueta in ("a", "area") and attrs.get("href"):
+        elif etiqueta in ("a", "area") and attrs.get("href") and not self.bloque_sin_enlaces:
             self._cerrar_enlace()
             self._href = attrs["href"]
 
@@ -221,6 +223,7 @@ class ExtractorHTML(HTMLParser):
                 clases = set((attrs.get("class") or "").lower().split())
                 if clases & CLASES_SALTADAS or (attrs.get("id") or "").lower() in IDS_SALTADOS:
                     self.tag_clase, self.prof_clase = etiqueta, 1
+                    self.bloque_sin_enlaces = bool(clases & CLASES_SIN_ENLACES) or (attrs.get("id") or "").lower() == "catlinks"
             elif etiqueta == self.tag_clase:
                 self.prof_clase += 1
 
@@ -234,6 +237,7 @@ class ExtractorHTML(HTMLParser):
             self.prof_clase -= 1
             if self.prof_clase == 0:
                 self.tag_clase = None
+                self.bloque_sin_enlaces = False
         if etiqueta == "title":
             self.en_titulo = False
         elif etiqueta == "a":
@@ -355,6 +359,13 @@ def hash_texto(texto):
     return hashlib.sha256(" ".join(texto.lower().split()).encode("utf-8")).hexdigest()
 
 
+def es_indice(titulo, url, enlaces, tema, minimo):
+    """Politica P3 (ampliacion para paginas indice): una pagina con muy poco texto, pero muchos enlaces y un
+    titulo o URL que hablan del tema (Category:Pterosaurs_of_Europe, "Dinosaur directory"), no se guarda, pero
+    sus enlaces si se siguen: el puntaje por texto no es confiable cuando casi todo el contenido son enlaces."""
+    return len(enlaces) >= minimo and tema.bonus_anchor(titulo + " " + urlsplit(url).path) > 0
+
+
 # ---------------------------------------------------------------------------
 # P3: puntaje tematico
 # ---------------------------------------------------------------------------
@@ -364,6 +375,14 @@ def _raiz(palabra):
     if len(palabra) > 4 and palabra.endswith("s") and not palabra.endswith("ss"):
         return palabra[:-1]
     return palabra
+
+
+SUFIJOS_GENERO = ("saurus", "saur", "raptor", "ceratops", "venator", "pteryx", "titan", "mimus", "suchus", "dromeus")
+
+
+def _es_genero(palabra):
+    """True para nombres como Gyposaurus o Velociraptor (la palabra debe ser mas larga que la terminacion)."""
+    return any(palabra.endswith(suf) and len(palabra) > len(suf) + 2 for suf in SUFIJOS_GENERO)
 
 
 class Tema:
@@ -395,5 +414,8 @@ class Tema:
         return total / len(palabras) * 1000, encontrados
 
     def bonus_anchor(self, texto):
-        """Politica P4: cuantos terminos del tema aparecen en el texto del enlace o en su URL."""
-        return sum(1 for p in palabras_de(texto) if _raiz(p) in self.pesos)
+        """Politica P4: cuantos terminos del tema aparecen en el texto del enlace o en su URL.
+
+        Ademas de las palabras del diccionario cuentan los nombres de genero de dinosaurios y reptiles
+        prehistoricos por su terminacion (Allosaurus, Velociraptor, Triceratops...), que son miles y no caben en la lista."""
+        return sum(1 for p in palabras_de(texto) if _raiz(p) in self.pesos or _es_genero(p))

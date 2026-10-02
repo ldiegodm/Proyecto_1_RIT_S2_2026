@@ -24,7 +24,7 @@ TEMA = proc.Tema(RAIZ / "config" / "terminos_tema.txt")
 
 def parametros(**cambios):
     p = Parametros(correo_contacto="prueba@example.org", hilos=4, retardo_host_s=0.05, timeout_s=3,
-                   reintentos=0, robots_ttl_s=60, procesos_pdf=1, calentamiento_docs=10**9,
+                   reintentos=0, robots_ttl_s=60, procesos_pdf=1, calentamiento_docs=10**9, max_evaluaciones_dominio=1,
                    sufijos_elegibles=[".edu"], profundidad_maxima=3)
     for k, v in cambios.items():
         setattr(p, k, v)
@@ -233,7 +233,7 @@ def test_dominio_candidato_usa_el_enlace_mas_prometedor(almacen):
 
 
 def test_dominio_candidato_no_se_rechaza_por_un_error(almacen):
-    cal = nuevo_calendarizador(almacen)
+    cal = nuevo_calendarizador(almacen, max_evaluaciones_dominio=3)
     padre = tarea_semilla()
     cal.encolar([("https://uni.edu/a", "")], padre, 1.0)
     cal.resolver_dominio("uni.edu", False, evaluada=False)               # 403: no se pudo evaluar
@@ -345,6 +345,19 @@ class Sitio(http.server.BaseHTTPRequestHandler):
                 return self.responder(304, "text/html", b"", {"ETag": etag})
             texto = TEXTO.replace("rex", "A") + (" Nueva informacion sobre fosiles. " * 10 if Sitio.version > 1 else "")
             return self.responder(200, "text/html", pagina("A", texto), {"ETag": etag})
+        if self.path.startswith("/n/"):                                # paginas del tema, una por numero
+            return self.responder(200, "text/html", pagina("N", TEXTO.replace("rex", self.path)))
+        if self.path.startswith("/m/"):                                # paginas fuera de tema
+            return self.responder(200, "text/html", pagina("M", ("Cheap flights and hotels deals " + self.path + " ") * 40))
+        enlaces_n = "".join(f"<a href='/n/{i}'>pagina {i}</a> " for i in range(12))
+        enlaces_m = "".join(f"<a href='/m/{i}'>oferta {i}</a> " for i in range(12))
+        if self.path == "/semilla-hub":
+            return self.responder(200, "text/html", pagina("Inicio", TEXTO,
+                                  "<a href='/Category:Dinosaur_fossils'>categoria</a> <a href='/menu-del-sitio'>menu</a>"))
+        if self.path == "/Category:Dinosaur_fossils":                  # indice corto: tema en la URL, muchos enlaces
+            return self.responder(200, "text/html", pagina("Dinosaur fossils", "Lista de paginas.", enlaces_n))
+        if self.path == "/menu-del-sitio":                             # corto y con muchos enlaces, pero sin tema
+            return self.responder(200, "text/html", pagina("Menu", "Lista de paginas.", enlaces_m))
         rutas = {
             "/robots.txt": (200, "text/plain", b"User-agent: *\nDisallow: /privado/\nCrawl-delay: 0\n"),
             "/": (200, "text/html", pagina("Inicio", TEXTO, "<a href='/a'>dinosaur A</a> <a href='/b#frag'>B</a>"
@@ -476,3 +489,98 @@ def test_revisita_condicional(tmp_path, sitio):
     hash_2, etag_2 = db.execute("SELECT hash_sha256, etag FROM documentos WHERE id=?", (doc_id,)).fetchone()
     assert hash_2 != hash_1 and etag_2 == '"v2"'
     assert db.execute("SELECT COUNT(*) FROM documentos").fetchone()[0] == 1   # se actualiza, no se duplica
+
+
+def test_paginas_indice_propagan_enlaces(tmp_path, sitio):
+    p = parametros(min_palabras=50, min_enlaces_indice=10)
+    ctx = construir(p, tmp_path, [f"http://{sitio}/semilla-hub"], [], TEMA)
+    correr(ctx)
+    pedidas = {ruta for ruta, _ in Sitio.peticiones}
+    assert all(f"/n/{i}" in pedidas for i in range(12))                  # el indice con tema en la URL se siguio
+    assert not any(ruta.startswith("/m/") for ruta in pedidas)            # el menu sin tema no
+    db = sqlite3.connect(tmp_path / "arana.db")
+    motivo = db.execute("SELECT motivo FROM urls WHERE url_normalizada LIKE '%Category:Dinosaur_fossils'").fetchone()[0]
+    assert motivo.startswith("fuera_de_tema") and motivo.endswith(":indice")   # no se guarda, pero queda marcado
+    assert db.execute("SELECT COUNT(*) FROM documentos WHERE url_normalizada LIKE '%/n/%'").fetchone()[0] == 12
+
+
+def test_reencolar_indices_descartados(tmp_path):
+    from reencolar_indices import reencolar
+    almacen = Almacen(tmp_path)
+    fila = lambda u: (u, "", "", "", u, "a.org", "a.org", 1, 5.0)
+    almacen.registrar_urls([fila("https://a.org/Category:Dinosaur_fossils"), fila("https://a.org/contacto"),
+                            fila("https://a.org/dinosaur-largo")])
+    almacen.marcar_url("https://a.org/Category:Dinosaur_fossils", "descartado", "fuera_de_tema:0.0")   # indice corto
+    almacen.marcar_url("https://a.org/contacto", "descartado", "fuera_de_tema:0.0")                   # sin tema en la ruta
+    almacen.marcar_url("https://a.org/dinosaur-largo", "descartado", "fuera_de_tema:3.2")             # texto suficiente: no
+    almacen.cerrar()
+    assert reencolar(tmp_path, TEMA) == 1
+    db = sqlite3.connect(tmp_path / "arana.db")
+    assert dict(db.execute("SELECT url_normalizada, estado FROM urls")) == {
+        "https://a.org/Category:Dinosaur_fossils": "pendiente", "https://a.org/contacto": "descartado",
+        "https://a.org/dinosaur-largo": "descartado"}
+
+
+def test_dominio_se_rechaza_solo_tras_varias_evaluaciones(almacen):
+    cal = nuevo_calendarizador(almacen, max_evaluaciones_dominio=3)
+    padre = tarea_semilla()
+    for i in range(2):                                                    # dos portadas sin tema no bastan
+        assert cal.encolar([(f"https://uni.edu/p{i}", "")], padre, 1.0) == 1
+        cal.resolver_dominio("uni.edu", False)
+    assert cal.encolar([("https://uni.edu/depto-paleontologia", "")], padre, 1.0) == 1
+    cal.resolver_dominio("uni.edu", True)                                 # la tercera si era del tema
+    assert cal.dominios["uni.edu"] == "aprobado"
+
+
+def test_reevaluar_dominios_rechazados(tmp_path):
+    p = parametros()
+    almacen = Almacen(tmp_path)
+    almacen.guardar_dominio("uni.edu", "descubierto", "rechazado")
+    assert Calendarizador(p, almacen, TEMA, {"a.org"}, []).dominios["uni.edu"] == "rechazado"
+    assert "uni.edu" not in Calendarizador(p, almacen, TEMA, {"a.org"}, [], reevaluar_dominios=True).dominios
+    almacen.cerrar()
+
+
+def test_paginas_con_muchos_enlaces_solo_encolan_los_del_tema(almacen):
+    cal = nuevo_calendarizador(almacen, enlaces_densos=5)
+    enlaces = [(f"https://a.org/otro-{i}", f"otra cosa {i}") for i in range(10)] + \
+              [("https://a.org/Gyposaurus", "Gyposaurus"), ("https://a.org/Pterosaur", "pterosaur")]
+    assert cal.encolar(enlaces, tarea_semilla(), 10.0) == 2               # 12 enlaces > 5: solo los dos del tema
+    cal2 = nuevo_calendarizador(almacen, enlaces_densos=50)
+    assert cal2.encolar([(f"https://b.org/otro-{i}", "") for i in range(3)], tarea_semilla("https://b.org/"), 10.0) == 3
+
+
+def test_nombres_de_genero_cuentan_como_tema():
+    assert TEMA.bonus_anchor("Gyposaurus") == 1 and TEMA.bonus_anchor("Velociraptor") == 1
+    assert TEMA.bonus_anchor("Triceratops") == 1 and TEMA.bonus_anchor("Titan") == 0     # "saurus" etc. necesitan algo antes
+    assert TEMA.bonus_anchor("Peafowl pollen") == 0
+
+
+def test_enlaces_de_categorias_de_pagina_no_suben_por_el_arbol():
+    html = (b"<html><body><p>Texto del articulo sobre un dinosaurio de gran tamano y largo cuello en el Jurasico.</p>"
+            b"<a href='/wiki/Allosaurus'>Allosaurus</a>"
+            b"<div id='catlinks'><ul><li><a href='/wiki/Category:Animals'>Animals</a></li></ul></div></body></html>")
+    enlaces = proc.extraer_html(html, "text/html", "https://en.wikipedia.org/wiki/X").enlaces
+    assert [u for u, _ in enlaces] == ["https://en.wikipedia.org/wiki/Allosaurus"]
+
+
+def test_wikipedia_y_bases_de_usgs_se_excluyen():
+    from arana.arana import cargar_parametros
+    p = cargar_parametros(RAIZ / "config" / "parametros.toml")
+    trampa = lambda u: proc.es_trampa(u, p.rutas_excluidas, p.hosts_excluidos, p.parametros_excluidos,
+                                      p.patron_hosts_excluidos)
+    assert trampa("https://nas.er.usgs.gov/queries/SpecimenViewer.aspx?SpecimenID=1822165")
+    assert trampa("https://mrdata.usgs.gov/geology/state/")
+    assert not trampa("https://www.usgs.gov/programs/paleontology") and not trampa("https://pubs.usgs.gov/")
+
+
+def test_reanudar_limpia_hosts_saturados_dejando_lo_del_tema(tmp_path):
+    p = parametros(host_saturado=3)
+    almacen = Almacen(tmp_path)
+    fila = lambda u, a: (u, "", "", a, "https://a.org/", "a.org", "a.org", 1, 5.0)
+    almacen.registrar_urls([fila(f"https://a.org/x{i}", "otra cosa") for i in range(4)] +
+                           [fila("https://a.org/Pterosaur", "pterosaur")])
+    cal = Calendarizador(p, almacen, TEMA, {"a.org"}, [])
+    cal.cargar_pendientes(almacen.cargar_pendientes())
+    assert cal.estado()[0] == 1                                           # 5 pendientes > 3: queda solo la del tema
+    almacen.cerrar()
