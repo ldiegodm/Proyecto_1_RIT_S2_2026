@@ -97,6 +97,18 @@ El diseño se siguió casi literal: profundidad 6, 150 palabras mínimo, 1,5 s p
   buscadores con filtros de USGS y fichas de bases de datos. `[trampas]` en `config/parametros.toml` lista las rutas, hosts y
   parámetros que no son contenido; también se aplica a lo pendiente al reanudar. P6 además ignora parámetros de orden y vista
   (`sortOrder`, `resultView`), que repetían cada listado.
+- **P1, evaluación de dominios:** una sola página era poca evidencia: en la corrida larga se rechazaron 349 dominios (Harvard,
+  Cornell, Bristol, UCL, NASA, NIH...) porque su primera página era una portada. Ahora un dominio se rechaza hasta después de
+  `max_evaluaciones_dominio` (5) páginas sin éxito. `--reevaluar-dominios` da otra oportunidad a los ya rechazados.
+- **P4, enlaces densos:** una página con más de `enlaces_densos` (300) enlaces, como un artículo de Wikipedia (~1 800), solo encola
+  los que mencionan el tema en su anchor o URL. Los nombres de género cuentan por su terminación (`-saurus`, `-raptor`,
+  `-ceratops`...). Sin esto la prioridad heredada hacía que `Pollen` o `Peafowl` se descargaran antes que artículos útiles. Los
+  enlaces de las categorías al pie de cada página no se siguen (suben por el árbol hasta cubrir toda la enciclopedia).
+- **Bases de datos:** `nas.er.usgs.gov` y `mrdata.usgs.gov` (millones de fichas de especies y minerales) se excluyen en `[trampas]`.
+- **Páginas índice (P3):** una página con muy poco texto, pero con muchos enlaces y el tema en su título o URL (por ejemplo
+  `Category:Pterosaurs_of_Europe`), no se guarda y sus enlaces sí se siguen (`min_enlaces_indice`). El puntaje por texto no
+  sirve cuando casi todo el contenido son enlaces. El motivo queda en la bitácora como `fuera_de_tema:0.0:indice`.
+  `reencolar_indices.py` devuelve a la frontera los índices que una corrida anterior había descartado.
 - **Wikipedia (decisión del grupo):** `en.` y `simple.` como fuente de volumen y cobertura temática. Los demás idiomas, las
   páginas de sistema (`Special:`, `Talk:`, historial, `?oldid=`) y la edición se excluyen en `[trampas]`.
 - **Texto limpio de MediaWiki:** además de menús y scripts, la extracción salta fichas laterales (infobox), referencias, cajas

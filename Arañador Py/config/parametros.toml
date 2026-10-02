@@ -12,6 +12,10 @@ min_disco_libre_gb = 2.0    # el arañador se detiene si el disco queda con meno
 [seleccion]
 profundidad_maxima = 6      # P5
 min_palabras = 150          # P8
+enlaces_densos = 300        # P4: una pagina con mas enlaces que esto (un articulo de Wikipedia) solo encola los que mencionan el tema
+host_saturado = 2000        # al reanudar, un host con mas pendientes que esto conserva solo las URLs que mencionan el tema
+max_evaluaciones_dominio = 5  # P1: paginas sin exito antes de rechazar un dominio descubierto
+min_enlaces_indice = 10     # P3: una pagina con tema en el titulo/URL y al menos tantos enlaces se trata como indice (se siguen sus enlaces)
 umbral_tematico = 8.0       # P3: aciertos ponderados por cada 1000 palabras (calibrado con la corrida de prueba)
 cuota_dominio = 0.15        # P12: maximo de documentos por dominio
 calentamiento_docs = 500    # P12: la cuota se aplica despues de este numero de documentos
@@ -35,14 +39,15 @@ rutas_excluidas = ["/search", "/login", "/signin", "/authorize", "/cas-redirect"
                    "/article/file", "/article/figure", "/article/related", "/article/comments", "/article/authors",
                    "/print/", "/share/", "/palaeosaurus/record",
                    # Wikipedia: paginas de sistema, discusion y edicion (no son articulos)
-                   "/w/index.php", "/wiki/special:", "/wiki/talk:", "/wiki/user:", "/wiki/user_talk:", "/wiki/file:",
+                   "/w/index.php", "/wiki/special:", "/wiki/talk:", "/wiki/category_talk:", "/wiki/user:", "/wiki/user_talk:", "/wiki/file:",
                    "/wiki/template:", "/wiki/template_talk:", "/wiki/help:", "/wiki/wikipedia:", "/wiki/portal:",
                    "/wiki/draft:", "/wiki/mediawiki:", "/wiki/module:"]
 hosts_excluidos = ["idp", "login", "auth", "sso", "accounts"]
 parametros_excluidos = ["_csrf", "download", "error", "f[0]", "filterjournals", "filtersubjects", "q", "keywords",
                         "search", "s", "oldid", "diff", "action", "veaction", "printable", "redirect"]
 # Wikipedia en otros idiomas: la coleccion es en ingles (el diccionario de P3 tambien), asi que solo en. y simple.
-patron_hosts_excluidos = "^(?!(en|simple)\\.)[a-z-]+\\.(m\\.)?wikipedia\\.org$"
+# Tambien bases de datos de USGS (especies invasoras, minerales): millones de fichas sin texto util.
+patron_hosts_excluidos = "^(?!(en|simple)\\.)[a-z-]+\\.(m\\.)?wikipedia\\.org$|^(nas\\.er|mrdata)\\.usgs\\.gov$"
 
 [revisita]
 # P9: en corridas posteriores (python -m arana --revisita) se vuelven a pedir, con GET condicional,

@@ -54,7 +54,7 @@ def _clave(url):
 
 
 class Calendarizador:
-    def __init__(self, p, almacen, tema, dominios_semilla, dominios_lista):
+    def __init__(self, p, almacen, tema, dominios_semilla, dominios_lista, reevaluar_dominios=False):
         self.p = p
         self.almacen = almacen
         self.tema = tema
@@ -72,7 +72,8 @@ class Calendarizador:
 
         # dominio -> aprobado | candidato | rechazado. Un candidato de una corrida anterior que no llego a
         # evaluarse se olvida: volvera a entrar como candidato cuando alguien lo enlace.
-        self.dominios = {d: e for d, e in almacen.cargar_dominios().items() if e in ("aprobado", "rechazado")}
+        estados_validos = ("aprobado",) if reevaluar_dominios else ("aprobado", "rechazado")
+        self.dominios = {d: e for d, e in almacen.cargar_dominios().items() if e in estados_validos}
         for d in dominios_semilla:
             self._aprobar(d, "semilla")
         for d in dominios_lista:
@@ -105,21 +106,20 @@ class Calendarizador:
             return self.dominios.get(dominio) == "candidato"
 
     def resolver_dominio(self, dominio, relevante, evaluada=True):
-        """La primera pagina de un dominio descubierto decide si entra a la lista blanca (P1 + P3).
+        """La pagina de un dominio descubierto decide si entra a la lista blanca (P1 + P3).
 
-        evaluada=False significa que la pagina no se pudo evaluar (403, 404, robots, redireccion...): eso no dice
-        nada del tema, asi que el dominio puede volver a intentarse con otra URL, hasta 3 veces.
+        Una sola pagina es poca evidencia (una universidad entera puede quedar fuera por mirar su portada), asi que un
+        dominio se rechaza hasta despues de `max_evaluaciones_dominio` paginas sin exito, ya sea porque no eran del tema o
+        porque no se pudieron evaluar (403, 404, robots, redireccion). Entre evaluaciones solo se encola una URL suya.
         """
         with self.candado:
             if self.dominios.get(dominio) != "candidato":
                 return
             if relevante:
                 nuevo = "aprobado"
-            elif evaluada or self.fallos_eval[dominio] + 1 >= 3:
-                nuevo = "rechazado"
             else:
                 self.fallos_eval[dominio] += 1
-                nuevo = "sin_evaluar"
+                nuevo = "rechazado" if self.fallos_eval[dominio] >= self.p.max_evaluaciones_dominio else "sin_evaluar"
             if nuevo == "sin_evaluar":
                 del self.dominios[dominio]
             else:
@@ -142,9 +142,13 @@ class Calendarizador:
             for clave in self.almacen.cargar_vistas():
                 self.vistas.add(_clave(clave))
             trampas = []
+            por_host = Counter(f[5] for f in filas)
             for (url, original, padre, anchor, semilla, host, dominio, prof, prio) in filas:
                 if self._es_trampa(url) or proc.es_tienda(url):          # filtros nuevos sobre lo ya pendiente
                     trampas.append(url)
+                    continue
+                if por_host[host] > self.p.host_saturado and self.tema.bonus_anchor((anchor or "") + " " + url) == 0:
+                    trampas.append(url)                                  # un host que domina la cola: solo lo que habla del tema
                     continue
                 self._meter(Tarea(url, original, padre, anchor, semilla, host, dominio, prof, prio))
         self.almacen.descartar_pendientes(trampas, "trampa")
@@ -159,7 +163,11 @@ class Calendarizador:
         tareas = []
         # Los enlaces con mas terminos del tema en su anchor o URL van primero: si el dominio es nuevo, la URL que
         # lo evalua (P1) es la mas prometedora y no una portada cualquiera.
-        enlaces = sorted(enlaces, key=lambda e: -self.tema.bonus_anchor(e[1] + " " + e[0]))
+        puntuados = sorted(((self.tema.bonus_anchor(a + " " + u), u, a) for u, a in enlaces), key=lambda e: -e[0])
+        if len(enlaces) > self.p.enlaces_densos:             # p. ej. un articulo de Wikipedia: ~1800 enlaces, casi todos de otros temas
+            self.contadores["denso_sin_tema"] += sum(1 for b, _, _ in puntuados if b == 0)
+            puntuados = [e for e in puntuados if e[0] > 0]
+        enlaces = [(u, a) for _, u, a in puntuados]
         with self.candado:
             for url, anchor in enlaces:
                 if _clave(url) in self.vistas:                           # P6
