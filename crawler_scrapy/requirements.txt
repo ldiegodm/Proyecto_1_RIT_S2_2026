@@ -1,0 +1,9 @@
+# Arañador con bibliotecas existentes - Proyecto 1 RIT
+scrapy>=2.13
+trafilatura>=1.8      # extraccion de texto limpio (quita menus, pies de pagina, scripts)
+lxml>=5.0             # backend de parseo usado por scrapy y trafilatura
+
+# Solo Windows: habilitan el reactor IOCP, que evita el tope de 512
+# descriptores de select() y cuadruplica el caudal de descarga.
+pywin32>=306; sys_platform == "win32"
+twisted-iocpsupport>=1.0; sys_platform == "win32"

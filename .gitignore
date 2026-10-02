@@ -7,3 +7,19 @@ logs/
 __pycache__/
 .pytest_cache/
 *.pyc
+
+# entorno e insumos regenerables
+.venv/
+__pycache__/
+*.pyc
+
+# el repositorio de 10GB NO va al git (se entrega en el tar.gz)
+repo/
+repo_t/
+
+repo_prueba/
+estado/
+logs/*.log
+frecuencias.csv
+zipf.csv
+zipf.png
