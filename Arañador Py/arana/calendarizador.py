@@ -27,6 +27,7 @@ from . import procesamiento as proc
 
 PRIORIDAD_SEMILLA = 100.0
 PENALIZACION_CUOTA = 1000.0       # P12: los dominios pasados de cuota quedan al final de la fila
+MARCA_CITA = "[cita] "            # marca el anchor de una referencia academica (para la bitacora y la base)
 
 
 @dataclass
@@ -143,7 +144,11 @@ class Calendarizador:
                 self.vistas.add(_clave(clave))
             trampas = []
             por_host = Counter(f[5] for f in filas)
+            con_documento = self.almacen.urls_con_documento()    # reencoladas solo para seguir sus enlaces
             for (url, original, padre, anchor, semilla, host, dominio, prof, prio) in filas:
+                if url in con_documento:
+                    self._meter(Tarea(url, original, padre, anchor, semilla, host, dominio, prof, prio))
+                    continue
                 if self._es_trampa(url) or proc.es_tienda(url):          # filtros nuevos sobre lo ya pendiente
                     trampas.append(url)
                     continue
@@ -157,10 +162,17 @@ class Calendarizador:
     def encolar(self, enlaces, padre, puntaje_padre, profundidad=None):
         """Politicas P1, P2 (extension), P4, P5, P6. enlaces: [(url_normalizada, anchor)]."""
         profundidad = padre.profundidad + 1 if profundidad is None else profundidad
-        if profundidad > self.p.profundidad_maxima:                      # P5
+        if profundidad > self.p.profundidad_maxima:                      # P5 (tambien para las citas)
             self.contadores["profundidad"] += len(enlaces)
             return 0
-        tareas = []
+        # Referencias academicas (P4): no pasan por la lista blanca (doi.org, PMC) ni por el filtro de enlaces densos.
+        # Como cualquier enlace, solo llegan aqui si la pagina que las cita fue relevante (P3) y respetan P5: una cadena
+        # de citas sigue mientras cada articulo sea del tema y se corta en el primero que no lo sea.
+        referencias = [(u, a) for u, a in enlaces if proc.es_referencia(u, self.p.prefijos_doi, self.p.seguir_pmc)]
+        if referencias:
+            elegidas = {u for u, _ in referencias}
+            enlaces = [(u, a) for u, a in enlaces if u not in elegidas]
+        tareas = self._encolar_referencias(referencias, padre, puntaje_padre, profundidad)
         # Los enlaces con mas terminos del tema en su anchor o URL van primero: si el dominio es nuevo, la URL que
         # lo evalua (P1) es la mas prometedora y no una portada cualquiera.
         puntuados = sorted(((self.tema.bonus_anchor(a + " " + u), u, a) for u, a in enlaces), key=lambda e: -e[0])
@@ -194,6 +206,22 @@ class Calendarizador:
                 self._meter(tareas[-1])
         self._persistir(tareas)
         return len(tareas)
+
+    def _encolar_referencias(self, referencias, padre, puntaje_padre, profundidad):
+        tareas = []
+        with self.candado:
+            for url, anchor in referencias:
+                url = proc.normalizar_url(proc.resolver_referencia(url)) or url
+                if _clave(url) in self.vistas:                           # P6
+                    continue
+                host = urlsplit(url).netloc
+                prioridad = puntaje_padre + 5 * self.tema.bonus_anchor(anchor)
+                tareas.append(Tarea(url, url, padre.url, MARCA_CITA + anchor, padre.semilla, host,
+                                    proc.dominio_de(host), profundidad, prioridad))
+                self.vistas.add(_clave(url))
+                self._meter(tareas[-1])
+                self.contadores["referencia"] += 1
+        return tareas
 
     def encolar_redireccion(self, destino, padre):
         """Una redireccion se trata como un enlace mas (misma profundidad), para que pase por los filtros."""

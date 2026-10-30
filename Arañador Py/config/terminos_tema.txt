@@ -61,7 +61,6 @@ devonian 0.5
 cambrian 0.5
 ordovician 0.5
 silurian 0.5
-amber 0.3
 skeleton 0.3
 bone 0.3
 skull 0.3

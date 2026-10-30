@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS documentos (    -- un registro por documento guardado
     ruta_archivo_txt TEXT
 );
 CREATE INDEX IF NOT EXISTS idx_docs_dominio ON documentos(dominio);
+CREATE INDEX IF NOT EXISTS idx_docs_url ON documentos(url_normalizada);
 
 CREATE TABLE IF NOT EXISTS dominios (      -- P1: lista blanca
     dominio TEXT PRIMARY KEY, origen_dominio TEXT, estado TEXT, fecha_aprobacion TEXT
@@ -138,6 +139,16 @@ class Almacen:
     def guardar_robots(self, host, crawl_delay, acceso):
         with self.candado:
             self.db.execute("INSERT OR REPLACE INTO robots VALUES (?,?,?,?)", (host, crawl_delay, acceso, ahora()))
+
+    def documento_de_url(self, url_normalizada):
+        """id del documento ya guardado para esa URL, o None (sirve al volver a pedir una pagina para seguir sus enlaces)."""
+        with self.candado:
+            fila = self.db.execute("SELECT id FROM documentos WHERE url_normalizada=?", (url_normalizada,)).fetchone()
+        return fila[0] if fila else None
+
+    def urls_con_documento(self):
+        with self.candado:
+            return {u for (u,) in self.db.execute("SELECT url_normalizada FROM documentos")}
 
     def existe_hash(self, hash_sha256):
         """Politica P7: id del documento con ese hash, o None."""

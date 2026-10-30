@@ -52,6 +52,8 @@ def test_dominio_de():
     assert proc.dominio_de("australian.museum") == "australian.museum"
     assert proc.dominio_de("www.nps.gov:8080") == "nps.gov"
     assert proc.dominio_de("www.bbc.co.uk") == "bbc.co.uk"
+    assert proc.dominio_de("revista.macn.gob.ar") == "macn.gob.ar"      # no todo el gobierno argentino
+    assert proc.dominio_de("www.museocostarica.go.cr") == "museocostarica.go.cr"
 
 
 def test_es_tienda():
@@ -321,6 +323,7 @@ class Sitio(http.server.BaseHTTPRequestHandler):
     peticiones = []
     agentes = []
     condicionales = []      # valores de If-None-Match recibidos
+    robots_redirige = False # /robots.txt responde 301 hacia /robots-real.txt
     version = 1             # cambia el texto de /a para probar la revisita
 
     def log_message(self, *args):
@@ -345,6 +348,10 @@ class Sitio(http.server.BaseHTTPRequestHandler):
                 return self.responder(304, "text/html", b"", {"ETag": etag})
             texto = TEXTO.replace("rex", "A") + (" Nueva informacion sobre fosiles. " * 10 if Sitio.version > 1 else "")
             return self.responder(200, "text/html", pagina("A", texto), {"ETag": etag})
+        if self.path == "/robots.txt" and Sitio.robots_redirige:
+            return self.responder(301, "text/html", b"", {"Location": "/robots-real.txt"})
+        if self.path == "/robots-real.txt":
+            return self.responder(200, "text/plain", b"User-agent: *\nDisallow: /privado/\n")
         if self.path.startswith("/n/"):                                # paginas del tema, una por numero
             return self.responder(200, "text/html", pagina("N", TEXTO.replace("rex", self.path)))
         if self.path.startswith("/m/"):                                # paginas fuera de tema
@@ -383,6 +390,7 @@ class Sitio(http.server.BaseHTTPRequestHandler):
 @pytest.fixture
 def sitio():
     Sitio.peticiones, Sitio.agentes, Sitio.condicionales, Sitio.version = [], [], [], 1
+    Sitio.robots_redirige = False
     servidor = http.server.ThreadingHTTPServer(("127.0.0.1", 0), Sitio)
     threading.Thread(target=servidor.serve_forever, daemon=True).start()
     yield f"127.0.0.1:{servidor.server_address[1]}"
@@ -571,6 +579,9 @@ def test_wikipedia_y_bases_de_usgs_se_excluyen():
                                       p.patron_hosts_excluidos)
     assert trampa("https://nas.er.usgs.gov/queries/SpecimenViewer.aspx?SpecimenID=1822165")
     assert trampa("https://mrdata.usgs.gov/geology/state/")
+    assert trampa("https://essigdb.berkeley.edu/cgi/calmoth_query?one=T&seq_num=3468")
+    assert trampa("https://ucmpdb.berkeley.edu/cgi/ucmp_query2?one=T&spec_id=V42545")
+    assert not trampa("https://ucmp.berkeley.edu/diapsids/dinosaur.html")
     assert not trampa("https://www.usgs.gov/programs/paleontology") and not trampa("https://pubs.usgs.gov/")
 
 
@@ -584,3 +595,183 @@ def test_reanudar_limpia_hosts_saturados_dejando_lo_del_tema(tmp_path):
     cal.cargar_pendientes(almacen.cargar_pendientes())
     assert cal.estado()[0] == 1                                           # 5 pendientes > 3: queda solo la del tema
     almacen.cerrar()
+
+
+def test_robots_txt_con_redireccion(tmp_path, sitio):
+    Sitio.robots_redirige = True
+    almacen = Almacen(tmp_path)
+    robots = descargador.Robots(parametros(), almacen)
+    assert robots.consultar(f"http://{sitio}/privado/x")[0] is False      # se siguio la redireccion y se leyo la regla
+    assert robots.consultar(f"http://{sitio}/a")[0] is True
+    assert almacen.db.execute("SELECT acceso FROM robots").fetchone()[0] == "ok"
+    almacen.cerrar()
+
+
+def test_reabrir_profundidad_sigue_enlaces_sin_duplicar(tmp_path, sitio):
+    from reabrir_frontera import reabrir
+    p = parametros(min_palabras=50, profundidad_maxima=0)
+    ctx = construir(p, tmp_path, [f"http://{sitio}/"], [], TEMA)
+    correr(ctx)
+    ctx.almacen.cerrar()
+    assert sqlite3.connect(tmp_path / "arana.db").execute("SELECT COUNT(*) FROM documentos").fetchone()[0] == 1
+    assert reabrir(tmp_path, profundidad=0) == {"profundidad": 1}
+    p.profundidad_maxima = 1
+    ctx = construir(p, tmp_path, [], [], TEMA)
+    correr(ctx)
+    ctx.almacen.cerrar()
+    db = sqlite3.connect(tmp_path / "arana.db")
+    assert db.execute("SELECT COUNT(*) FROM documentos WHERE url_normalizada=?", (f"http://{sitio}/",)).fetchone()[0] == 1
+    assert db.execute("SELECT estado FROM urls WHERE url_normalizada=?", (f"http://{sitio}/",)).fetchone()[0] == "hecho"
+    assert db.execute("SELECT COUNT(*) FROM documentos").fetchone()[0] > 1           # ahora si se siguieron sus enlaces
+
+
+def test_reabrir_umbral_y_robots(tmp_path):
+    from reabrir_frontera import reabrir
+    almacen = Almacen(tmp_path)
+    fila = lambda u, h: (u, "", "", "", u, h, h, 1, 5.0)
+    almacen.registrar_urls([fila("https://a.org/x", "a.org"), fila("https://a.org/y", "a.org"),
+                            fila("https://b.org/z", "b.org"), fila("https://c.org/w", "c.org")])
+    almacen.marcar_url("https://a.org/x", "descartado", "fuera_de_tema:6.5")
+    almacen.marcar_url("https://a.org/y", "descartado", "fuera_de_tema:2.0")
+    almacen.marcar_url("https://b.org/z", "descartado", "robots")
+    almacen.marcar_url("https://c.org/w", "descartado", "robots")
+    almacen.guardar_robots("b.org", None, "prohibido")                     # no se pudo leer: se reintenta
+    almacen.guardar_robots("c.org", None, "ok")                            # prohibicion real: se respeta
+    almacen.cerrar()
+    assert reabrir(tmp_path, robots=True, umbral=6.0) == {"robots": 1, "umbral": 1}
+    db = sqlite3.connect(tmp_path / "arana.db")
+    assert {u for (u,) in db.execute("SELECT url_normalizada FROM urls WHERE estado='pendiente'")} == \
+        {"https://a.org/x", "https://b.org/z"}
+
+
+def test_trampas_vistas_al_abrir_politicas():
+    from arana.arana import cargar_parametros
+    p = cargar_parametros(RAIZ / "config" / "parametros.toml")
+    trampa = lambda u: proc.es_trampa(proc.normalizar_url(u), p.rutas_excluidas, p.hosts_excluidos,
+                                      p.parametros_excluidos, p.patron_hosts_excluidos)
+    assert trampa("https://www.nature.com/articles/s42003-022-04132-y/figures/5?code=89f0a72a")
+    assert trampa("https://en.wikipedia.org/wiki/Wikipedia_talk:WikiProject_Dinosaurs/Article_alerts")
+    assert trampa("https://en.wikipedia.org/wiki/Category:FL-Class_amphibian_and_reptile_articles")
+    assert trampa("https://en.wikipedia.org/wiki/Category:Low-importance_Palaeontology_articles")
+    assert trampa("https://go.ohiolink.edu/acprod/odb_ejc/r/ohl/go/selection?clear=1&session=17462330075950")
+    assert not trampa("https://www.nature.com/articles/s42003-022-04132-y")              # el articulo si
+    assert not trampa("https://en.wikipedia.org/wiki/Category:Late_Cretaceous_dinosaurs")
+    assert not trampa("https://en.wikipedia.org/wiki/Middle-class_dinosaur_museum")      # no confunde "-class" con "-Class_"
+
+
+def test_reanudar_no_descarta_paginas_ya_guardadas(tmp_path):
+    p = parametros(host_saturado=1)
+    almacen = Almacen(tmp_path)
+    fila = lambda u: (u, "", "", "", "https://a.org/", "a.org", "a.org", 6, 5.0)
+    almacen.registrar_urls([fila("https://a.org/guardada"), fila("https://a.org/otra")])
+    almacen.guardar_documento(dict(url_normalizada="https://a.org/guardada", dominio="a.org", hash_sha256="h1",
+                                   num_palabras=200), "texto")
+    cal = Calendarizador(p, almacen, TEMA, {"a.org"}, [])
+    cal.cargar_pendientes(almacen.cargar_pendientes())
+    assert cal.estado()[0] == 1                                            # la guardada vuelve; la otra (sin tema) no
+    tarea, _ = cal.siguiente()
+    assert tarea.url == "https://a.org/guardada"
+    almacen.cerrar()
+
+
+def test_quitar_documentos(tmp_path):
+    from quitar_documentos import quitar
+    almacen = Almacen(tmp_path)
+    almacen.registrar_urls([("https://ojp.gov/amber", "", "", "", "s", "ojp.gov", "ojp.gov", 3, 1.0)])
+    doc_id, _ = almacen.guardar_documento(dict(url_normalizada="https://ojp.gov/amber", host="ojp.gov", dominio="ojp.gov",
+                                               hash_sha256="h", num_palabras=300), "AMBER Alert")
+    ruta = tmp_path / almacen.db.execute("SELECT ruta_archivo_txt FROM documentos").fetchone()[0]
+    almacen.cerrar()
+    assert ruta.exists()
+    assert quitar(tmp_path, [doc_id], "fuera_de_tema:amber_alert") == ["https://ojp.gov/amber"]
+    db = sqlite3.connect(tmp_path / "arana.db")
+    assert db.execute("SELECT COUNT(*) FROM documentos").fetchone()[0] == 0
+    assert db.execute("SELECT estado, motivo FROM urls").fetchone() == ("descartado", "fuera_de_tema:amber_alert")
+    assert not ruta.exists()
+
+
+
+PREFIJOS = ["10.1371", "10.1038"]
+
+
+def test_es_referencia():
+    assert proc.es_referencia("https://doi.org/10.1371/journal.pone.0080557", PREFIJOS)
+    assert proc.es_referencia("https://doi.org/10.1038%2Fsrep35295", PREFIJOS)               # prefijo codificado
+    assert not proc.es_referencia("https://doi.org/10.1016/j.cretres.2020.104", PREFIJOS)   # Elsevier: de pago
+    assert proc.es_referencia("https://pmc.ncbi.nlm.nih.gov/articles/PMC4011880/", PREFIJOS, seguir_pmc=True)
+    assert proc.es_referencia("https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4011880", PREFIJOS, seguir_pmc=True)
+    assert not proc.es_referencia("https://pmc.ncbi.nlm.nih.gov/articles/PMC4011880/", PREFIJOS)   # apagado por defecto
+    assert not proc.es_referencia("https://pubmed.ncbi.nlm.nih.gov/12345/", PREFIJOS)        # resumen corto
+    assert not proc.es_referencia("https://journals.plos.org/plosone/", PREFIJOS)
+    assert not proc.es_referencia("https://doi.org/10.1371/journal.pone.0063423.g001", PREFIJOS)   # figura, no articulo
+    assert not proc.es_referencia("https://doi.org/10.1371/journal.pone.0063423.t001", PREFIJOS)   # tabla
+
+
+def test_nombres_de_genero_cuentan_en_el_puntaje():
+    texto = ("The holotype of Allosaurus and Ceratosaurus shows a deep maxilla, while Velociraptor and "
+             "Deinonychus differ in the pubis. ") * 5
+    puntaje, terminos = TEMA.puntaje(texto)
+    assert puntaje >= 6.0                                                 # pasa P3 aunque no use palabras del diccionario
+
+
+def test_referencias_sin_lista_blanca_ni_filtro_denso_pero_con_p5(almacen):
+    cal = nuevo_calendarizador(almacen, enlaces_densos=3, prefijos_doi=PREFIJOS, profundidad_maxima=2, seguir_pmc=True)
+    padre = tarea_semilla()
+    enlaces = [("https://doi.org/10.1371/journal.pone.1", "Smith 2014"),
+               ("https://doi.org/10.1016/j.x.1", "Jones 2010"),               # de pago: no
+               ("https://pmc.ncbi.nlm.nih.gov/articles/PMC1/", "PMC 1"),
+               ("https://otro.com/a", "a"), ("https://otro.com/b", "b"), ("https://otro.com/c", "c"),
+               ("https://otro.com/d", "d")]
+    assert cal.encolar(enlaces, padre, 30.0) == 2                         # las 2 referencias: sin P1 ni filtro denso
+    citas = []
+    while True:
+        t, _ = cal.siguiente()
+        if t is None:
+            break
+        citas.append(t)
+        cal.terminar(t)
+    plos = proc.normalizar_url(proc.resolver_referencia("https://doi.org/10.1371/journal.pone.1"))
+    assert {t.url for t in citas} == {plos, "https://pmc.ncbi.nlm.nih.gov/articles/PMC1/"}
+    assert plos.startswith("https://journals.plos.org/plosone/article?id=")     # el DOI se resolvio sin pasar por doi.org
+    assert all(t.anchor.startswith("[cita] ") and t.profundidad == 1 for t in citas)
+    # la cadena de citas sigue desde un articulo citado (si fue relevante) mientras P5 lo permita
+    assert cal.encolar([("https://doi.org/10.1371/journal.pone.2", "Otro")], citas[0], 30.0) == 1
+    citas[0].profundidad = 2
+    assert cal.encolar([("https://doi.org/10.1371/journal.pone.3", "Otro mas")], citas[0], 30.0) == 0   # P5
+
+
+
+def test_resolver_referencia_sin_pasar_por_doi_org():
+    r = proc.resolver_referencia
+    assert r("https://doi.org/10.1038%2Fs41586-019-1636-y") == "https://www.nature.com/articles/s41586-019-1636-y"
+    assert r("https://doi.org/10.3389%2Ffeart.2019.00038") == "https://www.frontiersin.org/articles/10.3389/feart.2019.00038/full"
+    assert r("https://doi.org/10.1371%2Fjournal.pone.0223471") == \
+        "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0223471"
+    assert r("https://doi.org/10.1371/journal.pbio.1000001") == \
+        "https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1000001"
+    assert r("https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4819037") == "https://pmc.ncbi.nlm.nih.gov/articles/PMC4819037/"
+    assert r("https://doi.org/10.5194/fr-23-71-2020") == "https://doi.org/10.5194/fr-23-71-2020"     # Copernicus: por doi.org
+
+
+def test_referencias_se_encolan_ya_resueltas(almacen):
+    cal = nuevo_calendarizador(almacen, prefijos_doi=["10.1038"])
+    assert cal.encolar([("https://doi.org/10.1038%2Fsrep35295", "Paper")], tarea_semilla(), 20.0) == 1
+    tarea, _ = cal.siguiente()
+    assert tarea.url == "https://www.nature.com/articles/srep35295" and tarea.host == "www.nature.com"
+
+
+
+def test_detecta_verificacion_anti_robots():
+    assert proc.es_bloqueo("Checking your browser - reCAPTCHA", "Please wait while we verify your browser.")
+    assert proc.es_bloqueo("Just a moment...", "Enable JavaScript and cookies to continue")
+    assert not proc.es_bloqueo("Tyrannosaurus", "The Tyrannosaurus was a large theropod. " * 60)   # texto largo: no
+
+
+def test_pmc_excluido_en_la_configuracion():
+    from arana.arana import cargar_parametros
+    p = cargar_parametros(RAIZ / "config" / "parametros.toml")
+    assert p.seguir_pmc is False
+    trampa = lambda u: proc.es_trampa(u, p.rutas_excluidas, p.hosts_excluidos, p.parametros_excluidos,
+                                      p.patron_hosts_excluidos)
+    assert trampa("https://pmc.ncbi.nlm.nih.gov/articles/PMC4819037/")
+    assert trampa("https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4819037")

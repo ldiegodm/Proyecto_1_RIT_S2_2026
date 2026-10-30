@@ -10,13 +10,13 @@ carpeta_datos = "datos"     # aqui van arana.db, repositorio/ y logs/
 min_disco_libre_gb = 2.0    # el arañador se detiene si el disco queda con menos espacio libre que esto
 
 [seleccion]
-profundidad_maxima = 6      # P5
+profundidad_maxima = 7      # P5. Era 6: el 34 % de los documentos quedo en el limite. Solo un salto mas para no perder localidad tematica
 min_palabras = 150          # P8
 enlaces_densos = 300        # P4: una pagina con mas enlaces que esto (un articulo de Wikipedia) solo encola los que mencionan el tema
 host_saturado = 2000        # al reanudar, un host con mas pendientes que esto conserva solo las URLs que mencionan el tema
 max_evaluaciones_dominio = 5  # P1: paginas sin exito antes de rechazar un dominio descubierto
 min_enlaces_indice = 10     # P3: una pagina con tema en el titulo/URL y al menos tantos enlaces se trata como indice (se siguen sus enlaces)
-umbral_tematico = 8.0       # P3: aciertos ponderados por cada 1000 palabras (calibrado con la corrida de prueba)
+umbral_tematico = 6.0       # P3: aciertos ponderados por cada 1000 palabras. Era 8; entre 6 y 8 habia 9 577 paginas de evolucion y geologia
 cuota_dominio = 0.15        # P12: maximo de documentos por dominio
 calentamiento_docs = 500    # P12: la cuota se aplica despues de este numero de documentos
 max_bytes_descarga = 40000000
@@ -30,6 +30,7 @@ retardo_host_s = 1.5        # P11
 timeout_s = 10              # P14
 reintentos = 3              # P14 (espera 2, 4 y 8 s)
 retry_after_max_s = 60      # P14: si Retry-After pide mas que esto, se abandona la URL y el host descansa ese tiempo
+descanso_bloqueo_s = 3600   # P13/P14: si un sitio responde con una verificacion anti-robots (CAPTCHA), descansa una hora
 robots_ttl_s = 86400        # P10
 
 [trampas]
@@ -41,13 +42,36 @@ rutas_excluidas = ["/search", "/login", "/signin", "/authorize", "/cas-redirect"
                    # Wikipedia: paginas de sistema, discusion y edicion (no son articulos)
                    "/w/index.php", "/wiki/special:", "/wiki/talk:", "/wiki/category_talk:", "/wiki/user:", "/wiki/user_talk:", "/wiki/file:",
                    "/wiki/template:", "/wiki/template_talk:", "/wiki/help:", "/wiki/wikipedia:", "/wiki/portal:",
-                   "/wiki/draft:", "/wiki/mediawiki:", "/wiki/module:"]
+                   "/wiki/draft:", "/wiki/mediawiki:", "/wiki/module:",
+                   # Vistas en la bitacora al abrir P3 y P5 (19 de octubre): paginas de una sola figura de Nature,
+                   # cualquier pagina de discusion de Wikipedia (Wikipedia_talk:, Category_talk:...) y categorias de
+                   # mantenimiento de WikiProjects (FL-Class_..., Low-importance_...)
+                   "/figures/", "_talk:", "-importance_", "category:fa-class_", "category:fl-class_",
+                   "category:ga-class_", "category:a-class_", "category:b-class_", "category:c-class_",
+                   "category:start-class_", "category:stub-class_", "category:list-class_", "category:na-class_",
+                   "category:template-class_", "category:redirect-class_", "category:draft-class_", "/pmc/articles/",
+                   "category:unassessed_"]
 hosts_excluidos = ["idp", "login", "auth", "sso", "accounts"]
 parametros_excluidos = ["_csrf", "download", "error", "f[0]", "filterjournals", "filtersubjects", "q", "keywords",
-                        "search", "s", "oldid", "diff", "action", "veaction", "printable", "redirect"]
+                        "search", "s", "oldid", "diff", "action", "veaction", "printable", "redirect", "session"]
 # Wikipedia en otros idiomas: la coleccion es en ingles (el diccionario de P3 tambien), asi que solo en. y simple.
-# Tambien bases de datos de USGS (especies invasoras, minerales): millones de fichas sin texto util.
-patron_hosts_excluidos = "^(?!(en|simple)\\.)[a-z-]+\\.(m\\.)?wikipedia\\.org$|^(nas\\.er|mrdata)\\.usgs\\.gov$"
+# Tambien bases de datos de fichas: USGS (especies invasoras, minerales) y Berkeley (polillas del Essig Museum y
+# especimenes de UCMP: de 8 536 fichas procesadas se guardaron 77).
+patron_hosts_excluidos = "^(?!(en|simple)\\.)[a-z-]+\\.(m\\.)?wikipedia\\.org$|^(nas\\.er|mrdata)\\.usgs\\.gov$|^(essigdb|ucmpdb)\\.berkeley\\.edu$|^pmc\\.ncbi\\.nlm\\.nih\\.gov$"
+
+[referencias]
+# P4: las paginas de divulgacion citan articulos cientificos (un articulo de Wikipedia tiene ~110 referencias). Se siguen,
+# como cualquier enlace (solo desde paginas relevantes y dentro de P5), los DOI de estas editoriales (acceso abierto
+# o ya en la lista blanca) y los articulos de PMC; no pasan por la lista blanca ni por el filtro de enlaces densos.
+# Fuera: Elsevier, Science, Wiley, Taylor & Francis (de pago); Royal Society y PeerJ (403 a robots); Acta Pal. Polonica (SSL).
+# Tras la prueba real del 19 de octubre tambien quedaron fuera BMC/SpringerOpen (su robots.txt lo prohibe), eLife (4 de 4
+# fuera de tema), Pensoft (3 de 3 fuera de tema: taxonomia de especies vivas) y Nature/Scientific Reports: sus
+# articulos redirigen a idp.nature.com para comprobar cookies, y el arañador no maneja cookies (0 de 52 guardados).
+#               PLOS       Frontiers  Copernicus
+prefijos_doi = ["10.1371", "10.3389", "10.5194"]
+# PMC (repositorio abierto del NIH) se probo y respondio con una verificacion anti-robots (reCAPTCHA) tras ~400
+# peticiones: no se sigue. El NIH ofrece servicios oficiales para descargas masivas, no su sitio web.
+seguir_pmc = false
 
 [revisita]
 # P9: en corridas posteriores (python -m arana --revisita) se vuelven a pedir, con GET condicional,

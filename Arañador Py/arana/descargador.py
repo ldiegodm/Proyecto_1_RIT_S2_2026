@@ -175,18 +175,23 @@ class Robots:
     def _descargar(self, esquema, host):
         """Devuelve (parser o None, acceso) con acceso en: ok | libre | prohibido."""
         url = f"{esquema}://{host}/robots.txt"
-        try:
-            with _pedir(url, self.p) as r:
-                texto = r.read(512_000).decode("utf-8", errors="replace")
-            parser = urllib.robotparser.RobotFileParser()
-            parser.parse(texto.splitlines())
-            return parser, "ok"
-        except urllib.error.HTTPError as e:
-            if 400 <= e.code < 500 and e.code != 429:
-                return None, "libre"                # sin robots.txt: RFC 9309 permite todo
-            return None, "prohibido"                # 5xx o 429: se asume prohibido por ahora
-        except Exception:
-            return None, "prohibido"
+        for _ in range(6):                          # la peticion y hasta 5 redirecciones (RFC 9309, 2.3.1.2)
+            try:
+                with _pedir(url, self.p) as r:
+                    texto = r.read(512_000).decode("utf-8", errors="replace")
+                parser = urllib.robotparser.RobotFileParser()
+                parser.parse(texto.splitlines())
+                return parser, "ok"
+            except urllib.error.HTTPError as e:
+                if 300 <= e.code < 400 and e.headers.get("Location"):
+                    url = urljoin(url, e.headers["Location"])     # p. ej. http -> https o dominio -> www.dominio
+                    continue
+                if 400 <= e.code < 500 and e.code != 429:
+                    return None, "libre"            # sin robots.txt: RFC 9309 permite todo
+                return None, "prohibido"            # 5xx o 429: se asume prohibido por ahora
+            except Exception:
+                return None, "prohibido"
+        return None, "libre"                        # mas de 5 redirecciones: el RFC permite tratarlo como inexistente
 
     def consultar(self, url):
         """Politica P10. Devuelve (permitido, crawl_delay o None, hizo_peticion)."""

@@ -14,3 +14,5 @@ wikipedia.org
 ku.edu
 geolsoc.org.uk
 frontiersin.org
+# Pensoft publica Fossil Record (fr.pensoft.net), revista de paleontologia de acceso abierto
+pensoft.net

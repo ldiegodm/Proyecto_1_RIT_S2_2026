@@ -17,7 +17,7 @@ import re
 from functools import lru_cache
 from dataclasses import dataclass, field
 from html.parser import HTMLParser
-from urllib.parse import parse_qsl, quote, urlencode, urljoin, urlsplit, urlunsplit
+from urllib.parse import parse_qsl, quote, unquote, urlencode, urljoin, urlsplit, urlunsplit
 
 # ---------------------------------------------------------------------------
 # P6: normalizacion de URLs
@@ -75,7 +75,7 @@ def normalizar_url(url, base=None):
 # ---------------------------------------------------------------------------
 
 # Segundas etiquetas tipicas de sufijos publicos de dos niveles (ac.uk, co.uk, edu.au...)
-_SEGUNDO_NIVEL = {"ac", "co", "gov", "edu", "org", "com", "net"}
+_SEGUNDO_NIVEL = {"ac", "co", "gov", "edu", "org", "com", "net", "gob", "go"}   # gob.ar, gob.mx, go.cr
 
 
 def dominio_de(host):
@@ -130,6 +130,65 @@ def es_trampa(url, rutas, hosts, parametros, patron_host=""):
         claves = {k.lower() for k, _ in parse_qsl(partes.query, keep_blank_values=True)}
         return bool(claves & set(parametros))
     return False
+
+
+HOSTS_PMC = {"pmc.ncbi.nlm.nih.gov", "www.ncbi.nlm.nih.gov", "ncbi.nlm.nih.gov"}
+
+
+MARCAS_BLOQUEO = ("captcha", "checking your browser", "verify you are human", "are you a robot", "just a moment",
+                  "access denied", "unusual traffic")
+
+
+def es_bloqueo(titulo, texto):
+    """Politica P13/P14: pagina de verificacion anti-robots (CAPTCHA, "Checking your browser"...). Es corta y lo dice
+    en el titulo o en el texto. No se intenta resolver: se descarta y el host descansa."""
+    if contar_palabras(texto) > 200:
+        return False
+    muestra = (titulo + " " + texto[:2000]).lower()
+    return any(m in muestra for m in MARCAS_BLOQUEO)
+
+
+def es_referencia(url, prefijos_doi, seguir_pmc=False):
+    """Politica P4 (referencias academicas): DOI de una editorial de acceso abierto o de la lista blanca
+    (por su prefijo, antes de pedirlo) o articulo completo de PMC, el repositorio abierto del NIH."""
+    partes = urlsplit(url)
+    host = (partes.hostname or "").lower()
+    if host in ("doi.org", "dx.doi.org"):
+        prefijo, _, sufijo = unquote(partes.path).lstrip("/").partition("/")
+        if prefijo == "10.1371" and not re.fullmatch(r"journal\.\w+\.\d+", sufijo):
+            return False                         # DOI de una figura o tabla de PLOS (.g001, .t001): no es un articulo
+        return prefijo in prefijos_doi
+    return seguir_pmc and host in HOSTS_PMC and "/articles/pmc" in partes.path.lower()
+
+
+PLOS_REVISTAS = {"pone": "plosone", "pbio": "plosbiology", "pgen": "plosgenetics", "pcbi": "ploscompbiol",
+                 "ppat": "plospathogens", "pntd": "plosntds", "pmed": "plosmedicine"}
+
+
+def resolver_referencia(url):
+    """Politica P6 aplicada a referencias: lleva un DOI o un enlace viejo de PMC directo a la pagina del articulo.
+
+    Las redirecciones de estas editoriales son fijas (doi.org -> dx.plos.org -> journals.plos.org; doi.org ->
+    nature.com; www.ncbi.nlm.nih.gov/pmc -> pmc.ncbi.nlm.nih.gov). Armar la URL final ahorra una o dos peticiones por
+    articulo y evita que doi.org, un solo host a 1,5 s por peticion, sea el cuello de botella. Si no se reconoce, se
+    deja igual y la redireccion se sigue normalmente."""
+    partes = urlsplit(url)
+    host = (partes.hostname or "").lower()
+    if host in HOSTS_PMC and host != "pmc.ncbi.nlm.nih.gov":
+        m = re.search(r"/pmc/articles/(pmc\d+)", partes.path, re.I)
+        return f"https://pmc.ncbi.nlm.nih.gov/articles/{m.group(1).upper()}/" if m else url
+    if host in ("doi.org", "dx.doi.org"):
+        doi = unquote(partes.path).lstrip("/")
+        prefijo, _, sufijo = doi.partition("/")
+        if prefijo == "10.1038" and sufijo:
+            return f"https://www.nature.com/articles/{sufijo}"
+        if prefijo == "10.3389" and sufijo:
+            return f"https://www.frontiersin.org/articles/{doi}/full"
+        if prefijo == "10.1371":
+            m = re.match(r"journal\.(\w+)\.", sufijo)
+            if m and m.group(1) in PLOS_REVISTAS:
+                return f"https://journals.plos.org/{PLOS_REVISTAS[m.group(1)]}/article?id={doi}"
+    return url
 
 
 def extension_bloqueada(url):
@@ -312,7 +371,7 @@ def pdf_a_texto(datos, max_paginas=300):
     """
     try:
         import logging
-        logging.getLogger("pypdf").setLevel(logging.ERROR)
+        logging.getLogger("pypdf").setLevel(logging.CRITICAL)   # avisos de fuentes raras ("Advanced encoding ... not implemented")
         from pypdf import PdfReader
         lector = PdfReader(io.BytesIO(datos))
         if lector.is_encrypted:
@@ -410,6 +469,9 @@ class Tema:
             if r in self.pesos:
                 aciertos[r] = aciertos.get(r, 0) + 1
                 total += self.pesos[r]
+            elif _es_genero(palabra):            # Allosaurus, Velociraptor...: miles de generos que no caben en la lista
+                aciertos[r] = aciertos.get(r, 0) + 1
+                total += 1.0
         encontrados = sorted(aciertos, key=aciertos.get, reverse=True)[:8]
         return total / len(palabras) * 1000, encontrados
 

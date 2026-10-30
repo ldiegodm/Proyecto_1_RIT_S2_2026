@@ -15,6 +15,7 @@ python -m arana                          # corrida larga (hasta objetivo_gb o Ct
 python -m arana --duracion-min 480       # se detiene sola a las 8 horas
 python -m arana --datos D:/datos         # guardar el repositorio en otro disco
 python -m arana --revisita               # P9: revisar con GET condicional lo ya guardado
+python reabrir_frontera.py --robots --umbral 6 --profundidad 6   # reencolar tras abrir políticas (arañador detenido)
 python estadisticas.py                   # tabla de la sección 3 + curva de Zipf
 ```
 
@@ -120,6 +121,60 @@ El diseño se siguió casi literal: profundidad 6, 150 palabras mínimo, 1,5 s p
   `descargador.py` porque es quien hace la petición; P11 (retardo por host) queda en el calendarizador.
 - **Semilla 10:** la URL de Discover Magazine no está cortada (termina en `...the-most-45694`), pero el sitio responde
   403 a los robots. Se deja como semilla y queda registrada como error en la bitácora; no se finge ser un navegador (P13).
+
+## Segunda apertura de políticas (19 de octubre)
+
+El 3 de octubre el arañador terminó solo: la frontera quedó vacía con 33 477 documentos (370 MB). Las políticas ya
+habían agotado todo lo alcanzable, así que para obtener más hubo que abrirlas. `reabrir_frontera.py` devuelve a la
+frontera lo que una corrida anterior había cerrado (se respaldó la base antes de usarlo).
+
+- **robots.txt con redirección (error de código):** el arañador no seguía redirecciones al pedir `robots.txt` y trataba
+  el host como prohibido. Afectó a 1 848 hosts (`www.ucmp.berkeley.edu`, `pubs.er.usgs.gov`, `flmnh.ufl.edu`...). Ahora
+  sigue hasta 5 redirecciones (RFC 9309) y se reencolaron las 5 890 URLs perdidas. Las prohibiciones reales no se tocan.
+- **P5, profundidad 6 → 7:** el 34 % de los documentos quedó en el límite y sus enlaces nunca se siguieron. Se sube
+  un solo salto para no perder localidad temática (Chakrabarti: la relación con el tema se debilita con cada salto). Se volvieron a pedir las 12 471
+  páginas guardadas a profundidad 6: no se guardan otra vez (se registran como `reprocesado`), solo se encolan sus enlaces.
+- **P3, umbral 8 → 6:** había 9 577 páginas descartadas con puntaje entre 6 y 8, muchas de evolución, geología y
+  paleontología cercana (subtemas de la sección 1). Se reencolaron.
+- **Trampas nuevas:** al abrir P3 y P5 la araña llega a más páginas que no son contenido. Se agregaron las que se vieron
+  en la bitácora: páginas de una sola figura de Nature (`/figures/`), páginas de discusión de Wikipedia (`_talk:`),
+  categorías de evaluación de WikiProjects (`Category:FL-Class_...`, `-importance_`) y enlaces con `session=` de OhioLINK.
+- **Corrección tras 3 horas (19 de octubre):** la frontera se llenó de fichas de dos bases de datos de Berkeley
+  (`essigdb`, polillas; `ucmpdb`, especímenes): de 8 536 procesadas se guardaron 77, y se excluyen como las de USGS.
+  Se quitó "amber" del diccionario de P3: con el umbral en 6 dejaba pasar páginas de AMBER Alert (alertas de niños
+  desaparecidos, `ojp.gov`).
+- **Localidad temática medida:** el puntaje temático promedio baja con la profundidad (semillas 49,7; saltos 1 a 5
+  entre 23 y 28; profundidad 6: 19,7; profundidad 7: 18,5) y a profundidad 7 se duplica la proporción de documentos
+  con puntaje entre 6 y 8 (20,5 % contra 8–12 %). Por eso P5 se subió un solo salto.
+- **Referencias académicas (P4, 19 de octubre):** con ~600 MB el arañador agotó otra vez la frontera. Lo que faltaba
+  eran las fuentes primarias: un artículo de Wikipedia sobre dinosaurios cita ~110 trabajos (en 8 artículos: 704 DOI y
+  165 enlaces a PMC). Ahora se siguen los DOI de editoriales de acceso abierto o de la lista blanca (prefijos en
+  `[referencias]`, filtrados antes de pedirlos) y los artículos completos de PMC. No pasan por la lista blanca ni por el
+  filtro de enlaces densos, pero sí por P3 y P5 como cualquier enlace: una cadena de citas sigue mientras cada artículo
+  sea del tema y se corta en el primero que no lo sea (o al llegar a la profundidad máxima). Los nombres de género
+  (`-saurus`, `-raptor`...) cuentan ahora en el puntaje de P3, porque los artículos científicos los usan más que el
+  diccionario de divulgación. Se volvieron a pedir los artículos de Wikipedia con puntaje de 30 o más para recoger sus
+  referencias (`reabrir_frontera.py --reprocesar-host en.wikipedia.org --puntaje-min 30`).
+- **Prueba real de las referencias (10 minutos):** 72 artículos citados guardados, que son el 74 % del texto nuevo
+  (6,8 MB, 95 KB por artículo frente a 15 KB del resto) con puntaje medio 27,1: títulos como "The largest
+  sauropodomorph skull from the Lower Jurassic Lufeng Formation" o "Asteroid impact, not volcanism, caused the
+  end-Cretaceous dinosaur extinction". P3 descartó 101 artículos de PMC citados desde Wikipedia pero ajenos al tema
+  (todos con puntaje menor que 2). Con esa prueba se quitaron BMC (robots.txt lo prohíbe), eLife y Pensoft (fuera de
+  tema) y Nature (exige cookies: redirige a `idp.nature.com`), y los DOI de PLOS y Frontiers y los enlaces viejos de PMC se resuelven directo a la página del
+  artículo (`resolver_referencia`): ahorra una o dos peticiones por artículo y evita que `doi.org`, un solo host, sea
+  el cuello de botella.
+- **PMC y Nature fuera, y detección de bloqueos (P13/P14):** al verificar en vivo las URL resueltas, PMC respondió con
+  una verificación anti-robots (reCAPTCHA) después de ~400 peticiones, y Nature redirige a `idp.nature.com` para
+  comprobar cookies. No se intenta saltar ninguna de las dos: PMC se excluye (el NIH ofrece servicios oficiales para
+  descargas masivas) y se quitó el prefijo de Nature. Además, una página de verificación anti-robots (CAPTCHA,
+  "Checking your browser", "Just a moment") ya no se guarda ni cuenta como fuera de tema: se registra como
+  `bloqueado` y el host descansa una hora (`descanso_bloqueo_s`). Los DOI de figuras y tablas de PLOS (`.g001`,
+  `.t001`), que Wikipedia a veces cita, se descartan antes de pedirlos (daban 404).
+- **Se descartó una colección bilingüe:** el documento define la colección en inglés (sección 1), así que no se
+  agregaron fuentes en español. De esa prueba solo quedó una corrección de `dominio_de`: `revista.macn.gob.ar` es el
+  dominio `macn.gob.ar`, no todo `gob.ar`.
+
+Se partió del respaldo del 3 de octubre: una prueba de 2 minutos que incluía las fuentes en español se deshizo.
 
 ## Cómo verificar dominios y semillas
 

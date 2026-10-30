@@ -68,6 +68,9 @@ class Parametros:
     hosts_excluidos: list = field(default_factory=list)
     parametros_excluidos: list = field(default_factory=list)
     patron_hosts_excluidos: str = ""
+    prefijos_doi: list = field(default_factory=list)
+    seguir_pmc: bool = False
+    descanso_bloqueo_s: float = 3600
     revisita_noticia_dias: float = 1
     revisita_estable_dias: float = 30
 
@@ -228,6 +231,10 @@ def procesar(ctx, tarea):
         descartar(ctx, tarea, resp, "pdf_ilegible")
         return 0.0
     titulo, texto, enlaces, noindex, nofollow = extraido
+    if proc.es_bloqueo(titulo, texto):           # P13/P14: verificacion anti-robots; no se resuelve, el host descansa
+        cal.resolver_dominio(tarea.dominio, False, evaluada=False)
+        descartar(ctx, tarea, resp, "bloqueado:verificacion_anti_robots")
+        return max(resp.retry_after, p.descanso_bloqueo_s)
 
     palabras = proc.contar_palabras(texto)
     puntaje, terminos = ctx.tema.puntaje(texto)                          # P3
@@ -239,7 +246,11 @@ def procesar(ctx, tarea):
     if (relevante or indice or tarea.profundidad == 0) and not nofollow and enlaces:
         cal.encolar(enlaces, tarea, max(puntaje, p.umbral_tematico) if indice else puntaje)
 
-    if noindex:
+    previo = alm.documento_de_url(tarea.url)
+    if previo is not None:                       # ya estaba guardada: se volvio a pedir solo para seguir sus enlaces
+        registrar(ctx, tarea, resp.codigo, "reprocesado", f"id={previo}")
+        alm.marcar_url(tarea.url, "hecho", f"id={previo}", resp.codigo, resp.intentos)
+    elif noindex:
         descartar(ctx, tarea, resp, "noindex")
     elif not relevante:
         descartar(ctx, tarea, resp, f"fuera_de_tema:{puntaje:.1f}" + (":indice" if indice else ""))
